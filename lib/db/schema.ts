@@ -1,19 +1,19 @@
-import { sqliteTable, text, integer, primaryKey } from "drizzle-orm/sqlite-core";
+import { pgTable, text, integer, timestamp, primaryKey } from "drizzle-orm/pg-core";
 import { randomUUID } from "crypto";
 
 // ── Auth.js tables ──────────────────────────────────────────────────────────
 
-export const users = sqliteTable("user", {
+export const users = pgTable("user", {
   id: text("id")
     .primaryKey()
     .$defaultFn(() => randomUUID()),
   name: text("name"),
   email: text("email"),
-  emailVerified: integer("emailVerified", { mode: "timestamp_ms" }),
+  emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
 });
 
-export const accounts = sqliteTable(
+export const accounts = pgTable(
   "account",
   {
     userId: text("userId")
@@ -35,27 +35,27 @@ export const accounts = sqliteTable(
   ]
 );
 
-export const sessions = sqliteTable("session", {
+export const sessions = pgTable("session", {
   sessionToken: text("sessionToken").primaryKey(),
   userId: text("userId")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
-  expires: integer("expires", { mode: "timestamp_ms" }).notNull(),
+  expires: timestamp("expires", { mode: "date" }).notNull(),
 });
 
-export const verificationTokens = sqliteTable(
+export const verificationTokens = pgTable(
   "verificationToken",
   {
     identifier: text("identifier").notNull(),
     token: text("token").notNull(),
-    expires: integer("expires", { mode: "timestamp_ms" }).notNull(),
+    expires: timestamp("expires", { mode: "date" }).notNull(),
   },
   (t) => [primaryKey({ columns: [t.identifier, t.token] })]
 );
 
 // ── Application tables ──────────────────────────────────────────────────────
 
-export const domains = sqliteTable("domain", {
+export const domains = pgTable("domain", {
   id: text("id")
     .primaryKey()
     .$defaultFn(() => randomUUID()),
@@ -67,22 +67,22 @@ export const domains = sqliteTable("domain", {
   ipv6: text("ipv6"),
   cloudflareRecordIdA: text("cloudflareRecordIdA"),
   cloudflareRecordIdAAAA: text("cloudflareRecordIdAAAA"),
-  createdAt: integer("createdAt", { mode: "timestamp_ms" })
+  createdAt: timestamp("createdAt", { mode: "date" })
     .notNull()
     .$defaultFn(() => new Date()),
-  updatedAt: integer("updatedAt", { mode: "timestamp_ms" })
+  updatedAt: timestamp("updatedAt", { mode: "date" })
     .notNull()
     .$defaultFn(() => new Date()),
 });
 
-export const apiTokens = sqliteTable("apiToken", {
+export const apiTokens = pgTable("apiToken", {
   token: text("token")
     .primaryKey()
     .$defaultFn(() => randomUUID()),
   userId: text("userId")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
-  createdAt: integer("createdAt", { mode: "timestamp_ms" })
+  createdAt: timestamp("createdAt", { mode: "date" })
     .notNull()
     .$defaultFn(() => new Date()),
 });

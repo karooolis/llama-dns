@@ -66,7 +66,8 @@ export async function POST(request: Request) {
   } catch (err: unknown) {
     if (
       err instanceof Error &&
-      err.message.includes("UNIQUE constraint failed")
+      (err.message.includes("UNIQUE constraint failed") ||
+        err.message.includes("duplicate key value"))
     ) {
       return NextResponse.json(
         { error: `"${name}" is already taken.` },
