@@ -2,12 +2,15 @@
 
 import { useState } from "react";
 import { useTokenQuery, useRegenerateTokenMutation } from "@/queries/token";
+import { useDomainsQuery } from "@/queries/domains";
 
 export function TokenDisplay() {
   const { data: tokenData } = useTokenQuery();
   const regenerate = useRegenerateTokenMutation();
   const [revealed, setRevealed] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [copiedUrl, setCopiedUrl] = useState(false);
+  const { data: domains = [] } = useDomainsQuery();
 
   const token = tokenData?.token ?? "";
   const masked = token ? token.slice(0, 8) + "..." + token.slice(-4) : "";
@@ -27,6 +30,15 @@ export function TokenDisplay() {
   }
 
   const domain = process.env.NEXT_PUBLIC_DOMAIN || "llamadns.org";
+  const firstDomain = domains[0]?.name ?? "SUBDOMAIN";
+  const updateUrl = `https://${domain}/update?domains=${firstDomain}&token=${token}&verbose=true`;
+
+  async function copyUrl() {
+    if (!token) return;
+    await navigator.clipboard.writeText(updateUrl);
+    setCopiedUrl(true);
+    setTimeout(() => setCopiedUrl(false), 2000);
+  }
 
   return (
     <div className="space-y-3">
@@ -55,10 +67,18 @@ export function TokenDisplay() {
         </button>
       </div>
       <div className="rounded-lg border border-border bg-card p-4">
-        <p className="mb-2 text-xs font-medium text-muted">Update your IP:</p>
+        <div className="mb-2 flex items-center justify-between">
+          <p className="text-xs font-medium text-muted">Update your IP:</p>
+          <button
+            onClick={copyUrl}
+            disabled={!token}
+            className="text-xs text-accent transition-colors hover:text-accent-hover disabled:opacity-50"
+          >
+            {copiedUrl ? "Copied!" : "Copy URL"}
+          </button>
+        </div>
         <code className="block break-all text-xs text-muted">
-          curl &quot;https://{domain}/update?domains=SUBDOMAIN&amp;token=
-          {revealed ? token : "YOUR_TOKEN"}&amp;verbose=true&quot;
+          {updateUrl}
         </code>
       </div>
     </div>
