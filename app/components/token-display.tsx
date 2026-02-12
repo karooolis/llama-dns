@@ -1,0 +1,66 @@
+"use client";
+
+import { useState } from "react";
+import { useTokenQuery, useRegenerateTokenMutation } from "@/queries/token";
+
+export function TokenDisplay() {
+  const { data: tokenData } = useTokenQuery();
+  const regenerate = useRegenerateTokenMutation();
+  const [revealed, setRevealed] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const token = tokenData?.token ?? "";
+  const masked = token ? token.slice(0, 8) + "..." + token.slice(-4) : "";
+
+  async function copyToken() {
+    if (!token) return;
+    await navigator.clipboard.writeText(token);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }
+
+  async function handleRegenerate() {
+    if (!confirm("Regenerate your API token? The old token will stop working."))
+      return;
+    await regenerate.mutateAsync();
+    setRevealed(true);
+  }
+
+  const domain = process.env.NEXT_PUBLIC_DOMAIN || "llamadns.org";
+
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center gap-2">
+        <code className="flex-1 rounded-lg border border-border bg-card px-3 py-2 text-sm font-mono">
+          {revealed ? token : masked}
+        </code>
+        <button
+          onClick={() => setRevealed(!revealed)}
+          className="rounded-lg border border-border px-3 py-2 text-sm transition-colors hover:bg-card"
+        >
+          {revealed ? "Hide" : "Reveal"}
+        </button>
+        <button
+          onClick={copyToken}
+          className="rounded-lg border border-border px-3 py-2 text-sm transition-colors hover:bg-card"
+        >
+          {copied ? "Copied!" : "Copy"}
+        </button>
+        <button
+          onClick={handleRegenerate}
+          disabled={regenerate.isPending}
+          className="rounded-lg border border-border px-3 py-2 text-sm text-danger transition-colors hover:bg-danger/10 disabled:opacity-50"
+        >
+          {regenerate.isPending ? "..." : "Regenerate"}
+        </button>
+      </div>
+      <div className="rounded-lg border border-border bg-card p-4">
+        <p className="mb-2 text-xs font-medium text-muted">Update your IP:</p>
+        <code className="block break-all text-xs text-muted">
+          curl &quot;https://{domain}/update?domains=SUBDOMAIN&amp;token=
+          {revealed ? token : "YOUR_TOKEN"}&amp;verbose=true&quot;
+        </code>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,31 @@
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+import { QueryClient, dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { domainsQueryOptions } from "@/queries/domains";
+import { tokenQueryOptions } from "@/queries/token";
+import { Header } from "../components/header";
+import { DashboardContent } from "./dashboard-content";
+
+export default async function DashboardPage() {
+  const session = await auth();
+  if (!session?.user) redirect("/");
+
+  const queryClient = new QueryClient();
+
+  await Promise.all([
+    queryClient.prefetchQuery(domainsQueryOptions()),
+    queryClient.prefetchQuery(tokenQueryOptions()),
+  ]);
+
+  return (
+    <>
+      <Header />
+      <main className="mx-auto max-w-4xl px-6 py-8">
+        <h1 className="mb-6 text-2xl font-bold">Dashboard</h1>
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <DashboardContent />
+        </HydrationBoundary>
+      </main>
+    </>
+  );
+}
