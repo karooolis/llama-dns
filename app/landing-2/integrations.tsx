@@ -4,7 +4,7 @@ export function Integrations() {
   return (
     <section
       id="integrations"
-      className="py-24 border-t border-white/5 bg-black"
+      className="py-24 bg-black"
     >
       <div className="max-w-4xl mx-auto px-6 text-center">
         <h2 className="text-3xl font-medium text-white tracking-tight mb-4">

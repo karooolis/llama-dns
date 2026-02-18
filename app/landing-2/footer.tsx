@@ -2,7 +2,7 @@ import { Icon } from "@iconify/react";
 
 export function Footer() {
   return (
-    <footer className="py-10 border-t border-white/5 bg-[#020202]">
+    <footer className="py-10 bg-[#020202]">
       <div className="max-w-5xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-10">
           <div className="col-span-1 md:col-span-1">
