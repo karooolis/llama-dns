@@ -15,7 +15,7 @@ export function ClaimInputV2() {
 
   return (
     <form onSubmit={handleSubmit} className="mb-8">
-      <div className="flex items-center bg-[#0a0a0a] border border-white/[0.08] rounded-xl p-1.5 focus-within:border-white/[0.15] transition-all shadow-lg max-w-md">
+      <div className="flex items-center bg-[#0a0a0a] border border-white/[0.08] rounded-xl p-1.5 focus-within:border-white/[0.15] transition-all shadow-lg max-w-md mx-auto">
         <input
           type="text"
           placeholder="your-project"
