@@ -2,19 +2,13 @@ import { Icon } from "@iconify/react";
 
 export function Integrations() {
   return (
-    <section
-      id="integrations"
-      className="py-24 bg-black"
-    >
+    <section id="integrations" className="py-16 bg-black">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <h2 className="text-3xl font-medium text-white tracking-tight mb-4">
           Integrations
         </h2>
-        <p className="text-gray-500 text-sm mb-10">
-          Compatible with your favorite tools and operating systems.
-        </p>
 
-        <div className="flex flex-wrap justify-center gap-2 md:gap-4">
+        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mt-10">
           <div className="group px-4 py-2 rounded-md border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex items-center gap-3">
             <Icon
               icon="mdi:linux"

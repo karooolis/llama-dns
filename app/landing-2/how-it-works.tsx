@@ -2,7 +2,7 @@ import { Icon } from "@iconify/react";
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 relative bg-black">
+    <section id="how-it-works" className="py-16 relative bg-black">
       <div className="max-w-5xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tighter mb-4 text-white">

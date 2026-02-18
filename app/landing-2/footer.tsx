@@ -15,7 +15,7 @@ export function Footer() {
               </span>
             </div>
             <p className="text-xs text-neutral-500 mb-6 font-light leading-5">
-              Open source dynamic DNS for the modern developer ecosystem.
+              Open-source dynamic DNS for the modern developer ecosystem.
             </p>
             <a
               href="https://buymeacoffee.com/karooolis"
@@ -33,7 +33,7 @@ export function Footer() {
             </a>
           </div>
 
-          <div className="col-span-1 md:col-span-3 grid grid-cols-3 gap-8 text-[13px]">
+          <div className="col-span-1 md:col-span-3 grid grid-cols-3 gap-8 text-[13px] md:pl-8">
             <div className="flex flex-col gap-3">
               <span className="text-neutral-200 font-medium">Product</span>
               <a

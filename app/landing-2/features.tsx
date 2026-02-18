@@ -93,11 +93,10 @@ export function Features() {
               <Icon icon="solar:star-linear" width={20} />
             </div>
             <h3 className="text-white font-medium mb-2 tracking-tight">
-              Open source
+              Open-source
             </h3>
             <p className="text-sm text-neutral-500 leading-relaxed font-light">
-              MIT licensed. Audit the code, self-host, or contribute on
-              GitHub.
+              MIT licensed. Audit the code, self-host, or contribute on GitHub.
             </p>
           </div>
         </div>

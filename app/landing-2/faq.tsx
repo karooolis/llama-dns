@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 const items = [
   {
     q: "Is LlamaDNS really free?",
-    a: "Yes. LlamaDNS is 100% free for personal use and open source under the MIT license.",
+    a: "Yes. LlamaDNS is 100% free for personal use and Open-source under the MIT license.",
   },
   {
     q: "How fast do changes propagate?",
@@ -37,7 +37,7 @@ const items = [
 
 export function Faq() {
   return (
-    <section id="faq" className="py-20 md:py-24 px-6 bg-black">
+    <section id="faq" className="py-16 px-6 bg-black">
       <div className="max-w-2xl mx-auto">
         <h2 className="text-3xl font-semibold tracking-tighter text-white text-center mb-10">
           Frequently Asked Questions
@@ -47,7 +47,7 @@ export function Faq() {
           {items.map((item) => (
             <details
               key={item.q}
-              className="group rounded-lg border border-white/5 bg-white/[0.01] open:bg-white/[0.03] hover:border-white/[0.08] transition-all cursor-pointer"
+              className="group rounded-lg border border-white/5 bg-white/[0.03] open:bg-white/[0.05] hover:border-white/[0.08] transition-all cursor-pointer"
             >
               <summary className="flex items-center justify-between p-4 text-[15px] font-medium text-neutral-300 tracking-tight">
                 {item.q}
