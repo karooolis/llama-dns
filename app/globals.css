@@ -35,18 +35,13 @@ body {
 }
 
 .hero-mask {
-  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
 }
 
 .hero-glow {
-  background: radial-gradient(circle at center, rgba(120, 119, 198, 0.15) 0%, transparent 50%);
 }
 
 .linear-text-gradient {
-  background: linear-gradient(to bottom right, #ffffff 30%, #a5a5a5 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
 }
 
 .glass-nav {

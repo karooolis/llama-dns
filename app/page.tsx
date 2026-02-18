@@ -63,7 +63,7 @@ export default async function Home() {
           <h1 className="text-5xl md:text-7xl font-medium tracking-tight mb-8 leading-[1.05]">
             <span className="linear-text-gradient">Dynamic DNS for</span>
             <br />
-            <span className="linear-text-gradient opacity-60">modern engineering.</span>
+            <span className="linear-text-gradient">modern engineering.</span>
           </h1>
 
           <p className="text-lg text-gray-400 max-w-lg mx-auto mb-10 font-normal leading-relaxed tracking-tight">
@@ -102,7 +102,7 @@ export default async function Home() {
       </main>
 
       {/* Features Grid */}
-      <section id="features" className="py-24 border-t border-white/5 relative">
+      <section id="features" className="py-24 border-t border-white/5 relative bg-black">
         <div className="max-w-5xl mx-auto px-6">
           <div className="mb-16">
             <h2 className="text-2xl font-medium text-white tracking-tight mb-2">
@@ -201,7 +201,7 @@ export default async function Home() {
       </section>
 
       {/* Integrations Section */}
-      <section id="integrations" className="py-32 border-t border-white/5">
+      <section id="integrations" className="py-32 border-t border-white/5 bg-black">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-medium text-white tracking-tight mb-4">
             Works where you work

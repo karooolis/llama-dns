@@ -1,0 +1,412 @@
+<html lang="en" class="scroll-smooth"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LlamaDNS - Intelligent Dynamic DNS</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+    :root {
+        --bg-color: #030303;
+        --card-bg: rgba(255, 255, 255, 0.02);
+        --card-border: rgba(255, 255, 255, 0.06);
+        --accent-glow: rgba(255, 255, 255, 0.08);
+        --mouse-x: 50%;
+        --mouse-y: 50%;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg-color);
+        color: #a1a1aa;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Subtle Grain/Noise Texture */
+    .bg-noise {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+        pointer-events: none;
+    }
+
+    /* Dot Pattern with Mouse Reveal */
+    .bg-grid-dots {
+        background-size: 24px 24px;
+        background-image: radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+        mask-image: radial-gradient(
+            600px circle at var(--mouse-x) var(--mouse-y),
+            black 0%,
+            transparent 100%
+        );
+        -webkit-mask-image: radial-gradient(
+            600px circle at var(--mouse-x) var(--mouse-y),
+            black 0%,
+            transparent 100%
+        );
+        opacity: 0.5;
+    }
+
+    /* Glass Utilities */
+    .nav-glass {
+        background: rgba(3, 3, 3, 0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--card-border);
+    }
+
+    /* Animation Keyframes */
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in-up {
+        animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        opacity: 0;
+    }
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+
+    /* Custom Input Styles */
+    .custom-input:focus-within {
+        border-color: rgba(255,255,255,0.15);
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.15), 0 0 20px -5px rgba(255,255,255,0.1);
+    }
+
+    /* Accordion Reset */
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+
+    /* Selection Color */
+    ::selection { background: rgba(255, 255, 255, 0.15); color: white; }
+    
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-color); }
+    ::-webkit-scrollbar-thumb { background: #262626; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #404040; }
+</style>
+</head>
+<body class="min-h-screen relative overflow-x-hidden selection:bg-white/10 selection:text-white">
+
+    <!-- Noise Overlay -->
+    <div class="fixed inset-0 z-0 bg-noise opacity-50 pointer-events-none"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 nav-glass transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+            <div class="flex items-center gap-3 cursor-pointer group select-none">
+                <div class="relative flex items-center justify-center w-7 h-7 rounded-md bg-white/5 border border-white/10 group-hover:border-white/20 transition-all shadow-[0_0_10px_-3px_rgba(255,255,255,0.1)]">
+                    <iconify-icon icon="solar:dns-linear" class="text-base text-white opacity-90"></iconify-icon>
+                </div>
+                <span class="font-medium tracking-tight text-sm text-neutral-200 group-hover:text-white transition-colors">LlamaDNS</span>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 text-[13px] font-medium text-neutral-500">
+                <a href="#how-it-works" class="hover:text-neutral-200 transition-colors duration-200">How it works</a>
+                <a href="#docs" class="hover:text-neutral-200 transition-colors duration-200">Documentation</a>
+                <a href="#faq" class="hover:text-neutral-200 transition-colors duration-200">FAQ</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="#" class="hidden sm:block text-[13px] font-medium text-neutral-400 hover:text-white transition-colors">Log in</a>
+                <a href="#" class="group relative rounded-full focus:outline-none">
+                    <div class="absolute inset-0 rounded-full bg-gradient-to-b from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <span class="relative flex items-center gap-1.5 h-full w-full cursor-pointer rounded-full bg-[#111] hover:bg-[#151515] border border-white/10 hover:border-white/20 px-4 py-1.5 text-[13px] font-medium text-white transition-all shadow-sm">
+                        Sign up
+                        <iconify-icon icon="solar:arrow-right-linear" width="12" class="opacity-50 group-hover:translate-x-0.5 group-hover:opacity-100 transition-all"></iconify-icon>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="md:pt-44 md:pb-32 overflow-hidden pt-32 pr-6 pb-20 pl-6 relative">
+        
+        <!-- Background Dots -->
+        <div class="absolute inset-0 z-0 bg-grid-dots pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            
+            <!-- Announcement Pill -->
+            <div class="fade-in-up flex justify-center mb-10">
+                <a href="#" class="group relative flex items-center gap-2 rounded-full border border-white/5 bg-white/[0.02] pl-1 pr-3 py-1 text-[11px] text-neutral-400 hover:border-white/10 hover:bg-white/[0.04] transition-all backdrop-blur-sm">
+                    <span class="rounded-full bg-white/10 px-2 py-0.5 text-white/90 border border-white/5 shadow-inner">New</span>
+                    <span class="flex items-center gap-1 font-medium group-hover:text-neutral-200 transition-colors">
+                        Read the migration guide
+                        <iconify-icon icon="solar:alt-arrow-right-linear" class="transition-transform group-hover:translate-x-0.5 text-neutral-500 group-hover:text-white" width="10"></iconify-icon>
+                    </span>
+                </a>
+            </div>
+            
+            <!-- Headline -->
+            <h1 class="fade-in-up delay-100 text-5xl md:text-7xl font-medium tracking-tighter mb-8 leading-[1.0] text-white drop-shadow-lg">
+                Dynamic DNS for<br>
+                modern builds.
+            </h1>
+            
+            <p class="fade-in-up delay-200 text-lg md:text-xl max-w-lg mx-auto mb-12 font-light leading-relaxed tracking-tight text-neutral-400">
+                Secure, programmable, and instant. Update your IP address with a single API call. Built for developers.
+            </p>
+
+            <!-- Input Component -->
+            <div class="fade-in-up delay-300 max-w-[460px] mx-auto mb-20 relative z-20">
+                <div class="custom-input relative flex items-center bg-[#050505] border border-white/10 rounded-xl p-1.5 transition-all duration-300 shadow-lg group">
+                    <div class="pl-3.5 pr-3 text-neutral-600 flex items-center transition-colors group-focus-within:text-white/80">
+                        <iconify-icon icon="solar:magnifer-linear" class="text-lg"></iconify-icon>
+                    </div>
+                    <input type="text" placeholder="project-name" class="bg-transparent border-none placeholder-neutral-600 focus:outline-none w-full text-sm font-mono text-neutral-200 h-10 tracking-tight" spellcheck="false" autocomplete="off">
+                    <div class="pr-4 font-mono text-sm text-neutral-600 select-none tracking-tight hidden sm:block transition-colors group-focus-within:text-neutral-500">.llamadns.io</div>
+                    <button class="ml-2 h-9 px-4 rounded-lg bg-white text-black text-xs font-semibold hover:bg-neutral-200 transition-colors tracking-tight flex items-center justify-center whitespace-nowrap">
+                        Claim
+                    </button>
+                </div>
+                
+                <div class="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[11px] text-neutral-500 font-medium tracking-wide select-none">
+                    <span class="flex items-center gap-1.5 opacity-70 hover:opacity-100 transition-opacity cursor-default">
+                        <iconify-icon icon="solar:check-circle-linear" class="text-emerald-500"></iconify-icon> 100% Free
+                    </span>
+                    <span class="flex items-center gap-1.5 opacity-70 hover:opacity-100 transition-opacity cursor-default">
+                         <iconify-icon icon="solar:code-circle-linear"></iconify-icon> MIT License
+                    </span>
+                    <span class="flex items-center gap-1.5 opacity-70 hover:opacity-100 transition-opacity cursor-default">
+                        <iconify-icon icon="solar:shield-check-linear"></iconify-icon> SSL Ready
+                    </span>
+                </div>
+            </div>
+
+            <!-- Code Snippet -->
+            <div class="fade-in-up delay-300 max-w-2xl mx-auto perspective-[1000px]">
+                <div class="rounded-xl border border-white/10 bg-[#080808] shadow-2xl relative overflow-hidden group transition-all duration-500 hover:shadow-[0_0_40px_-10px_rgba(255,255,255,0.05)]">
+                    
+                    <!-- Code Header -->
+                    <div class="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-white/[0.01]">
+                        <div class="flex items-center gap-1.5 opacity-50">
+                            <div class="w-2.5 h-2.5 rounded-full bg-white/20"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-white/20"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-white/20"></div>
+                        </div>
+                        <div class="flex items-center gap-2 px-2 py-0.5 rounded border border-white/5 bg-white/[0.02]">
+                            <iconify-icon icon="solar:terminal-linear" class="text-[10px] text-neutral-500"></iconify-icon>
+                            <span class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">BASH</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Code Body -->
+                    <div class="p-6 text-left font-mono text-[13px] leading-7 overflow-x-auto relative">
+                        <div class="flex opacity-50 hover:opacity-100 transition-opacity">
+                            <span class="text-neutral-700 select-none w-8 text-right mr-4 text-xs pt-0.5">1</span>
+                            <span class="text-neutral-500 italic"># Update your DNS record</span>
+                        </div>
+                        <div class="flex">
+                            <span class="text-neutral-700 select-none w-8 text-right mr-4 text-xs pt-0.5">2</span>
+                            <div class="text-neutral-300 whitespace-pre">
+<span class="text-purple-400">curl</span> -X POST <span class="text-emerald-400/90">"https://api.llamadns.io/v1/update"</span> \</div>
+                        </div>
+                        <div class="flex">
+                            <span class="text-neutral-700 select-none w-8 text-right mr-4 text-xs pt-0.5">3</span>
+                            <div class="text-neutral-300 pl-4 whitespace-pre">-H <span class="text-amber-200/90">"Authorization: Bearer <span class="text-white/40 border-b border-dashed border-white/20 pb-0.5">dns_key</span>"</span> \</div>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-neutral-700 select-none w-8 text-right mr-4 text-xs pt-0.5">4</span>
+                            <div class="text-neutral-300 pl-4 whitespace-pre">-d <span class="text-sky-300/90">"domain=my-project"</span><span class="inline-block w-2 h-4 bg-white/20 ml-1.5 align-middle animate-pulse"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Separator -->
+    <div class="w-full max-w-6xl mx-auto h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-32 relative">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-24">
+                <h2 class="text-3xl md:text-4xl font-semibold tracking-tighter mb-4 text-white">How it works</h2>
+                <p class="text-neutral-500 text-sm font-light">Get up and running in less than 30 seconds.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+                <!-- Connector Line (Desktop Only) -->
+                <div class="hidden md:block absolute top-10 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent -z-10"></div>
+
+                <!-- Steps -->
+                <div class="group relative flex flex-col items-center text-center">
+                    <div class="w-20 h-20 rounded-2xl bg-[#0a0a0a] border border-white/10 flex items-center justify-center mb-6 shadow-sm relative z-10 group-hover:border-white/25 group-hover:bg-[#0f0f0f] transition-all duration-300">
+                        <iconify-icon icon="mdi:github" class="text-2xl text-white opacity-80 group-hover:opacity-100 transition-opacity"></iconify-icon>
+                        <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#151515] border border-white/10 flex items-center justify-center text-[10px] font-mono text-neutral-400">1</div>
+                    </div>
+                    <h3 class="text-base font-medium text-white mb-2 tracking-tight">Sign in with GitHub</h3>
+                    <p class="text-[13px] text-neutral-500 leading-relaxed max-w-[200px] font-light">Secure authentication with your existing account.</p>
+                </div>
+
+                <div class="group relative flex flex-col items-center text-center">
+                    <div class="w-20 h-20 rounded-2xl bg-[#0a0a0a] border border-white/10 flex items-center justify-center mb-6 shadow-sm relative z-10 group-hover:border-white/25 group-hover:bg-[#0f0f0f] transition-all duration-300">
+                        <iconify-icon icon="solar:tag-linear" class="text-2xl text-white opacity-80 group-hover:opacity-100 transition-opacity"></iconify-icon>
+                        <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#151515] border border-white/10 flex items-center justify-center text-[10px] font-mono text-neutral-400">2</div>
+                    </div>
+                    <h3 class="text-base font-medium text-white mb-2 tracking-tight">Claim Subdomains</h3>
+                    <p class="text-[13px] text-neutral-500 leading-relaxed max-w-[200px] font-light">Reserve up to 5 custom hostnames instantly.</p>
+                </div>
+
+                 <div class="group relative flex flex-col items-center text-center">
+                    <div class="w-20 h-20 rounded-2xl bg-[#0a0a0a] border border-white/10 flex items-center justify-center mb-6 shadow-sm relative z-10 group-hover:border-white/25 group-hover:bg-[#0f0f0f] transition-all duration-300">
+                        <iconify-icon icon="solar:refresh-circle-linear" class="text-2xl text-white opacity-80 group-hover:opacity-100 transition-opacity"></iconify-icon>
+                        <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#151515] border border-white/10 flex items-center justify-center text-[10px] font-mono text-neutral-400">3</div>
+                    </div>
+                    <h3 class="text-base font-medium text-white mb-2 tracking-tight">Auto Update</h3>
+                    <p class="text-[13px] text-neutral-500 leading-relaxed max-w-[200px] font-light">Sync IPs via simple HTTP GET requests.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integrations -->
+    <section id="integrations" class="py-24 relative bg-[#040404] border-y border-white/5">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <h2 class="md:text-4xl text-3xl font-semibold text-white tracking-tighter mb-4">Integrations</h2>
+            <p class="text-neutral-500 text-sm mb-12 font-light">Compatible with any system that can make a request.</p>
+            
+            <div class="flex flex-wrap justify-center gap-3">
+                <a href="#" class="group px-5 py-2.5 rounded-full border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-white/10 transition-all duration-200 flex items-center gap-2.5">
+                    <iconify-icon icon="simple-icons:linux" class="text-base text-neutral-400 group-hover:text-white transition-colors"></iconify-icon>
+                    <span class="text-[13px] font-medium text-neutral-400 group-hover:text-white transition-colors">Linux</span>
+                </a>
+                <a href="#" class="group px-5 py-2.5 rounded-full border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-white/10 transition-all duration-200 flex items-center gap-2.5">
+                    <iconify-icon icon="simple-icons:docker" class="text-base text-neutral-400 group-hover:text-[#2496ED] transition-colors"></iconify-icon>
+                    <span class="text-[13px] font-medium text-neutral-400 group-hover:text-white transition-colors">Docker</span>
+                </a>
+                <a href="#" class="group px-5 py-2.5 rounded-full border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-white/10 transition-all duration-200 flex items-center gap-2.5">
+                    <iconify-icon icon="simple-icons:raspberrypi" class="text-base text-neutral-400 group-hover:text-[#C51A4A] transition-colors"></iconify-icon>
+                    <span class="text-[13px] font-medium text-neutral-400 group-hover:text-white transition-colors">Raspberry Pi</span>
+                </a>
+                <a href="#" class="group px-5 py-2.5 rounded-full border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-white/10 transition-all duration-200 flex items-center gap-2.5">
+                    <iconify-icon icon="simple-icons:openwrt" class="text-base text-neutral-400 group-hover:text-[#2DA2D6] transition-colors"></iconify-icon>
+                    <span class="text-[13px] font-medium text-neutral-400 group-hover:text-white transition-colors">OpenWRT</span>
+                </a>
+                <a href="#" class="group px-5 py-2.5 rounded-full border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-white/10 transition-all duration-200 flex items-center gap-2.5">
+                    <iconify-icon icon="simple-icons:synology" class="text-base text-neutral-400 group-hover:text-white transition-colors"></iconify-icon>
+                    <span class="text-[13px] font-medium text-neutral-400 group-hover:text-white transition-colors">Synology</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 relative">
+        <div class="max-w-2xl mx-auto px-6">
+            <h2 class="text-3xl font-semibold text-white tracking-tighter text-center mb-10">Frequently Asked Questions</h2>
+
+            <div class="space-y-3">
+                <details class="group p-4 rounded-lg border border-white/5 bg-white/[0.01] open:bg-white/[0.03] hover:border-white/10 transition-all duration-200 cursor-pointer">
+                    <summary class="flex items-center justify-between font-medium text-neutral-300 text-[13px] tracking-tight">
+                        <span class="">Is this service really free?</span>
+                        <span class="text-neutral-500 group-open:rotate-180 transition-transform duration-300">
+                            <iconify-icon icon="solar:alt-arrow-down-linear" width="16"></iconify-icon>
+                        </span>
+                    </summary>
+                    <p class="mt-3 text-[13px] leading-relaxed text-neutral-500 font-light pr-4">
+                        Yes, LlamaDNS is completely free for personal use. We are open-source and supported by community donations.
+                    </p>
+                </details>
+
+                <details class="group p-4 rounded-lg border border-white/5 bg-white/[0.01] open:bg-white/[0.03] hover:border-white/10 transition-all duration-200 cursor-pointer">
+                    <summary class="flex items-center justify-between font-medium text-neutral-300 text-[13px] tracking-tight">
+                        <span class="">How fast is propagation?</span>
+                        <span class="text-neutral-500 group-open:rotate-180 transition-transform duration-300">
+                            <iconify-icon icon="solar:alt-arrow-down-linear" width="16"></iconify-icon>
+                        </span>
+                    </summary>
+                    <p class="mt-3 text-[13px] leading-relaxed text-neutral-500 font-light pr-4">
+                        Updates are typically reflected globally within 60 seconds thanks to our low TTL settings and edge network.
+                    </p>
+                </details>
+
+                <details class="group p-4 rounded-lg border border-white/5 bg-white/[0.01] open:bg-white/[0.03] hover:border-white/10 transition-all duration-200 cursor-pointer">
+                    <summary class="flex items-center justify-between font-medium text-neutral-300 text-[13px] tracking-tight">
+                        <span>Do you support IPv6?</span>
+                        <span class="text-neutral-500 group-open:rotate-180 transition-transform duration-300">
+                            <iconify-icon icon="solar:alt-arrow-down-linear" width="16"></iconify-icon>
+                        </span>
+                    </summary>
+                    <p class="mt-3 text-[13px] leading-relaxed text-neutral-500 font-light pr-4">
+                        Yes, we fully support AAAA records. You can update IPv4 and IPv6 addresses independently.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5 bg-[#020202]">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="flex items-center justify-center w-6 h-6 rounded bg-white/5 border border-white/5">
+                            <iconify-icon icon="solar:dns-linear" class="text-sm text-white"></iconify-icon>
+                        </div>
+                        <span class="text-sm font-semibold text-neutral-200 tracking-tight">LlamaDNS</span>
+                    </div>
+                    <p class="text-xs text-neutral-500 mb-6 font-light leading-5">
+                        Open source dynamic DNS for the modern developer ecosystem.
+                    </p>
+                    <a href="#" class="inline-flex items-center gap-2 hover:bg-[#111] hover:border-amber-500/30 transition-all duration-200 bg-[#0a0a0a] border-white/10 border rounded-md pt-1.5 pr-3 pb-1.5 pl-3">
+                        <iconify-icon icon="solar:cup-hot-linear" class="text-amber-400 text-xs"></iconify-icon>
+                        <span class="text-[11px] hover:text-white transition-colors font-medium text-neutral-400">Buy me a coffee
+</span>
+                    </a>
+                </div>
+                
+                <div class="col-span-1 md:col-span-3 grid grid-cols-3 gap-8 text-[13px]">
+                    <div class="flex flex-col gap-3">
+                        <span class="text-neutral-200 font-medium">Product</span>
+                        <a href="#" class="text-neutral-500 hover:text-white transition-colors">Features</a>
+                        <a href="#" class="text-neutral-500 hover:text-white transition-colors">API</a>
+                        <a href="#" class="text-neutral-500 hover:text-white transition-colors">Status</a>
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <span class="text-neutral-200 font-medium">Resources</span>
+                        <a href="#" class="text-neutral-500 hover:text-white transition-colors">Documentation</a>
+                        <a href="#" class="text-neutral-500 hover:text-white transition-colors">GitHub</a>
+                        <a href="#" class="text-neutral-500 hover:text-white transition-colors">Discord</a>
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <span class="text-neutral-200 font-medium">Legal</span>
+                        <a href="#" class="text-neutral-500 hover:text-white transition-colors">Privacy</a>
+                        <a href="#" class="text-neutral-500 hover:text-white transition-colors">Terms</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-white/5">
+                <div class="text-[11px] text-neutral-600">© 2026 LlamaDNS</div>
+                <div class="flex gap-4 opacity-60">
+                     <a href="#" class="text-neutral-400 hover:text-white transition-colors"><iconify-icon icon="mdi:github" width="16"></iconify-icon></a>
+                     <a href="#" class="text-neutral-400 hover:text-white transition-colors"><iconify-icon icon="mdi:twitter" width="16"></iconify-icon></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mouse Tracking Script -->
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            requestAnimationFrame(() => {
+                const x = e.clientX;
+                const y = e.clientY;
+                document.documentElement.style.setProperty('--mouse-x', x + 'px');
+                document.documentElement.style.setProperty('--mouse-y', y + 'px');
+            });
+        });
+    </script>
+
+</body></html>
