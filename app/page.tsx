@@ -26,10 +26,16 @@ export default async function Home() {
           </div>
 
           <div className="hidden md:flex items-center gap-8 text-xs font-medium text-gray-400">
-            <a href="#features" className="hover:text-gray-100 transition-colors">
+            <a
+              href="#features"
+              className="hover:text-gray-100 transition-colors"
+            >
               Features
             </a>
-            <a href="#integrations" className="hover:text-gray-100 transition-colors">
+            <a
+              href="#integrations"
+              className="hover:text-gray-100 transition-colors"
+            >
               Documentation
             </a>
             <a href="#" className="hover:text-gray-100 transition-colors">
@@ -102,7 +108,10 @@ export default async function Home() {
       </main>
 
       {/* Features Grid */}
-      <section id="features" className="py-24 border-t border-white/5 relative bg-black">
+      <section
+        id="features"
+        className="py-24 border-t border-white/5 relative bg-black"
+      >
         <div className="max-w-5xl mx-auto px-6">
           <div className="mb-16">
             <h2 className="text-2xl font-medium text-white tracking-tight mb-2">
@@ -117,7 +126,11 @@ export default async function Home() {
             {/* Large Card - HTTPS & SSL */}
             <div className="md:col-span-4 feature-card bg-white/[0.02] border border-white/5 rounded-xl p-8 transition duration-300 relative overflow-hidden group">
               <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
-                <Icon icon="solar:shield-check-linear" width={120} className="text-white" />
+                <Icon
+                  icon="solar:shield-check-linear"
+                  width={120}
+                  className="text-white"
+                />
               </div>
               <div className="relative z-10">
                 <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-gray-200">
@@ -127,8 +140,9 @@ export default async function Home() {
                   HTTPS & SSL Ready
                 </h3>
                 <p className="text-sm text-gray-500 leading-relaxed max-w-sm">
-                  Automatic DNS-01 challenge support for Let&apos;s Encrypt. Secure your
-                  home lab, Raspberry Pi, or NAS with valid SSL certificates in minutes.
+                  Automatic DNS-01 challenge support for Let&apos;s Encrypt.
+                  Secure your home lab, Raspberry Pi, or NAS with valid SSL
+                  certificates in minutes.
                 </p>
               </div>
             </div>
@@ -138,7 +152,9 @@ export default async function Home() {
               <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-gray-200">
                 <Icon icon="solar:github-circle-linear" width={20} />
               </div>
-              <h3 className="text-gray-200 font-medium mb-2 tracking-tight">GitHub Auth</h3>
+              <h3 className="text-gray-200 font-medium mb-2 tracking-tight">
+                GitHub Auth
+              </h3>
               <p className="text-sm text-gray-500 leading-relaxed">
                 Single sign-on with GitHub. No new passwords to manage or lose.
               </p>
@@ -149,7 +165,9 @@ export default async function Home() {
               <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-gray-200">
                 <Icon icon="solar:code-square-linear" width={20} />
               </div>
-              <h3 className="text-gray-200 font-medium mb-2 tracking-tight">Simple API</h3>
+              <h3 className="text-gray-200 font-medium mb-2 tracking-tight">
+                Simple API
+              </h3>
               <p className="text-sm text-gray-500 leading-relaxed">
                 RESTful API designed for developers. Integrate with any script.
               </p>
@@ -165,8 +183,8 @@ export default async function Home() {
                   Real-time Propagation
                 </h3>
                 <p className="text-sm text-gray-500 leading-relaxed">
-                  DNS records update globally in seconds, not hours. Powered by a
-                  distributed edge network.
+                  DNS records update globally in seconds, not hours. Powered by
+                  a distributed edge network.
                 </p>
               </div>
               {/* Visual mock */}
@@ -200,11 +218,13 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Integrations Section */}
-      <section id="integrations" className="py-32 border-t border-white/5 bg-black">
+      <section
+        id="integrations"
+        className="py-32 border-t border-white/5 bg-black"
+      >
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-medium text-white tracking-tight mb-4">
-            Works where you work
+            Integrations
           </h2>
           <p className="text-gray-500 text-sm mb-12">
             Compatible with your favorite tools and operating systems.
@@ -279,10 +299,16 @@ export default async function Home() {
           <div className="flex gap-12 text-xs text-gray-500 font-medium">
             <div className="flex flex-col gap-3">
               <span className="text-white">Product</span>
-              <a href="#features" className="hover:text-white transition-colors">
+              <a
+                href="#features"
+                className="hover:text-white transition-colors"
+              >
                 Features
               </a>
-              <a href="#integrations" className="hover:text-white transition-colors">
+              <a
+                href="#integrations"
+                className="hover:text-white transition-colors"
+              >
                 Integration
               </a>
               <a href="#" className="hover:text-white transition-colors">
@@ -323,7 +349,10 @@ export default async function Home() {
             >
               <Icon icon="mdi:github" width={16} />
             </a>
-            <a href="#" className="text-gray-600 hover:text-white transition-colors">
+            <a
+              href="#"
+              className="text-gray-600 hover:text-white transition-colors"
+            >
               <Icon icon="mdi:twitter" width={16} />
             </a>
           </div>

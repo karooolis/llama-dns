@@ -60,3 +60,26 @@ body {
   background: rgba(94, 98, 235, 0.3);
   color: #ffffff;
 }
+
+/* Landing v2 */
+.bento-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.3s ease;
+}
+.bento-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.rule-fade {
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.06) 50%, transparent);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1.2s step-end infinite;
+}
