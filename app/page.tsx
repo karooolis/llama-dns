@@ -15,13 +15,13 @@ export default async function Home() {
     <div className="bg-black min-h-screen">
       <Nav />
       <Hero />
-      <div className="w-full h-px bg-white/10" />
+      <div className="w-full h-px bg-white/[0.06]" />
       <HowItWorks />
-      <div className="w-full h-px bg-white/10" />
+      <div className="w-full h-px bg-white/[0.06]" />
       <Integrations />
-      <div className="w-full h-px bg-white/10" />
+      <div className="w-full h-px bg-white/[0.06]" />
       <Faq />
-      <div className="w-full h-px bg-white/10" />
+      <div className="w-full h-px bg-white/[0.06]" />
       <Footer />
     </div>
   );

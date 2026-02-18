@@ -18,8 +18,10 @@ export function Footer() {
               Open source dynamic DNS for the modern developer ecosystem.
             </p>
             <a
-              href="#"
-              className="inline-flex items-center gap-2 hover:bg-[#111] hover:border-amber-500/30 transition-all duration-200 bg-[#0a0a0a] border-white/10 border rounded-md pt-1.5 pr-3 pb-1.5 pl-3"
+              href="https://buymeacoffee.com/karooolis"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 hover:bg-amber-500/20 hover:border-amber-500/30 transition-all duration-200 bg-amber-500/10 border-amber-500/20 border rounded-md pt-1.5 pr-3 pb-1.5 pl-3"
             >
               <Icon
                 icon="solar:cup-hot-linear"
@@ -98,6 +100,9 @@ export function Footer() {
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               Systems operational
+            </span>
+            <span className="flex items-center gap-1.5">
+              Powered by Cloudflare
             </span>
           </div>
           <div className="flex gap-4 opacity-60">
