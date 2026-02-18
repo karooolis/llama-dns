@@ -54,7 +54,7 @@ export function Hero() {
         </div>
 
         {/* Terminal */}
-        <div className="max-w-2xl mx-auto mt-12 text-left">
+        <div className="max-w-xl mx-auto mt-12 text-left">
           <div className="rounded-xl border border-white/[0.08] bg-[#050505] shadow-2xl overflow-hidden">
             {/* Terminal chrome */}
             <div className="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-white/[0.02]">
@@ -65,13 +65,12 @@ export function Hero() {
               </div>
               <div className="flex items-center gap-2 text-[10px] font-mono text-neutral-600 uppercase tracking-widest">
                 <Icon icon="solar:terminal-linear" className="text-xs" />
-                terminal
               </div>
               <div className="w-16" />
             </div>
 
             {/* Terminal body */}
-            <div className="p-5 font-mono text-[13px] leading-7 space-y-4">
+            <div className="p-4 font-mono text-[12px] leading-6 space-y-3">
               {/* Command 1 */}
               <div>
                 <div className="flex items-center gap-2 text-neutral-500 mb-1">
@@ -108,14 +107,6 @@ export function Hero() {
                 <div className="pl-5 text-neutral-400 text-xs">
                   203.0.113.42
                 </div>
-              </div>
-
-              <div className="h-px bg-white/5" />
-
-              {/* Prompt */}
-              <div className="flex items-center gap-2 text-neutral-500">
-                <span className="text-emerald-500/70">$</span>
-                <span className="cursor-blink text-white/60">|</span>
               </div>
             </div>
           </div>

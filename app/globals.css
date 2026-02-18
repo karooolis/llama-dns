@@ -73,7 +73,7 @@ body {
 }
 
 .rule-fade {
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.12) 50%, transparent);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 @keyframes blink {
