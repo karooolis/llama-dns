@@ -11,7 +11,7 @@ export default async function Landing2() {
   if (session?.user) redirect("/dashboard");
 
   return (
-    <>
+    <div className="bg-black min-h-screen">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 glass-nav">
         <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
@@ -45,7 +45,7 @@ export default async function Landing2() {
       </nav>
 
       {/* Hero — Split Layout */}
-      <section className="pt-28 md:pt-40 pb-20 md:pb-32 px-6">
+      <section className="pt-28 md:pt-40 pb-20 md:pb-32 px-6 bg-black">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           {/* Left: Copy */}
           <div className="max-w-xl">
@@ -170,7 +170,7 @@ export default async function Landing2() {
       <div className="max-w-7xl mx-auto h-px rule-fade" />
 
       {/* Features — Bento Grid */}
-      <section id="features" className="py-24 md:py-32 px-6 bg-black">
+      {/* <section id="features" className="py-24 md:py-32 px-6 bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tighter text-white mb-3">
@@ -183,7 +183,6 @@ export default async function Landing2() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {/* API-first (wide) */}
             <div className="bento-card rounded-xl p-6 md:col-span-2">
               <div className="flex items-start justify-between mb-8">
                 <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/[0.08] flex items-center justify-center text-white/70">
@@ -210,7 +209,6 @@ export default async function Landing2() {
               </div>
             </div>
 
-            {/* Instant propagation */}
             <div className="bento-card rounded-xl p-6">
               <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/[0.08] flex items-center justify-center text-white/70 mb-8">
                 <Icon icon="solar:clock-circle-linear" width={20} />
@@ -232,7 +230,6 @@ export default async function Landing2() {
               </div>
             </div>
 
-            {/* SSL */}
             <div className="bento-card rounded-xl p-6">
               <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/[0.08] flex items-center justify-center text-white/70 mb-8">
                 <Icon icon="solar:lock-keyhole-linear" width={20} />
@@ -246,7 +243,6 @@ export default async function Landing2() {
               </p>
             </div>
 
-            {/* GitHub Auth */}
             <div className="bento-card rounded-xl p-6">
               <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/[0.08] flex items-center justify-center text-white/70 mb-8">
                 <Icon icon="mdi:github" width={20} />
@@ -260,7 +256,6 @@ export default async function Landing2() {
               </p>
             </div>
 
-            {/* Open source */}
             <div className="bento-card rounded-xl p-6">
               <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/[0.08] flex items-center justify-center text-white/70 mb-8">
                 <Icon icon="solar:star-linear" width={20} />
@@ -275,7 +270,7 @@ export default async function Landing2() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Separator */}
       <div className="max-w-7xl mx-auto h-px rule-fade" />
@@ -600,26 +595,43 @@ export default async function Landing2() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-white/5 bg-black">
-        <div className="max-w-7xl mx-auto px-6">
+      <footer className="py-12 border-t border-white/5 bg-[#020202]">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-            <div>
+            <div className="col-span-1 md:col-span-1">
               <div className="flex items-center gap-2 mb-4">
-                <Icon icon="solar:dns-linear" className="text-sm text-white" />
+                <div className="flex items-center justify-center w-6 h-6 rounded bg-white/5 border border-white/5">
+                  <Icon
+                    icon="solar:dns-linear"
+                    className="text-sm text-white"
+                  />
+                </div>
                 <span className="text-sm font-semibold text-neutral-200 tracking-tight">
                   LlamaDNS
                 </span>
               </div>
-              <p className="text-xs text-neutral-500 font-light leading-5">
-                Open source dynamic DNS for the modern developer.
+              <p className="text-xs text-neutral-500 mb-6 font-light leading-5">
+                Open source dynamic DNS for the modern developer ecosystem.
               </p>
+              <a
+                href="#"
+                className="inline-flex items-center gap-2 hover:bg-[#111] hover:border-amber-500/30 transition-all duration-200 bg-[#0a0a0a] border-white/10 border rounded-md pt-1.5 pr-3 pb-1.5 pl-3"
+              >
+                <Icon
+                  icon="solar:cup-hot-linear"
+                  className="text-amber-400 text-xs"
+                />
+                <span className="text-[11px] hover:text-white transition-colors font-medium text-neutral-400">
+                  Buy me a coffee
+                </span>
+              </a>
             </div>
 
-            <div className="md:col-span-3 grid grid-cols-3 gap-8 text-[13px]">
+            <div className="col-span-1 md:col-span-3 grid grid-cols-3 gap-8 text-[13px]">
               <div className="flex flex-col gap-3">
                 <span className="text-neutral-200 font-medium">Product</span>
                 <a
-                  href="#features"
+                  href="#"
                   className="text-neutral-500 hover:text-white transition-colors"
                 >
                   Features
@@ -640,7 +652,7 @@ export default async function Landing2() {
               <div className="flex flex-col gap-3">
                 <span className="text-neutral-200 font-medium">Resources</span>
                 <a
-                  href="#docs"
+                  href="#"
                   className="text-neutral-500 hover:text-white transition-colors"
                 >
                   Documentation
@@ -680,16 +692,16 @@ export default async function Landing2() {
             <div className="text-[11px] text-neutral-600">
               &copy; {new Date().getFullYear()} LlamaDNS
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-4 opacity-60">
               <a
                 href="#"
-                className="text-neutral-500 hover:text-white transition-colors"
+                className="text-neutral-400 hover:text-white transition-colors"
               >
                 <Icon icon="mdi:github" width={16} />
               </a>
               <a
                 href="#"
-                className="text-neutral-500 hover:text-white transition-colors"
+                className="text-neutral-400 hover:text-white transition-colors"
               >
                 <Icon icon="mdi:twitter" width={16} />
               </a>
@@ -697,6 +709,6 @@ export default async function Landing2() {
           </div>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
