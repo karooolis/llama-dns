@@ -93,8 +93,12 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-white/5">
-          <div className="text-[11px] text-neutral-600">
-            &copy; {new Date().getFullYear()} LlamaDNS
+          <div className="flex items-center gap-4 text-[11px] text-neutral-600">
+            <span>&copy; {new Date().getFullYear()} LlamaDNS</span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              Systems operational
+            </span>
           </div>
           <div className="flex gap-4 opacity-60">
             <a
