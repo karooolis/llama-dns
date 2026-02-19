@@ -4,16 +4,19 @@ import { useDomainsQuery } from "@/queries/domains";
 import { AddDomainForm } from "../components/add-domain-form";
 import { DomainRow } from "../components/domain-row";
 import { TokenDisplay } from "../components/token-display";
+import { BentoCard } from "../design-system/components";
 import { MAX_DOMAINS } from "@/lib/constants";
 
 export function DashboardContent() {
   const { data: domains = [] } = useDomainsQuery();
 
   return (
-    <div className="space-y-8">
-      <section>
+    <div className="space-y-6">
+      <BentoCard size="compact" hover={false}>
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold tracking-tight text-white">Your Domains</h2>
+          <h2 className="text-lg font-semibold tracking-tight text-white">
+            Domains
+          </h2>
           <span className="text-sm text-neutral-500">
             {domains.length}/{MAX_DOMAINS}
           </span>
@@ -32,12 +35,14 @@ export function DashboardContent() {
         )}
 
         {domains.length < MAX_DOMAINS && <AddDomainForm />}
-      </section>
+      </BentoCard>
 
-      <section>
-        <h2 className="mb-4 text-lg font-semibold tracking-tight text-white">API Token</h2>
+      <BentoCard size="compact" hover={false}>
+        <h2 className="mb-4 text-lg font-semibold tracking-tight text-white">
+          API Token
+        </h2>
         <TokenDisplay />
-      </section>
+      </BentoCard>
     </div>
   );
 }

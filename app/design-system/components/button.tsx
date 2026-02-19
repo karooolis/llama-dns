@@ -34,7 +34,7 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
-      className={`rounded-md font-medium tracking-tight transition-colors disabled:opacity-50 ${variantClasses[variant]} ${sizeClasses[size]} ${className ?? ""}`}
+      className={`rounded-lg font-medium tracking-tight transition-colors disabled:opacity-50 ${variantClasses[variant]} ${sizeClasses[size]} ${className ?? ""}`}
       {...props}
     >
       {children}

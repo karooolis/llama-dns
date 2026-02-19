@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTokenQuery, useRegenerateTokenMutation } from "@/queries/token";
 import { useDomainsQuery } from "@/queries/domains";
+import { Icon } from "@iconify/react";
 import { Button } from "../design-system/components";
 
 export function TokenDisplay() {
@@ -42,45 +43,67 @@ export function TokenDisplay() {
   }
 
   return (
-    <div className="space-y-3">
-      <div className="flex items-center gap-2">
-        <code className="flex-1 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-2 text-sm font-mono">
+    <div className="space-y-4">
+      {/* Token row */}
+      <div className="flex items-center rounded-lg border border-white/[0.06] bg-white/[0.02]">
+        <code className="flex-1 px-3 py-2.5 text-sm font-mono">
           {revealed ? token : masked}
         </code>
-        <Button
-          variant="secondary"
-          size="sm"
-          onClick={() => setRevealed(!revealed)}
-        >
-          {revealed ? "Hide" : "Reveal"}
-        </Button>
-        <Button variant="secondary" size="sm" onClick={copyToken}>
-          {copied ? "Copied!" : "Copy"}
-        </Button>
-        <Button
-          variant="danger"
-          size="sm"
-          onClick={handleRegenerate}
-          disabled={regenerate.isPending}
-        >
-          {regenerate.isPending ? "..." : "Regenerate"}
-        </Button>
+        <div className="flex items-center pr-1">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setRevealed(!revealed)}
+          >
+            <Icon icon={revealed ? "solar:eye-closed-linear" : "solar:eye-linear"} width={14} />
+          </Button>
+          <Button variant="ghost" size="sm" onClick={copyToken}>
+            <Icon icon={copied ? "solar:check-circle-linear" : "solar:copy-linear"} width={14} />
+          </Button>
+          <Button
+            variant="danger"
+            size="sm"
+            onClick={handleRegenerate}
+            disabled={regenerate.isPending}
+          >
+            <Icon icon="solar:refresh-linear" width={14} />
+          </Button>
+        </div>
       </div>
-      <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-4">
-        <div className="mb-2 flex items-center justify-between">
-          <p className="text-xs font-medium text-neutral-500">Update your IP:</p>
+
+      {/* Terminal-style update URL */}
+      <div className="rounded-xl border border-white/[0.08] bg-[#050505] shadow-2xl overflow-hidden">
+        {/* Terminal chrome */}
+        <div className="flex items-center justify-between pl-4 pr-2 py-2 border-b border-white/5 bg-white/[0.02]">
+          <div className="flex items-center gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]/80" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]/80" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]/80" />
+          </div>
           <Button
             variant="secondary"
             size="sm"
             onClick={copyUrl}
             disabled={!token}
+            className="flex items-center gap-1.5"
           >
-            {copiedUrl ? "Copied!" : "Copy URL"}
+            <Icon icon={copiedUrl ? "solar:check-circle-linear" : "solar:copy-linear"} width={14} />
           </Button>
         </div>
-        <code className="block break-all text-xs text-neutral-500 font-light">
-          {updateUrl}
-        </code>
+
+        {/* Terminal body */}
+        <div className="p-4 font-mono text-[12px] leading-6">
+          <div className="flex items-start gap-2">
+            <span className="text-emerald-500/70 select-none">$</span>
+            <code className="text-neutral-300 break-all">
+              curl{" "}
+              <span className="text-amber-200/80">
+                &quot;https://{domain}/update?domains={firstDomain}&amp;token=
+                {revealed ? token : masked}&amp;verbose=true&quot;
+              </span>
+            </code>
+          </div>
+        </div>
       </div>
     </div>
   );

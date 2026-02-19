@@ -51,7 +51,7 @@ export function AddDomainForm() {
           size="sm"
           type="submit"
           disabled={mutation.isPending || !name.trim()}
-          className="ml-1 h-9 px-5 rounded-lg whitespace-nowrap shrink-0 cursor-pointer"
+          className="ml-1 h-9 px-5 rounded-lg border-white/[0.1] hover:border-white/[0.15] whitespace-nowrap shrink-0 cursor-pointer"
         >
           {mutation.isPending ? "Adding..." : "Claim"}
         </Button>
