@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useAddDomainMutation } from "@/queries/domains";
+import { Button } from "../design-system/components";
 
 export function AddDomainForm() {
   const [name, setName] = useState("");
@@ -27,31 +28,33 @@ export function AddDomainForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
-      <div className="flex gap-2">
-        <div className="flex flex-1 items-center rounded-lg border border-white/[0.06] bg-white/[0.02]">
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-              setError("");
-            }}
-            placeholder="myhost"
-            className="w-full bg-transparent px-3 py-2 text-sm outline-none"
-            pattern="[a-z0-9][a-z0-9\-]*[a-z0-9]?"
-            maxLength={63}
-          />
-          <span className="whitespace-nowrap pr-3 text-sm text-neutral-500">
-            .{domain}
-          </span>
-        </div>
-        <button
+      <div className="flex items-center bg-[#0a0a0a] border border-white/[0.08] rounded-xl p-1.5 focus-within:border-white/[0.15] transition-all shadow-lg">
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value);
+            setError("");
+          }}
+          placeholder="your-project"
+          className="bg-transparent border-none placeholder-neutral-600 focus:outline-none w-full text-sm font-mono text-neutral-200 h-10 pl-4 tracking-tight"
+          pattern="[a-z0-9][a-z0-9\-]*[a-z0-9]?"
+          maxLength={63}
+          spellCheck={false}
+          autoComplete="off"
+        />
+        <span className="font-mono text-sm text-neutral-600 select-none tracking-tight pr-2 hidden sm:block">
+          .{domain}
+        </span>
+        <Button
+          variant="secondary"
+          size="sm"
           type="submit"
           disabled={mutation.isPending || !name.trim()}
-          className="rounded-lg bg-accent px-4 py-2 text-sm font-medium tracking-tight text-white transition-colors hover:bg-accent-hover disabled:opacity-50"
+          className="ml-1 h-9 px-5 rounded-lg whitespace-nowrap shrink-0 cursor-pointer"
         >
-          {mutation.isPending ? "Adding..." : "Add"}
-        </button>
+          {mutation.isPending ? "Adding..." : "Claim"}
+        </Button>
       </div>
       {error && <p className="text-sm text-danger">{error}</p>}
       {name.trim() && !error && (

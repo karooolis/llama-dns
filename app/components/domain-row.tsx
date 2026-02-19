@@ -1,6 +1,8 @@
 "use client";
 
+import { Icon } from "@iconify/react";
 import { useDeleteDomainMutation, type Domain } from "@/queries/domains";
+import { Button } from "../design-system/components";
 
 export function DomainRow({ domain }: { domain: Domain }) {
   const deleteMutation = useDeleteDomainMutation();
@@ -21,13 +23,16 @@ export function DomainRow({ domain }: { domain: Domain }) {
             : "No IP set"}
         </p>
       </div>
-      <button
+      <Button
+        variant="danger"
+        size="sm"
         onClick={() => deleteMutation.mutate(domain.id)}
         disabled={deleteMutation.isPending || isTemp}
-        className="ml-4 rounded px-3 py-1 text-sm text-danger transition-colors hover:bg-danger/10 disabled:opacity-50"
+        className="ml-4 flex items-center gap-1.5"
       >
+        <Icon icon="solar:trash-bin-minimalistic-linear" width={14} />
         {deleteMutation.isPending ? "Deleting..." : "Delete"}
-      </button>
+      </Button>
     </div>
   );
 }

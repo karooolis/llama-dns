@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTokenQuery, useRegenerateTokenMutation } from "@/queries/token";
 import { useDomainsQuery } from "@/queries/domains";
+import { Button } from "../design-system/components";
 
 export function TokenDisplay() {
   const { data: tokenData } = useTokenQuery();
@@ -46,36 +47,36 @@ export function TokenDisplay() {
         <code className="flex-1 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-2 text-sm font-mono">
           {revealed ? token : masked}
         </code>
-        <button
+        <Button
+          variant="secondary"
+          size="sm"
           onClick={() => setRevealed(!revealed)}
-          className="rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-sm transition-colors hover:bg-white/[0.06]"
         >
           {revealed ? "Hide" : "Reveal"}
-        </button>
-        <button
-          onClick={copyToken}
-          className="rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-sm transition-colors hover:bg-white/[0.06]"
-        >
+        </Button>
+        <Button variant="secondary" size="sm" onClick={copyToken}>
           {copied ? "Copied!" : "Copy"}
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="danger"
+          size="sm"
           onClick={handleRegenerate}
           disabled={regenerate.isPending}
-          className="rounded-lg border border-white/[0.08] px-3 py-2 text-sm text-danger transition-colors hover:bg-danger/10 disabled:opacity-50"
         >
           {regenerate.isPending ? "..." : "Regenerate"}
-        </button>
+        </Button>
       </div>
       <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-4">
         <div className="mb-2 flex items-center justify-between">
           <p className="text-xs font-medium text-neutral-500">Update your IP:</p>
-          <button
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={copyUrl}
             disabled={!token}
-            className="text-xs text-accent transition-colors hover:text-accent-hover disabled:opacity-50"
           >
             {copiedUrl ? "Copied!" : "Copy URL"}
-          </button>
+          </Button>
         </div>
         <code className="block break-all text-xs text-neutral-500 font-light">
           {updateUrl}
