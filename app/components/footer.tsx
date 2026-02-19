@@ -20,7 +20,7 @@ export function Footer() {
           </div>
 
           <div className="col-span-1 md:col-span-3 flex items-start text-[13px]">
-            <div className="flex gap-32 md:pl-24">
+            <div className="flex gap-32 md:pl-28">
               <div className="flex flex-col gap-3">
                 <span className="text-neutral-200 font-medium">Product</span>
                 <a
@@ -41,16 +41,8 @@ export function Footer() {
                 >
                   FAQ
                 </a>
-                <a
-                  href="https://github.com/llamadns"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-neutral-500 hover:text-white transition-colors inline-flex items-center gap-1.5"
-                >
-                  <GithubLogo className="text-sm" />
-                  GitHub
-                </a>
               </div>
+
               <div className="flex flex-col gap-3">
                 <span className="text-neutral-200 font-medium">Legal</span>
                 <a

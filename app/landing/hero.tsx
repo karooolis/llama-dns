@@ -170,8 +170,7 @@ export function Hero() {
                     <span className="text-emerald-500/70">$</span>
                     <span className="text-neutral-300">curl</span>{" "}
                     <span className="text-amber-200/80">
-                      &quot;https://{domain}
-                      /update?domains=lab&amp;token=sk_...&quot;
+                      &quot;{domain}/update?domains=lab&amp;token=sk_...&quot;
                     </span>
                   </div>
                   <div className="pl-5 text-neutral-500 text-xs">
