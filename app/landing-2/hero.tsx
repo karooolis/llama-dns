@@ -1,6 +1,6 @@
 "use client";
 
-import { Icon } from "@iconify/react";
+import { CheckCircle, Terminal } from "@phosphor-icons/react";
 import { motion, useReducedMotion } from "motion/react";
 import { ClaimInputV2 } from "./claim-input-v2";
 
@@ -142,24 +142,15 @@ export function Hero() {
               className="flex items-center justify-center md:justify-start gap-6 text-[11px] text-neutral-500 font-medium"
             >
               <span className="flex items-center gap-1.5">
-                <Icon
-                  icon="solar:check-circle-linear"
-                  className="text-emerald-500/80"
-                />
+                <CheckCircle className="text-emerald-500/80" />
                 Free forever
               </span>
               <span className="flex items-center gap-1.5">
-                <Icon
-                  icon="solar:check-circle-linear"
-                  className="text-emerald-500/80"
-                />
+                <CheckCircle className="text-emerald-500/80" />
                 No credit card
               </span>
               <span className="flex items-center gap-1.5">
-                <Icon
-                  icon="solar:check-circle-linear"
-                  className="text-emerald-500/80"
-                />
+                <CheckCircle className="text-emerald-500/80" />
                 Open-source
               </span>
             </motion.div>
@@ -177,9 +168,6 @@ export function Hero() {
                   <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]/80" />
                   <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]/80" />
                   <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]/80" />
-                </div>
-                <div className="flex items-center gap-2 text-[10px] font-mono text-neutral-600 uppercase tracking-widest">
-                  <Icon icon="solar:terminal-linear" className="text-xs" />
                 </div>
                 <div className="w-16" />
               </div>

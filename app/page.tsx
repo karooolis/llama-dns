@@ -21,7 +21,7 @@ export default async function Home() {
       <Integrations />
       <div className="w-full h-px bg-white/[0.06]" />
       <Faq />
-      <div className="w-full h-px bg-white/[0.06]" />
+      <div className="w-full h-px mt-4 bg-white/[0.06]" />
       <Footer />
     </div>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Icon } from "@iconify/react";
+import { CaretDown } from "@phosphor-icons/react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 
 const items = [
@@ -67,11 +67,7 @@ function FaqItem({ item }: { item: (typeof items)[number] }) {
           }
           className="shrink-0 ml-4"
         >
-          <Icon
-            icon="solar:alt-arrow-down-linear"
-            width={14}
-            className="text-neutral-600"
-          />
+          <CaretDown size={14} className="text-neutral-600" />
         </motion.span>
       </button>
 

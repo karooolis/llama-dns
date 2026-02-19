@@ -1,4 +1,7 @@
-import { Icon } from "@iconify/react";
+"use client";
+
+import { LinuxLogo, WifiHigh } from "@phosphor-icons/react";
+import { DockerIcon, RaspberryPiIcon, SynologyIcon } from "./brand-icons";
 
 export function Integrations() {
   return (
@@ -10,8 +13,7 @@ export function Integrations() {
 
         <div className="flex flex-wrap justify-center gap-2 md:gap-4 mt-10">
           <div className="group px-4 py-2 rounded-md border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex items-center gap-3">
-            <Icon
-              icon="mdi:linux"
+            <LinuxLogo
               className="text-gray-400 text-lg group-hover:text-white transition-colors"
             />
             <span className="text-sm font-medium text-gray-400 group-hover:text-white transition-colors">
@@ -19,8 +21,7 @@ export function Integrations() {
             </span>
           </div>
           <div className="group px-4 py-2 rounded-md border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex items-center gap-3">
-            <Icon
-              icon="mdi:docker"
+            <DockerIcon
               className="text-gray-400 text-lg group-hover:text-blue-400 transition-colors"
             />
             <span className="text-sm font-medium text-gray-400 group-hover:text-white transition-colors">
@@ -28,8 +29,7 @@ export function Integrations() {
             </span>
           </div>
           <div className="group px-4 py-2 rounded-md border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex items-center gap-3">
-            <Icon
-              icon="mdi:raspberry-pi"
+            <RaspberryPiIcon
               className="text-gray-400 text-lg group-hover:text-red-500 transition-colors"
             />
             <span className="text-sm font-medium text-gray-400 group-hover:text-white transition-colors">
@@ -37,8 +37,7 @@ export function Integrations() {
             </span>
           </div>
           <div className="group px-4 py-2 rounded-md border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex items-center gap-3">
-            <Icon
-              icon="mdi:router-wireless"
+            <WifiHigh
               className="text-gray-400 text-lg group-hover:text-emerald-400 transition-colors"
             />
             <span className="text-sm font-medium text-gray-400 group-hover:text-white transition-colors">
@@ -46,8 +45,7 @@ export function Integrations() {
             </span>
           </div>
           <div className="group px-4 py-2 rounded-md border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex items-center gap-3">
-            <Icon
-              icon="simple-icons:synology"
+            <SynologyIcon
               className="text-gray-400 text-lg group-hover:text-white transition-colors"
             />
             <span className="text-sm font-medium text-gray-400 group-hover:text-white transition-colors">

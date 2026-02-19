@@ -1,4 +1,6 @@
-import { Icon } from "@iconify/react";
+"use client";
+
+import { CodeBlock, Clock, LockKey, GithubLogo, Star } from "@phosphor-icons/react";
 
 export function Features() {
   return (
@@ -18,7 +20,7 @@ export function Features() {
           <div className="bento-card rounded-xl p-6 md:col-span-2">
             <div className="flex items-start justify-between mb-8">
               <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/[0.08] flex items-center justify-center text-white/70">
-                <Icon icon="solar:code-square-linear" width={20} />
+                <CodeBlock size={20} />
               </div>
               <span className="text-[10px] font-mono text-neutral-600 uppercase tracking-widest bg-white/[0.03] border border-white/5 px-2 py-0.5 rounded">
                 REST
@@ -43,7 +45,7 @@ export function Features() {
 
           <div className="bento-card rounded-xl p-6">
             <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/[0.08] flex items-center justify-center text-white/70 mb-8">
-              <Icon icon="solar:clock-circle-linear" width={20} />
+              <Clock size={20} />
             </div>
             <h3 className="text-white font-medium mb-2 tracking-tight">
               60s propagation
@@ -64,7 +66,7 @@ export function Features() {
 
           <div className="bento-card rounded-xl p-6">
             <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/[0.08] flex items-center justify-center text-white/70 mb-8">
-              <Icon icon="solar:lock-keyhole-linear" width={20} />
+              <LockKey size={20} />
             </div>
             <h3 className="text-white font-medium mb-2 tracking-tight">
               SSL ready
@@ -77,7 +79,7 @@ export function Features() {
 
           <div className="bento-card rounded-xl p-6">
             <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/[0.08] flex items-center justify-center text-white/70 mb-8">
-              <Icon icon="mdi:github" width={20} />
+              <GithubLogo size={20} />
             </div>
             <h3 className="text-white font-medium mb-2 tracking-tight">
               GitHub login
@@ -90,7 +92,7 @@ export function Features() {
 
           <div className="bento-card rounded-xl p-6">
             <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/[0.08] flex items-center justify-center text-white/70 mb-8">
-              <Icon icon="solar:star-linear" width={20} />
+              <Star size={20} />
             </div>
             <h3 className="text-white font-medium mb-2 tracking-tight">
               Open-source

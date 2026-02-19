@@ -1,4 +1,6 @@
-import { Icon } from "@iconify/react";
+"use client";
+
+import { GlobeSimple } from "@phosphor-icons/react";
 import { NavAuthButtons } from "../components/nav-auth-buttons";
 
 export function Nav() {
@@ -6,8 +8,7 @@ export function Nav() {
     <nav className="fixed top-0 w-full z-50 bg-black border-b border-white/[0.08]">
       <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
         <div className="flex items-center gap-2.5 cursor-pointer group select-none">
-          <Icon
-            icon="solar:dns-linear"
+          <GlobeSimple
             className="text-lg text-white/80 group-hover:text-white transition-colors"
           />
           <span className="font-semibold tracking-tight text-sm text-white/90">

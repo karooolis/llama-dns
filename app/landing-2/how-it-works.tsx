@@ -1,4 +1,6 @@
-import { Icon } from "@iconify/react";
+"use client";
+
+import { GithubLogo, Tag, ArrowsClockwise } from "@phosphor-icons/react";
 
 export function HowItWorks() {
   return (
@@ -19,8 +21,7 @@ export function HowItWorks() {
 
           <div className="group relative flex flex-col items-center text-center">
             <div className="w-20 h-20 rounded-2xl bg-[#0a0a0a] border border-white/10 flex items-center justify-center mb-6 shadow-sm relative z-10 group-hover:border-white/25 group-hover:bg-[#0f0f0f] transition-all duration-300">
-              <Icon
-                icon="mdi:github"
+              <GithubLogo
                 className="text-2xl text-white opacity-80 group-hover:opacity-100 transition-opacity"
               />
               <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#151515] border border-white/10 flex items-center justify-center text-[10px] font-mono text-neutral-400">
@@ -37,8 +38,7 @@ export function HowItWorks() {
 
           <div className="group relative flex flex-col items-center text-center">
             <div className="w-20 h-20 rounded-2xl bg-[#0a0a0a] border border-white/10 flex items-center justify-center mb-6 shadow-sm relative z-10 group-hover:border-white/25 group-hover:bg-[#0f0f0f] transition-all duration-300">
-              <Icon
-                icon="solar:tag-linear"
+              <Tag
                 className="text-2xl text-white opacity-80 group-hover:opacity-100 transition-opacity"
               />
               <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#151515] border border-white/10 flex items-center justify-center text-[10px] font-mono text-neutral-400">
@@ -55,8 +55,7 @@ export function HowItWorks() {
 
           <div className="group relative flex flex-col items-center text-center">
             <div className="w-20 h-20 rounded-2xl bg-[#0a0a0a] border border-white/10 flex items-center justify-center mb-6 shadow-sm relative z-10 group-hover:border-white/25 group-hover:bg-[#0f0f0f] transition-all duration-300">
-              <Icon
-                icon="solar:refresh-circle-linear"
+              <ArrowsClockwise
                 className="text-2xl text-white opacity-80 group-hover:opacity-100 transition-opacity"
               />
               <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#151515] border border-white/10 flex items-center justify-center text-[10px] font-mono text-neutral-400">

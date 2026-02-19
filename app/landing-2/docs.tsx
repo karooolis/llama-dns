@@ -1,6 +1,18 @@
-import { Icon } from "@iconify/react";
+"use client";
+
+import { LinuxLogo, WifiHigh } from "@phosphor-icons/react";
+import { DockerIcon, RaspberryPiIcon, SynologyIcon } from "./brand-icons";
+import type { ComponentType, SVGProps } from "react";
 
 const domain = process.env.NEXT_PUBLIC_DOMAIN || "llamadns.org";
+
+const badges: { icon: ComponentType<SVGProps<SVGSVGElement>>; label: string }[] = [
+  { icon: LinuxLogo, label: "Linux" },
+  { icon: DockerIcon, label: "Docker" },
+  { icon: RaspberryPiIcon, label: "Raspberry Pi" },
+  { icon: WifiHigh, label: "OpenWRT" },
+  { icon: SynologyIcon, label: "Synology" },
+];
 
 export function Docs() {
   return (
@@ -111,18 +123,12 @@ export function Docs() {
 
           {/* Compatibility badges */}
           <div className="mt-6 flex flex-wrap gap-2">
-            {[
-              { icon: "simple-icons:linux", label: "Linux" },
-              { icon: "simple-icons:docker", label: "Docker" },
-              { icon: "mdi:raspberry-pi", label: "Raspberry Pi" },
-              { icon: "mdi:router-wireless", label: "OpenWRT" },
-              { icon: "simple-icons:synology", label: "Synology" },
-            ].map((item) => (
+            {badges.map((item) => (
               <span
                 key={item.label}
                 className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/5 bg-white/[0.02] text-[11px] text-neutral-400 font-medium hover:border-white/10 transition-colors"
               >
-                <Icon icon={item.icon} className="text-sm" />
+                <item.icon className="text-sm" />
                 {item.label}
               </span>
             ))}
