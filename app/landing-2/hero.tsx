@@ -91,7 +91,7 @@ export function Hero() {
   });
 
   return (
-    <section className="pt-24 md:pt-36 pb-16 md:pb-24 px-6 bg-black relative overflow-hidden">
+    <section className="pt-24 md:pt-36 pb-16 md:pb-20 px-6 bg-black relative overflow-hidden">
       {/* Dot grid background */}
       <motion.div
         initial={shouldReduceMotion ? false : { opacity: 0 }}
@@ -116,8 +116,6 @@ export function Hero() {
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 All systems operational
               </span>
-              <span className="w-px h-3 bg-white/10" />
-              <span className="font-mono">v2.1</span>
             </motion.div>
 
             <motion.h1
@@ -232,7 +230,7 @@ export function Hero() {
 
         <motion.div
           {...fadeUp(0.4)}
-          className="flex items-center justify-center gap-3 mt-16 text-sm text-neutral-400"
+          className="flex items-center justify-center gap-3 mt-24 text-sm text-neutral-400"
         >
           Powered by
           <CloudflareLogo className="h-8 ml-0.5 w-auto" />
