@@ -22,7 +22,6 @@ export function NavAuthButtons() {
         className="flex items-center gap-2 cursor-pointer"
       >
         Sign up
-        <Icon icon="solar:arrow-right-linear" width={12} />
       </Button>
     </div>
   );

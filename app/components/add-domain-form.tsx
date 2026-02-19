@@ -27,8 +27,8 @@ export function AddDomainForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
-      <div className="flex items-center bg-[#0a0a0a] border border-white/[0.08] rounded-xl p-1.5 focus-within:border-white/[0.15] transition-all shadow-lg">
+    <form onSubmit={handleSubmit} className="mt-4 space-y-3">
+      <div className="flex items-center bg-[#0a0a0a] border border-white/8 rounded-xl p-1.5 focus-within:border-white/15 transition-all shadow-lg">
         <input
           type="text"
           value={name}
@@ -51,7 +51,7 @@ export function AddDomainForm() {
           size="sm"
           type="submit"
           disabled={mutation.isPending || !name.trim()}
-          className="ml-1 h-9 px-5 rounded-lg border-white/[0.1] hover:border-white/[0.15] whitespace-nowrap shrink-0 cursor-pointer"
+          className="ml-1 h-9 px-5 rounded-lg border-white/1 hover:border-white/15 whitespace-nowrap shrink-0 cursor-pointer"
         >
           {mutation.isPending ? "Adding..." : "Claim"}
         </Button>

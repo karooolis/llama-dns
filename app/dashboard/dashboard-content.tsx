@@ -23,13 +23,13 @@ export function DashboardContent() {
         </div>
 
         {domains.length > 0 ? (
-          <div className="mb-4 space-y-2">
+          <div className="space-y-4">
             {domains.map((domain) => (
               <DomainRow key={domain.id} domain={domain} />
             ))}
           </div>
         ) : (
-          <p className="mb-4 text-sm text-neutral-500 font-light">
+          <p className="my-4 text-sm text-neutral-500 font-light">
             No domains yet. Add your first subdomain below.
           </p>
         )}
