@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 import { GlobeSimple } from "../landing-2/icons";
 import { NavAuthButtons } from "./nav-auth-buttons";
-import { SignOutButton } from "./sign-out-button";
+import { NavUserButtons } from "./nav-user-buttons";
 
 export async function Nav() {
   const session = await auth();
@@ -17,19 +17,7 @@ export async function Nav() {
         </a>
 
         {session?.user ? (
-          <div className="flex items-center gap-4">
-            {session.user.image && (
-              <img
-                src={session.user.image}
-                alt=""
-                className="h-7 w-7 rounded-full"
-              />
-            )}
-            <span className="text-xs text-neutral-500 hidden sm:block">
-              {session.user.name}
-            </span>
-            <SignOutButton />
-          </div>
+          <NavUserButtons user={session.user} />
         ) : (
           <>
             <div className="hidden md:flex items-center gap-8 text-[13px] text-neutral-500">

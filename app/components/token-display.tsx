@@ -70,7 +70,7 @@ export function TokenDisplay() {
         <div className="mb-2 flex items-center justify-between">
           <p className="text-xs font-medium text-neutral-500">Update your IP:</p>
           <Button
-            variant="ghost"
+            variant="secondary"
             size="sm"
             onClick={copyUrl}
             disabled={!token}
