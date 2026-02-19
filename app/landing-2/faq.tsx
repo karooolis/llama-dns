@@ -1,4 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import { Icon } from "@iconify/react";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 
 const items = [
   {
@@ -35,6 +39,69 @@ const items = [
   },
 ];
 
+const easeOutQuad = [0.25, 0.46, 0.45, 0.94] as const;
+
+function FaqItem({ item }: { item: (typeof items)[number] }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <div
+      className={`rounded-lg border bg-white/[0.03] cursor-pointer transition-colors duration-200 ${
+        isOpen
+          ? "border-white/[0.08] bg-white/[0.05]"
+          : "border-white/5 hover:border-white/[0.08]"
+      }`}
+    >
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center justify-between w-full p-4 text-[15px] font-medium text-neutral-300 tracking-tight text-left cursor-pointer"
+      >
+        {item.q}
+        <motion.span
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={
+            shouldReduceMotion
+              ? { duration: 0 }
+              : { duration: 0.25, ease: easeOutQuad }
+          }
+          className="shrink-0 ml-4"
+        >
+          <Icon
+            icon="solar:alt-arrow-down-linear"
+            width={14}
+            className="text-neutral-600"
+          />
+        </motion.span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={
+              shouldReduceMotion ? { opacity: 1 } : { height: 0, opacity: 0 }
+            }
+            animate={{ height: "auto", opacity: 1 }}
+            exit={
+              shouldReduceMotion ? { opacity: 0 } : { height: 0, opacity: 0 }
+            }
+            transition={
+              shouldReduceMotion
+                ? { duration: 0 }
+                : { duration: 0.25, ease: easeOutQuad }
+            }
+            className="overflow-hidden"
+          >
+            <p className="px-4 pb-4 text-[13px] text-neutral-500 font-light leading-relaxed">
+              {item.a}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export function Faq() {
   return (
     <section id="faq" className="py-16 px-6 bg-black">
@@ -45,22 +112,7 @@ export function Faq() {
 
         <div className="space-y-2">
           {items.map((item) => (
-            <details
-              key={item.q}
-              className="group rounded-lg border border-white/5 bg-white/[0.03] open:bg-white/[0.05] hover:border-white/[0.08] transition-all cursor-pointer"
-            >
-              <summary className="flex items-center justify-between p-4 text-[15px] font-medium text-neutral-300 tracking-tight">
-                {item.q}
-                <Icon
-                  icon="solar:alt-arrow-down-linear"
-                  width={14}
-                  className="text-neutral-600 group-open:rotate-180 transition-transform duration-300"
-                />
-              </summary>
-              <p className="px-4 pb-4 text-[13px] text-neutral-500 font-light leading-relaxed">
-                {item.a}
-              </p>
-            </details>
+            <FaqItem key={item.q} item={item} />
           ))}
         </div>
       </div>

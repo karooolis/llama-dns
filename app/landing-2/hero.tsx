@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Icon } from "@iconify/react";
 import { motion, useReducedMotion } from "motion/react";
 import { ClaimInputV2 } from "./claim-input-v2";
@@ -156,6 +157,19 @@ export function Hero() {
             </div>
           </motion.div>
         </div>
+
+        <motion.div
+          {...fadeUp(0.4)}
+          className="flex items-center justify-center gap-3 mt-16 text-sm text-neutral-400"
+        >
+          Powered by
+          <Image
+            src="/cloudflare-logo-4.svg"
+            alt="Cloudflare"
+            width={100}
+            height={24}
+          />
+        </motion.div>
       </div>
     </section>
   );

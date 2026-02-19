@@ -101,9 +101,6 @@ export function Footer() {
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               Systems operational
             </span>
-            <span className="flex items-center gap-1.5">
-              Powered by Cloudflare
-            </span>
           </div>
           <div className="flex gap-4 opacity-60">
             <a
