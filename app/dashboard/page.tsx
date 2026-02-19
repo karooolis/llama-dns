@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { QueryClient, dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { domainsQueryOptions } from "@/queries/domains";
 import { tokenQueryOptions } from "@/queries/token";
-import { Header } from "../components/header";
+import { Nav } from "../components/nav";
 import { DashboardContent } from "./dashboard-content";
 
 export default async function DashboardPage() {
@@ -18,8 +18,8 @@ export default async function DashboardPage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-black">
-      <Header />
+    <div className="min-h-screen bg-black pt-14">
+      <Nav />
       <main className="mx-auto max-w-4xl px-6 py-8">
         <h1 className="mb-6 text-2xl font-semibold tracking-tighter text-white">Dashboard</h1>
         <HydrationBoundary state={dehydrate(queryClient)}>

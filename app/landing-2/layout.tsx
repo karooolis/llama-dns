@@ -1,4 +1,4 @@
-import { Nav } from "./nav";
+import { Nav } from "../components/nav";
 
 export default function Landing2Layout({
   children,

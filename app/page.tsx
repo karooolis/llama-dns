@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import { Nav } from "./landing-2/nav";
+import { Nav } from "./components/nav";
 import { Hero } from "./landing-2/hero";
 import { HowItWorks } from "./landing-2/how-it-works";
 import { Integrations } from "./landing-2/integrations";
