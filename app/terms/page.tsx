@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Nav, Footer } from "../components";
 
 export const metadata: Metadata = {
   title: "Terms of Use - LlamaDNS",
@@ -7,16 +7,10 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-[#020202]">
-      <div className="max-w-2xl mx-auto px-6 py-20">
-        <Link
-          href="/"
-          className="text-xs text-neutral-600 hover:text-neutral-400 transition-colors"
-        >
-          &larr; Back to LlamaDNS
-        </Link>
-
-        <h1 className="mt-6 text-2xl font-semibold text-white tracking-tight">
+    <div className="flex min-h-screen flex-col bg-[#020202] pt-14">
+      <Nav />
+      <main className="max-w-2xl mx-auto px-6 py-16 flex-1">
+        <h1 className="text-2xl font-semibold text-white tracking-tight">
           Terms of Use
         </h1>
         <p className="mt-2 text-sm text-neutral-600">
@@ -151,7 +145,9 @@ export default function TermsPage() {
             </p>
           </section>
         </div>
-      </div>
+      </main>
+      <div className="w-full h-px bg-white/6" />
+      <Footer />
     </div>
   );
 }

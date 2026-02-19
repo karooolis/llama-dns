@@ -1,4 +1,5 @@
-import { GlobeSimple, Coffee, GithubLogo, Star } from "./icons";
+import Link from "next/link";
+import { GlobeSimple, Coffee, Star } from "./icons";
 
 export function Footer() {
   return (
@@ -23,40 +24,40 @@ export function Footer() {
             <div className="flex gap-32 md:pl-28">
               <div className="flex flex-col gap-3">
                 <span className="text-neutral-200 font-medium">Product</span>
-                <a
-                  href="/landing#how-it-works"
+                <Link
+                  href="/#how-it-works"
                   className="text-neutral-500 hover:text-white transition-colors"
                 >
                   How it works
-                </a>
-                <a
-                  href="/landing#integrations"
+                </Link>
+                <Link
+                  href="/#integrations"
                   className="text-neutral-500 hover:text-white transition-colors"
                 >
                   Integrations
-                </a>
-                <a
-                  href="/landing#faq"
+                </Link>
+                <Link
+                  href="/#faq"
                   className="text-neutral-500 hover:text-white transition-colors"
                 >
                   FAQ
-                </a>
+                </Link>
               </div>
 
               <div className="flex flex-col gap-3">
                 <span className="text-neutral-200 font-medium">Legal</span>
-                <a
+                <Link
                   href="/privacy"
                   className="text-neutral-500 hover:text-white transition-colors"
                 >
                   Privacy
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/terms"
                   className="text-neutral-500 hover:text-white transition-colors"
                 >
                   Terms
-                </a>
+                </Link>
               </div>
             </div>
             <div className="ml-auto flex flex-col gap-2.5">

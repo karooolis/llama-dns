@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { auth } from "@/auth";
 import { GlobeSimple, GithubLogo } from "./icons";
 import { NavAuthButtons } from "./nav-auth-buttons";
@@ -9,23 +10,23 @@ export async function Nav() {
   return (
     <nav className="fixed top-0 w-full z-50 bg-black border-b border-white/8">
       <div className="max-w-5xl mx-auto h-14 flex items-center justify-between px-6">
-        <a href="/" className="flex items-center gap-2.5 group select-none">
+        <Link href="/" className="flex items-center gap-2.5 group select-none">
           <GlobeSimple className="text-lg text-white/80 group-hover:text-white transition-colors" />
           <span className="font-semibold tracking-tight text-sm text-white/90">
             LlamaDNS
           </span>
-        </a>
+        </Link>
 
         <div className="hidden md:flex items-center gap-12 text-[13px] text-neutral-500 absolute left-1/2 -translate-x-1/2">
-          <a href="/landing#how-it-works" className="hover:text-white transition-colors">
+          <Link href="/#how-it-works" className="hover:text-white transition-colors">
             How it works
-          </a>
-          <a href="/landing#integrations" className="hover:text-white transition-colors">
+          </Link>
+          <Link href="/#integrations" className="hover:text-white transition-colors">
             Integrations
-          </a>
-          <a href="/landing#faq" className="hover:text-white transition-colors">
+          </Link>
+          <Link href="/#faq" className="hover:text-white transition-colors">
             FAQ
-          </a>
+          </Link>
           <a
             href="https://github.com/llamadns"
             target="_blank"
