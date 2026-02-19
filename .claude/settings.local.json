@@ -20,7 +20,8 @@
       "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_pf7kauXcjKE9@ep-morning-sun-aidu3qh6-pooler.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require\" pnpm db:push:*)",
       "Bash(curl:*)",
       "Bash(lsof:*)",
-      "Bash(xargs kill:*)"
+      "Bash(xargs kill:*)",
+      "Bash(npx next build:*)"
     ]
   }
 }

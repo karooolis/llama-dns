@@ -1,42 +1,75 @@
+"use client";
+
 import { Icon } from "@iconify/react";
+import { motion, useReducedMotion } from "motion/react";
 import { ClaimInputV2 } from "./claim-input-v2";
 
 const domain = process.env.NEXT_PUBLIC_DOMAIN || "llamadns.org";
 
+const easeOutQuad = [0.25, 0.46, 0.45, 0.94] as const;
+
 export function Hero() {
+  const shouldReduceMotion = useReducedMotion();
+
+  const fadeUp = (delay: number) => ({
+    initial: shouldReduceMotion ? false : { opacity: 0, y: 16 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5, delay, ease: easeOutQuad },
+  });
+
   return (
-    <section
-      className="pt-24 md:pt-36 pb-16 md:pb-24 px-6 bg-black relative"
-      style={{
-        backgroundImage:
-          "radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)",
-        backgroundSize: "24px 24px",
-      }}
-    >
-      <div className="max-w-5xl mx-auto">
+    <section className="pt-24 md:pt-36 pb-16 md:pb-24 px-6 bg-black relative overflow-hidden">
+      {/* Dot grid background */}
+      <motion.div
+        initial={shouldReduceMotion ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, ease: easeOutQuad }}
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)",
+          backgroundSize: "24px 24px",
+        }}
+      />
+
+      <div className="max-w-5xl mx-auto relative">
         <div className="flex flex-col md:flex-row md:items-center md:gap-12">
           <div className="flex-1 text-center md:text-left">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.03] px-3 py-1 text-[11px] text-neutral-400 mb-8">
+            <motion.div
+              {...fadeUp(0)}
+              className="inline-flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.03] px-3 py-1 text-[11px] text-neutral-400 mb-8"
+            >
               <span className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 All systems operational
               </span>
               <span className="w-px h-3 bg-white/10" />
               <span className="font-mono">v2.1</span>
-            </div>
+            </motion.div>
 
-            <h1 className="text-4xl md:text-5xl font-semibold tracking-tighter leading-[1.05] text-white mb-6">
+            <motion.h1
+              {...fadeUp(0.08)}
+              className="text-4xl md:text-5xl font-semibold tracking-tighter leading-[1.05] text-white mb-6"
+            >
               Free dynamic DNS.
-            </h1>
+            </motion.h1>
 
-            <p className="text-base md:text-lg text-neutral-400 leading-relaxed mb-8 font-light pr-14">
+            <motion.p
+              {...fadeUp(0.16)}
+              className="text-base md:text-lg text-neutral-400 leading-relaxed mb-8 font-light pr-14"
+            >
               Claim a subdomain, point it at your server, and update it with a
               single HTTP request.
-            </p>
+            </motion.p>
 
-            <ClaimInputV2 />
+            <motion.div {...fadeUp(0.24)}>
+              <ClaimInputV2 />
+            </motion.div>
 
-            <div className="flex items-center justify-center md:justify-start gap-6 text-[11px] text-neutral-500 font-medium">
+            <motion.div
+              {...fadeUp(0.32)}
+              className="flex items-center justify-center md:justify-start gap-6 text-[11px] text-neutral-500 font-medium"
+            >
               <span className="flex items-center gap-1.5">
                 <Icon
                   icon="solar:check-circle-linear"
@@ -58,11 +91,14 @@ export function Hero() {
                 />
                 Open-source
               </span>
-            </div>
+            </motion.div>
           </div>
 
           {/* Terminal */}
-          <div className="flex-1 md:max-w-[45%] mt-12 md:mt-0 text-left">
+          <motion.div
+            {...fadeUp(0.2)}
+            className="flex-1 md:max-w-[45%] mt-12 md:mt-0 text-left"
+          >
             <div className="rounded-xl border border-white/[0.08] bg-[#050505] shadow-2xl overflow-hidden">
               {/* Terminal chrome */}
               <div className="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-white/[0.02]">
@@ -118,7 +154,7 @@ export function Hero() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
