@@ -1,13 +1,15 @@
 import { auth } from "@/auth";
 import { SignOutButton } from "./sign-out-button";
+import { GlobeSimple } from "../landing-2/icons";
 
 export async function Header() {
   const session = await auth();
 
   return (
-    <header className="border-b border-border">
+    <header className="border-b border-white/[0.08] bg-black/60 backdrop-blur-sm">
       <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
-        <a href="/" className="text-lg font-bold">
+        <a href="/" className="flex items-center gap-2 font-semibold tracking-tight text-sm text-white/90">
+          <GlobeSimple className="h-4 w-4" />
           LlamaDNS
         </a>
         {session?.user && (
@@ -19,7 +21,7 @@ export async function Header() {
                 className="h-8 w-8 rounded-full"
               />
             )}
-            <span className="text-sm text-muted">{session.user.name}</span>
+            <span className="text-sm text-neutral-500">{session.user.name}</span>
             <SignOutButton />
           </div>
         )}

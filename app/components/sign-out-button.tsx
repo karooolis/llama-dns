@@ -1,14 +1,12 @@
 "use client";
 
 import { signOut } from "next-auth/react";
+import { Button } from "../design-system/components";
 
 export function SignOutButton() {
   return (
-    <button
-      onClick={() => signOut({ redirectTo: "/" })}
-      className="text-sm text-muted transition-colors hover:text-foreground"
-    >
+    <Button variant="secondary" size="sm" onClick={() => signOut({ redirectTo: "/" })}>
       Sign out
-    </button>
+    </Button>
   );
 }

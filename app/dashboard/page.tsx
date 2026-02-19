@@ -18,14 +18,14 @@ export default async function DashboardPage() {
   ]);
 
   return (
-    <>
+    <div className="min-h-screen bg-black">
       <Header />
       <main className="mx-auto max-w-4xl px-6 py-8">
-        <h1 className="mb-6 text-2xl font-bold">Dashboard</h1>
+        <h1 className="mb-6 text-2xl font-semibold tracking-tighter text-white">Dashboard</h1>
         <HydrationBoundary state={dehydrate(queryClient)}>
           <DashboardContent />
         </HydrationBoundary>
       </main>
-    </>
+    </div>
   );
 }

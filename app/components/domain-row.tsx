@@ -9,13 +9,13 @@ export function DomainRow({ domain }: { domain: Domain }) {
 
   return (
     <div
-      className={`flex items-center justify-between rounded-lg border border-border bg-card px-4 py-3 ${isTemp ? "opacity-60" : ""}`}
+      className={`bento-card flex items-center justify-between rounded-lg px-4 py-3 ${isTemp ? "opacity-60" : ""}`}
     >
       <div className="min-w-0 flex-1">
-        <p className="text-sm font-medium">
+        <p className="text-sm font-medium text-white">
           {domain.name}.{domainSuffix}
         </p>
-        <p className="text-xs text-muted">
+        <p className="text-xs text-neutral-500">
           {domain.ipv4 || domain.ipv6
             ? [domain.ipv4, domain.ipv6].filter(Boolean).join(" / ")
             : "No IP set"}

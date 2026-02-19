@@ -43,32 +43,32 @@ export function TokenDisplay() {
   return (
     <div className="space-y-3">
       <div className="flex items-center gap-2">
-        <code className="flex-1 rounded-lg border border-border bg-card px-3 py-2 text-sm font-mono">
+        <code className="flex-1 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-2 text-sm font-mono">
           {revealed ? token : masked}
         </code>
         <button
           onClick={() => setRevealed(!revealed)}
-          className="rounded-lg border border-border px-3 py-2 text-sm transition-colors hover:bg-card"
+          className="rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-sm transition-colors hover:bg-white/[0.06]"
         >
           {revealed ? "Hide" : "Reveal"}
         </button>
         <button
           onClick={copyToken}
-          className="rounded-lg border border-border px-3 py-2 text-sm transition-colors hover:bg-card"
+          className="rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-sm transition-colors hover:bg-white/[0.06]"
         >
           {copied ? "Copied!" : "Copy"}
         </button>
         <button
           onClick={handleRegenerate}
           disabled={regenerate.isPending}
-          className="rounded-lg border border-border px-3 py-2 text-sm text-danger transition-colors hover:bg-danger/10 disabled:opacity-50"
+          className="rounded-lg border border-white/[0.08] px-3 py-2 text-sm text-danger transition-colors hover:bg-danger/10 disabled:opacity-50"
         >
           {regenerate.isPending ? "..." : "Regenerate"}
         </button>
       </div>
-      <div className="rounded-lg border border-border bg-card p-4">
+      <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-4">
         <div className="mb-2 flex items-center justify-between">
-          <p className="text-xs font-medium text-muted">Update your IP:</p>
+          <p className="text-xs font-medium text-neutral-500">Update your IP:</p>
           <button
             onClick={copyUrl}
             disabled={!token}
@@ -77,7 +77,7 @@ export function TokenDisplay() {
             {copiedUrl ? "Copied!" : "Copy URL"}
           </button>
         </div>
-        <code className="block break-all text-xs text-muted">
+        <code className="block break-all text-xs text-neutral-500 font-light">
           {updateUrl}
         </code>
       </div>

@@ -3,6 +3,7 @@ import {
   SectionHeading,
   IconBox,
   BentoCard,
+  Button,
   StatusBadge,
   MethodBadge,
   IntegrationBadge,
@@ -261,7 +262,39 @@ export default function DesignSystemPage() {
 
           <SectionDivider />
 
-          {/* 5. Bento Card */}
+          {/* 5. Button */}
+          <PreviewSection title="Button">
+            <div className="space-y-6">
+              <div>
+                <p className="text-xs text-neutral-500 mb-3">Variants</p>
+                <div className="flex flex-wrap gap-3">
+                  <Button variant="secondary">Secondary</Button>
+                  <Button variant="primary">Primary</Button>
+                  <Button variant="danger">Danger</Button>
+                  <Button variant="ghost">Ghost</Button>
+                </div>
+              </div>
+              <div>
+                <p className="text-xs text-neutral-500 mb-3">Sizes</p>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Button variant="secondary">Default</Button>
+                  <Button variant="secondary" size="sm">Small</Button>
+                </div>
+              </div>
+              <div>
+                <p className="text-xs text-neutral-500 mb-3">Disabled</p>
+                <div className="flex flex-wrap gap-3">
+                  <Button variant="secondary" disabled>Secondary</Button>
+                  <Button variant="primary" disabled>Primary</Button>
+                  <Button variant="danger" disabled>Danger</Button>
+                </div>
+              </div>
+            </div>
+          </PreviewSection>
+
+          <SectionDivider />
+
+          {/* 6. Bento Card */}
           <PreviewSection title="Bento Card">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <BentoCard>

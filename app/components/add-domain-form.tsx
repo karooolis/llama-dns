@@ -28,7 +28,7 @@ export function AddDomainForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
       <div className="flex gap-2">
-        <div className="flex flex-1 items-center rounded-lg border border-border bg-card">
+        <div className="flex flex-1 items-center rounded-lg border border-white/[0.06] bg-white/[0.02]">
           <input
             type="text"
             value={name}
@@ -41,21 +41,21 @@ export function AddDomainForm() {
             pattern="[a-z0-9][a-z0-9\-]*[a-z0-9]?"
             maxLength={63}
           />
-          <span className="whitespace-nowrap pr-3 text-sm text-muted">
+          <span className="whitespace-nowrap pr-3 text-sm text-neutral-500">
             .{domain}
           </span>
         </div>
         <button
           type="submit"
           disabled={mutation.isPending || !name.trim()}
-          className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-hover disabled:opacity-50"
+          className="rounded-lg bg-accent px-4 py-2 text-sm font-medium tracking-tight text-white transition-colors hover:bg-accent-hover disabled:opacity-50"
         >
           {mutation.isPending ? "Adding..." : "Add"}
         </button>
       </div>
       {error && <p className="text-sm text-danger">{error}</p>}
       {name.trim() && !error && (
-        <p className="text-sm text-muted">
+        <p className="text-sm text-neutral-500 font-light">
           Preview: {name.trim().toLowerCase()}.{domain}
         </p>
       )}

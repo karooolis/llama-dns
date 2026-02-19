@@ -13,8 +13,8 @@ export function DashboardContent() {
     <div className="space-y-8">
       <section>
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold">Your Domains</h2>
-          <span className="text-sm text-muted">
+          <h2 className="text-lg font-semibold tracking-tight text-white">Your Domains</h2>
+          <span className="text-sm text-neutral-500">
             {domains.length}/{MAX_DOMAINS}
           </span>
         </div>
@@ -26,7 +26,7 @@ export function DashboardContent() {
             ))}
           </div>
         ) : (
-          <p className="mb-4 text-sm text-muted">
+          <p className="mb-4 text-sm text-neutral-500 font-light">
             No domains yet. Add your first subdomain below.
           </p>
         )}
@@ -35,7 +35,7 @@ export function DashboardContent() {
       </section>
 
       <section>
-        <h2 className="mb-4 text-lg font-semibold">API Token</h2>
+        <h2 className="mb-4 text-lg font-semibold tracking-tight text-white">API Token</h2>
         <TokenDisplay />
       </section>
     </div>
