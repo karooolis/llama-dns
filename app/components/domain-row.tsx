@@ -3,6 +3,7 @@
 import { Icon } from "@iconify/react";
 import { useDeleteDomainMutation, type Domain } from "@/queries/domains";
 import { Button } from "../design-system/components";
+import { timeAgo } from "@/lib/format-time";
 
 export function DomainRow({ domain }: { domain: Domain }) {
   const deleteMutation = useDeleteDomainMutation();
@@ -25,11 +26,36 @@ export function DomainRow({ domain }: { domain: Domain }) {
       <p className="text-sm font-medium text-white">
         {domain.name}.{domainSuffix}
       </p>
-      <p className="mt-1.5 text-sm text-neutral-500">
-        {domain.ipv4 || domain.ipv6
-          ? [domain.ipv4, domain.ipv6].filter(Boolean).join(" / ")
-          : "No IP set"}
-      </p>
+      <div className="mt-1.5 flex items-baseline justify-between gap-3">
+        <p className="text-sm text-neutral-500">
+          {domain.ipv4 || domain.ipv6 ? (
+            <>
+              {domain.ipv4 && (
+                <>
+                  <span className="text-neutral-600 text-xs">A</span>{" "}
+                  {domain.ipv4}
+                </>
+              )}
+              {domain.ipv4 && domain.ipv6 && (
+                <span className="text-neutral-600"> / </span>
+              )}
+              {domain.ipv6 && (
+                <>
+                  <span className="text-neutral-600 text-xs">AAAA</span>{" "}
+                  {domain.ipv6}
+                </>
+              )}
+            </>
+          ) : (
+            "No IP set"
+          )}
+        </p>
+        <p className="shrink-0 text-xs text-neutral-600">
+          {timeAgo(domain.createdAt)}
+          {domain.updatedAt !== domain.createdAt &&
+            ` · updated ${timeAgo(domain.updatedAt)}`}
+        </p>
+      </div>
     </div>
   );
 }

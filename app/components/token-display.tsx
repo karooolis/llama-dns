@@ -5,6 +5,7 @@ import { useTokenQuery, useRegenerateTokenMutation } from "@/queries/token";
 import { useDomainsQuery } from "@/queries/domains";
 import { Icon } from "@iconify/react";
 import { Button, Terminal } from "../design-system/components";
+import { timeAgo } from "@/lib/format-time";
 
 export function TokenDisplay() {
   const { data: tokenData } = useTokenQuery();
@@ -49,6 +50,11 @@ export function TokenDisplay() {
         <code className="flex-1 px-3 py-2.5 text-sm font-mono">
           {revealed ? token : masked}
         </code>
+        {tokenData?.createdAt && (
+          <span className="text-xs text-neutral-600 pr-1">
+            {timeAgo(tokenData.createdAt)}
+          </span>
+        )}
         <div className="flex items-center pr-1">
           <Button
             variant="ghost"
