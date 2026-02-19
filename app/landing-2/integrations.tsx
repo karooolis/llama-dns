@@ -1,7 +1,10 @@
-"use client";
-
-import { LinuxLogo, WifiHigh } from "@phosphor-icons/react";
-import { DockerIcon, RaspberryPiIcon, SynologyIcon } from "./brand-icons";
+import {
+  LinuxLogo,
+  WifiHigh,
+  DockerIcon,
+  RaspberryPiIcon,
+  SynologyIcon,
+} from "./icons";
 
 export function Integrations() {
   return (

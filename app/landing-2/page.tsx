@@ -1,10 +1,7 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import { Nav } from "./nav";
 import { Hero } from "./hero";
-import { Features } from "./features";
 import { HowItWorks } from "./how-it-works";
-import { Docs } from "./docs";
 import { Integrations } from "./integrations";
 import { Faq } from "./faq";
 import { Footer } from "./footer";
@@ -14,8 +11,7 @@ export default async function Landing2() {
   if (session?.user) redirect("/dashboard");
 
   return (
-    <div className="bg-black min-h-screen">
-      <Nav />
+    <>
       <Hero />
       <div className="w-full h-px bg-white/10" />
       <HowItWorks />
@@ -25,6 +21,6 @@ export default async function Landing2() {
       <Faq />
       <div className="w-full h-px bg-white/10" />
       <Footer />
-    </div>
+    </>
   );
 }

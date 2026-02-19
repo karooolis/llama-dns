@@ -1,6 +1,4 @@
-"use client";
-
-import { GlobeSimple } from "@phosphor-icons/react";
+import { GlobeSimple } from "./icons";
 import { NavAuthButtons } from "../components/nav-auth-buttons";
 
 export function Nav() {

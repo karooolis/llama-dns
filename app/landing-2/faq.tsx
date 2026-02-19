@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CaretDown } from "@phosphor-icons/react";
+import { CaretDown } from "./icons";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 
 const items = [
@@ -67,7 +67,7 @@ function FaqItem({ item }: { item: (typeof items)[number] }) {
           }
           className="shrink-0 ml-4"
         >
-          <CaretDown size={14} className="text-neutral-600" />
+          <CaretDown width={14} height={14} className="text-neutral-600" />
         </motion.span>
       </button>
 

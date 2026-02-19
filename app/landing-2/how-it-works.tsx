@@ -1,6 +1,4 @@
-"use client";
-
-import { GithubLogo, Tag, ArrowsClockwise } from "@phosphor-icons/react";
+import { GithubLogo, Tag, ArrowsClockwise } from "./icons";
 
 export function HowItWorks() {
   return (
@@ -20,7 +18,7 @@ export function HowItWorks() {
           <div className="hidden md:block absolute top-10 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent z-0" />
 
           <div className="group relative flex flex-col items-center text-center">
-            <div className="w-20 h-20 rounded-2xl bg-[#0a0a0a] border border-white/10 flex items-center justify-center mb-6 shadow-sm relative z-10 group-hover:border-white/25 group-hover:bg-[#0f0f0f] transition-all duration-300">
+            <div className="w-20 h-20 rounded-2xl bg-[#0a0a0a] border border-white/10 flex items-center justify-center mb-6 shadow-sm relative z-10 group-hover:border-white/25 group-hover:bg-[#0f0f0f] transition-colors duration-300">
               <GithubLogo
                 className="text-2xl text-white opacity-80 group-hover:opacity-100 transition-opacity"
               />
@@ -37,7 +35,7 @@ export function HowItWorks() {
           </div>
 
           <div className="group relative flex flex-col items-center text-center">
-            <div className="w-20 h-20 rounded-2xl bg-[#0a0a0a] border border-white/10 flex items-center justify-center mb-6 shadow-sm relative z-10 group-hover:border-white/25 group-hover:bg-[#0f0f0f] transition-all duration-300">
+            <div className="w-20 h-20 rounded-2xl bg-[#0a0a0a] border border-white/10 flex items-center justify-center mb-6 shadow-sm relative z-10 group-hover:border-white/25 group-hover:bg-[#0f0f0f] transition-colors duration-300">
               <Tag
                 className="text-2xl text-white opacity-80 group-hover:opacity-100 transition-opacity"
               />
@@ -54,7 +52,7 @@ export function HowItWorks() {
           </div>
 
           <div className="group relative flex flex-col items-center text-center">
-            <div className="w-20 h-20 rounded-2xl bg-[#0a0a0a] border border-white/10 flex items-center justify-center mb-6 shadow-sm relative z-10 group-hover:border-white/25 group-hover:bg-[#0f0f0f] transition-all duration-300">
+            <div className="w-20 h-20 rounded-2xl bg-[#0a0a0a] border border-white/10 flex items-center justify-center mb-6 shadow-sm relative z-10 group-hover:border-white/25 group-hover:bg-[#0f0f0f] transition-colors duration-300">
               <ArrowsClockwise
                 className="text-2xl text-white opacity-80 group-hover:opacity-100 transition-opacity"
               />
@@ -62,7 +60,7 @@ export function HowItWorks() {
                 3
               </div>
             </div>
-            <h3 className="text-base font-medium text-white mb-2 tracking-tight">
+            <h3 className="text-white font-medium mb-2 tracking-tight text-base">
               Auto Update
             </h3>
             <p className="text-[13px] text-neutral-500 leading-relaxed max-w-[200px] font-light">

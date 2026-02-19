@@ -1,6 +1,4 @@
-"use client";
-
-import { GlobeSimple, Coffee, GithubLogo, TwitterLogo } from "@phosphor-icons/react";
+import { GlobeSimple, Coffee, GithubLogo, TwitterLogo } from "./icons";
 
 export function Footer() {
   return (
@@ -102,13 +100,13 @@ export function Footer() {
               href="#"
               className="text-neutral-400 hover:text-white transition-colors"
             >
-              <GithubLogo size={16} />
+              <GithubLogo className="text-base" />
             </a>
             <a
               href="#"
               className="text-neutral-400 hover:text-white transition-colors"
             >
-              <TwitterLogo size={16} />
+              <TwitterLogo className="text-base" />
             </a>
           </div>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle, Terminal } from "@phosphor-icons/react";
+import { CheckCircle, Terminal } from "./icons";
 import { motion, useReducedMotion } from "motion/react";
 import { ClaimInputV2 } from "./claim-input-v2";
 

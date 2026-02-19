@@ -1,6 +1,4 @@
-"use client";
-
-import { CodeBlock, Clock, LockKey, GithubLogo, Star } from "@phosphor-icons/react";
+import { CodeBlock, Clock, LockKey, GithubLogo, Star } from "./icons";
 
 export function Features() {
   return (
@@ -20,7 +18,7 @@ export function Features() {
           <div className="bento-card rounded-xl p-6 md:col-span-2">
             <div className="flex items-start justify-between mb-8">
               <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/[0.08] flex items-center justify-center text-white/70">
-                <CodeBlock size={20} />
+                <CodeBlock className="text-xl" />
               </div>
               <span className="text-[10px] font-mono text-neutral-600 uppercase tracking-widest bg-white/[0.03] border border-white/5 px-2 py-0.5 rounded">
                 REST
@@ -45,7 +43,7 @@ export function Features() {
 
           <div className="bento-card rounded-xl p-6">
             <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/[0.08] flex items-center justify-center text-white/70 mb-8">
-              <Clock size={20} />
+              <Clock className="text-xl" />
             </div>
             <h3 className="text-white font-medium mb-2 tracking-tight">
               60s propagation
@@ -66,7 +64,7 @@ export function Features() {
 
           <div className="bento-card rounded-xl p-6">
             <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/[0.08] flex items-center justify-center text-white/70 mb-8">
-              <LockKey size={20} />
+              <LockKey className="text-xl" />
             </div>
             <h3 className="text-white font-medium mb-2 tracking-tight">
               SSL ready
@@ -79,7 +77,7 @@ export function Features() {
 
           <div className="bento-card rounded-xl p-6">
             <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/[0.08] flex items-center justify-center text-white/70 mb-8">
-              <GithubLogo size={20} />
+              <GithubLogo className="text-xl" />
             </div>
             <h3 className="text-white font-medium mb-2 tracking-tight">
               GitHub login
@@ -92,7 +90,7 @@ export function Features() {
 
           <div className="bento-card rounded-xl p-6">
             <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/[0.08] flex items-center justify-center text-white/70 mb-8">
-              <Star size={20} />
+              <Star className="text-xl" />
             </div>
             <h3 className="text-white font-medium mb-2 tracking-tight">
               Open-source

@@ -1,7 +1,10 @@
-"use client";
-
-import { LinuxLogo, WifiHigh } from "@phosphor-icons/react";
-import { DockerIcon, RaspberryPiIcon, SynologyIcon } from "./brand-icons";
+import {
+  LinuxLogo,
+  WifiHigh,
+  DockerIcon,
+  RaspberryPiIcon,
+  SynologyIcon,
+} from "./icons";
 import type { ComponentType, SVGProps } from "react";
 
 const domain = process.env.NEXT_PUBLIC_DOMAIN || "llamadns.org";
