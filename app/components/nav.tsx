@@ -17,7 +17,7 @@ export async function Nav() {
         </a>
 
         {session?.user ? (
-          <NavUserButtons user={session.user} />
+          <NavUserButtons />
         ) : (
           <>
             <div className="hidden md:flex items-center gap-8 text-[13px] text-neutral-500">

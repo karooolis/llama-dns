@@ -19,7 +19,7 @@ const items = [
   },
   {
     q: "How many subdomains can I have?",
-    a: "There's no limit — create as many subdomains as you need.",
+    a: "Each account supports up to 5 subdomains.",
   },
   {
     q: "What does LlamaDNS actually do?",
@@ -100,8 +100,8 @@ function FaqItem({ item }: { item: (typeof items)[number] }) {
 
 export function Faq() {
   return (
-    <section id="faq" className="py-16 px-6 bg-black">
-      <div className="max-w-2xl mx-auto">
+    <section id="faq" className="py-16 bg-black">
+      <div className="max-w-5xl mx-auto px-6">
         <h2 className="text-3xl font-semibold tracking-tighter text-white text-center mb-10">
           Frequently Asked Questions
         </h2>

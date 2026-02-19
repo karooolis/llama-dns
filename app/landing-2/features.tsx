@@ -2,8 +2,8 @@ import { CodeBlock, Clock, LockKey, GithubLogo, Star } from "./icons";
 
 export function Features() {
   return (
-    <section id="features" className="py-24 md:py-32 px-6 bg-black">
-      <div className="max-w-5xl mx-auto">
+    <section id="features" className="py-24 md:py-32 bg-black">
+      <div className="max-w-5xl mx-auto px-6">
         <div className="mb-16">
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tighter text-white mb-3">
             Built for developers.

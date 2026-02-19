@@ -19,8 +19,8 @@ const badges: { icon: ComponentType<SVGProps<SVGSVGElement>>; label: string }[] 
 
 export function Docs() {
   return (
-    <section id="docs" className="py-24 md:py-32 px-6 bg-black">
-      <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+    <section id="docs" className="py-24 md:py-32 bg-black">
+      <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         <div>
           <h2 className="text-3xl font-semibold tracking-tighter text-white mb-3">
             Quick reference

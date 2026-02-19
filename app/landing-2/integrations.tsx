@@ -9,7 +9,7 @@ import {
 export function Integrations() {
   return (
     <section id="integrations" className="py-16 bg-black">
-      <div className="max-w-4xl mx-auto px-6 text-center">
+      <div className="max-w-5xl mx-auto px-6 text-center">
         <h2 className="text-3xl font-medium text-white tracking-tight mb-4">
           Integrations
         </h2>

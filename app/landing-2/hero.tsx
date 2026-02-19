@@ -91,7 +91,7 @@ export function Hero() {
   });
 
   return (
-    <section className="pt-24 md:pt-36 pb-16 md:pb-20 px-6 bg-black relative overflow-hidden">
+    <section className="pt-24 md:pt-36 pb-16 md:pb-20 bg-black relative overflow-hidden">
       {/* Dot grid background */}
       <motion.div
         initial={shouldReduceMotion ? false : { opacity: 0 }}
@@ -105,12 +105,12 @@ export function Hero() {
         }}
       />
 
-      <div className="max-w-5xl mx-auto relative">
+      <div className="max-w-5xl mx-auto px-6 relative">
         <div className="flex flex-col md:flex-row md:items-center md:gap-12">
           <div className="flex-1 text-center md:text-left">
             <motion.div
               {...fadeUp(0)}
-              className="inline-flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.03] px-3 py-1 text-[11px] text-neutral-400 mb-8"
+              className="inline-flex items-center gap-2 rounded-full border border-white/6 bg-white/3 px-3 py-1 text-[11px] text-neutral-400 mb-8"
             >
               <span className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
