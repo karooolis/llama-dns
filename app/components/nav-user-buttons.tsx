@@ -15,17 +15,11 @@ export function NavUserButtons() {
           variant="secondary"
           size="sm"
           onClick={() => signOut({ redirectTo: "/" })}
-          className="cursor-pointer"
         >
           Sign out
         </Button>
       ) : (
-        <Button
-          variant="secondary"
-          size="sm"
-          onClick={() => (window.location.href = "/dashboard")}
-          className="cursor-pointer"
-        >
+        <Button variant="secondary" size="sm" href="/dashboard">
           Dashboard
         </Button>
       )}

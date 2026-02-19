@@ -1,13 +1,20 @@
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type { ButtonHTMLAttributes, AnchorHTMLAttributes, ReactNode } from "react";
+import Link from "next/link";
 
 type ButtonVariant = "secondary" | "primary" | "danger" | "ghost";
 type ButtonSize = "default" | "sm";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+type BaseProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
   children: ReactNode;
-}
+  className?: string;
+};
+
+type ButtonAsButton = BaseProps & ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined };
+type ButtonAsLink = BaseProps & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & { href: string };
+
+type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const variantClasses: Record<ButtonVariant, string> = {
   secondary:
@@ -32,11 +39,19 @@ export function Button({
   children,
   ...props
 }: ButtonProps) {
+  const classes = `inline-block rounded-lg font-medium tracking-tight transition-colors disabled:opacity-50 ${variantClasses[variant]} ${sizeClasses[size]} ${className ?? ""}`;
+
+  if ("href" in props && props.href != null) {
+    const { href, ...rest } = props;
+    return (
+      <Link href={href} className={classes} {...rest}>
+        {children}
+      </Link>
+    );
+  }
+
   return (
-    <button
-      className={`rounded-lg font-medium tracking-tight transition-colors disabled:opacity-50 ${variantClasses[variant]} ${sizeClasses[size]} ${className ?? ""}`}
-      {...props}
-    >
+    <button className={classes} {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}>
       {children}
     </button>
   );
