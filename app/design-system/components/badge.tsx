@@ -10,7 +10,7 @@ interface StatusBadgeProps {
 export function StatusBadge({ children, className }: StatusBadgeProps) {
   return (
     <div
-      className={`inline-flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.03] px-3 py-1 text-[11px] text-neutral-400 ${className ?? ""}`}
+      className={`inline-flex items-center gap-2 rounded-full border border-white/6 bg-white/3 px-3 py-1 text-[11px] text-neutral-400 ${className ?? ""}`}
     >
       {children}
     </div>
@@ -60,7 +60,7 @@ export function IntegrationBadge({
 }: IntegrationBadgeProps) {
   return (
     <span
-      className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/5 bg-white/[0.02] text-[11px] text-neutral-400 font-medium hover:border-white/10 transition-colors ${className ?? ""}`}
+      className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/5 bg-white/2 text-[11px] text-neutral-400 font-medium hover:border-white/10 transition-colors ${className ?? ""}`}
     >
       <Icon className="text-sm" />
       {label}

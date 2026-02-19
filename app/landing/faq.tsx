@@ -47,10 +47,10 @@ function FaqItem({ item }: { item: (typeof items)[number] }) {
 
   return (
     <div
-      className={`rounded-lg border bg-white/[0.03] cursor-pointer transition-colors duration-200 ${
+      className={`rounded-lg border bg-white/3 cursor-pointer transition-colors duration-200 ${
         isOpen
-          ? "border-white/[0.08] bg-white/[0.05]"
-          : "border-white/5 hover:border-white/[0.08]"
+          ? "border-white/8 bg-white/5"
+          : "border-white/5 hover:border-white/8"
       }`}
     >
       <button

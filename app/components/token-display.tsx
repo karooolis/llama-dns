@@ -45,7 +45,7 @@ export function TokenDisplay() {
   return (
     <div className="space-y-4">
       {/* Token row */}
-      <div className="flex items-center rounded-lg border border-white/[0.06] bg-white/[0.02]">
+      <div className="flex items-center rounded-lg border border-white/6 bg-white/2">
         <code className="flex-1 px-3 py-2.5 text-sm font-mono">
           {revealed ? token : masked}
         </code>

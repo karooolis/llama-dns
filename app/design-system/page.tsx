@@ -109,7 +109,7 @@ export default function DesignSystemPage() {
                 <span className="text-[10px] font-mono text-neutral-600 mb-1 block">
                   Label
                 </span>
-                <span className="text-[10px] font-mono text-neutral-600 uppercase tracking-widest bg-white/[0.03] border border-white/5 px-2 py-0.5 rounded">
+                <span className="text-[10px] font-mono text-neutral-600 uppercase tracking-widest bg-white/3 border border-white/5 px-2 py-0.5 rounded">
                   REST
                 </span>
               </div>
@@ -302,7 +302,7 @@ export default function DesignSystemPage() {
                   <IconBox size="sm">
                     <CodeBlockIcon className="text-xl" />
                   </IconBox>
-                  <span className="text-[10px] font-mono text-neutral-600 uppercase tracking-widest bg-white/[0.03] border border-white/5 px-2 py-0.5 rounded">
+                  <span className="text-[10px] font-mono text-neutral-600 uppercase tracking-widest bg-white/3 border border-white/5 px-2 py-0.5 rounded">
                     REST
                   </span>
                 </div>
@@ -440,7 +440,7 @@ export default function DesignSystemPage() {
           {/* 9. Section Divider */}
           <PreviewSection title="Section Divider">
             <p className="text-xs text-neutral-500 mb-4">
-              A 1px horizontal rule at white/[0.06] opacity, used between page
+              A 1px horizontal rule at white/6 opacity, used between page
               sections.
             </p>
             <div className="space-y-8">

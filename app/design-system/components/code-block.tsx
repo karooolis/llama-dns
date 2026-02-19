@@ -15,10 +15,10 @@ export function CodeBlock({
 }: CodeBlockProps) {
   return (
     <div
-      className={`rounded-xl border border-white/[0.08] bg-[#050505] overflow-hidden shadow-2xl ${className ?? ""}`}
+      className={`rounded-xl border border-white/8 bg-[#050505] overflow-hidden shadow-2xl ${className ?? ""}`}
     >
       {tabs ? (
-        <div className="flex items-center border-b border-white/5 px-1 bg-white/[0.01]">
+        <div className="flex items-center border-b border-white/5 px-1 bg-white/1">
           {tabs.map((tab, i) => (
             <span
               key={tab}
@@ -33,7 +33,7 @@ export function CodeBlock({
           ))}
         </div>
       ) : (
-        <div className="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-white/[0.02]">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-white/2">
           <div className="flex items-center gap-1.5">
             <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]/80" />
             <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]/80" />

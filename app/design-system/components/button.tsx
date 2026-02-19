@@ -22,7 +22,7 @@ const variantClasses: Record<ButtonVariant, string> = {
   primary:
     "bg-accent text-white hover:bg-accent-hover",
   danger:
-    "border border-white/[0.08] text-danger hover:bg-danger/10",
+    "border border-white/8 text-danger hover:bg-danger/10",
   ghost:
     "text-neutral-500 hover:text-white",
 };
