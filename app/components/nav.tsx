@@ -16,42 +16,27 @@ export async function Nav() {
           </span>
         </a>
 
-        {session?.user ? (
-          <div className="flex items-center gap-4">
-            <a
-              href="https://github.com/llamadns"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-neutral-500 hover:text-white transition-colors"
-            >
-              <GithubLogo className="text-base" />
-            </a>
-            <NavUserButtons />
-          </div>
-        ) : (
-          <>
-            <div className="hidden md:flex items-center gap-8 text-[13px] text-neutral-500">
-              <a href="#features" className="hover:text-white transition-colors">
-                Features
-              </a>
-              <a href="#how-it-works" className="hover:text-white transition-colors">
-                How it works
-              </a>
-              <a href="#docs" className="hover:text-white transition-colors">
-                Docs
-              </a>
-              <a
-                href="https://github.com/llamadns"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition-colors"
-              >
-                <GithubLogo className="text-base" />
-              </a>
-            </div>
-            <NavAuthButtons />
-          </>
-        )}
+        <div className="hidden md:flex items-center gap-12 text-[13px] text-neutral-500 absolute left-1/2 -translate-x-1/2">
+          <a href="/landing#how-it-works" className="hover:text-white transition-colors">
+            How it works
+          </a>
+          <a href="/landing#integrations" className="hover:text-white transition-colors">
+            Integrations
+          </a>
+          <a href="/landing#faq" className="hover:text-white transition-colors">
+            FAQ
+          </a>
+          <a
+            href="https://github.com/llamadns"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white transition-colors"
+          >
+            <GithubLogo className="text-base" />
+          </a>
+        </div>
+
+        {session?.user ? <NavUserButtons /> : <NavAuthButtons />}
       </div>
     </nav>
   );

@@ -2,7 +2,6 @@
 
 import { Icon } from "@iconify/react";
 import { useDeleteDomainMutation, type Domain } from "@/queries/domains";
-import { Button } from "../design-system/components";
 import { timeAgo } from "@/lib/format-time";
 
 export function DomainRow({ domain }: { domain: Domain }) {
@@ -14,16 +13,20 @@ export function DomainRow({ domain }: { domain: Domain }) {
     <div
       className={`bento-card relative rounded-lg pl-4 pr-2 py-3 ${isTemp ? "opacity-60" : ""}`}
     >
-      <Button
-        variant="danger"
-        size="sm"
+      <button
         onClick={() => deleteMutation.mutate(domain.id)}
         disabled={deleteMutation.isPending || isTemp}
-        className="absolute top-2 right-2"
+        title="Delete"
+        className="absolute top-3 right-3 text-white hover:text-neutral-400 transition-colors disabled:opacity-40"
       >
         <Icon icon="solar:trash-bin-minimalistic-linear" width={14} />
-      </Button>
-      <p className="text-sm font-medium text-white">
+      </button>
+      <p className="text-sm font-medium text-white flex items-center gap-2">
+        {domain.ipv4 || domain.ipv6 ? (
+          <Icon icon="solar:check-circle-linear" width={14} className="text-emerald-500/80 shrink-0" />
+        ) : (
+          <Icon icon="solar:clock-circle-linear" width={14} className="text-amber-500/70 shrink-0" />
+        )}
         {domain.name}.{domainSuffix}
       </p>
       <div className="mt-1.5 flex items-baseline justify-between gap-3">
@@ -51,7 +54,7 @@ export function DomainRow({ domain }: { domain: Domain }) {
           )}
         </p>
         <p className="shrink-0 text-xs text-neutral-600">
-          {timeAgo(domain.createdAt)}
+          created {timeAgo(domain.createdAt)}
           {domain.updatedAt !== domain.createdAt &&
             ` · updated ${timeAgo(domain.updatedAt)}`}
         </p>

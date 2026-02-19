@@ -31,11 +31,11 @@ const items = [
   },
   {
     q: "Who's behind this?",
-    a: "A small team of software engineers with over 15 years of industry experience each, building something we wish existed sooner.",
+    a: 'Just me, <a href="https://karolisram.com" target="_blank" rel="noopener noreferrer">Karolis</a>, a software engineer who needed a simple dynamic DNS for my home lab and self-hosting experiments, so I built one.',
   },
   {
     q: "Why is it free?",
-    a: "Honestly — because building it is fun. We wanted to learn, we wanted it to exist, and now it does.",
+    a: "Honestly, because building it is fun. I wanted it to exist, and now it does.",
   },
 ];
 
@@ -88,9 +88,10 @@ function FaqItem({ item }: { item: (typeof items)[number] }) {
             }
             className="overflow-hidden"
           >
-            <p className="px-4 pb-4 text-[13px] text-neutral-500 font-light leading-relaxed">
-              {item.a}
-            </p>
+            <p
+              className="px-4 pb-4 text-[13px] text-neutral-500 font-light leading-relaxed [&_a]:text-neutral-300 [&_a]:underline [&_a]:underline-offset-2 [&_a]:hover:text-white [&_a]:transition-colors"
+              dangerouslySetInnerHTML={{ __html: item.a }}
+            />
           </motion.div>
         )}
       </AnimatePresence>

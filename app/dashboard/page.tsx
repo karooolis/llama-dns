@@ -5,21 +5,27 @@ import {
   dehydrate,
   HydrationBoundary,
 } from "@tanstack/react-query";
-import { domainsQueryOptions } from "@/queries/domains";
-import { tokenQueryOptions } from "@/queries/token";
+import { db } from "@/lib/db";
+import { domains, apiTokens } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
 import { Nav, Footer } from "../components";
 import { DashboardContent } from "./dashboard-content";
 
 export default async function DashboardPage() {
   const session = await auth();
-  if (!session?.user) redirect("/");
+  if (!session?.user?.id) redirect("/");
 
   const queryClient = new QueryClient();
 
-  await Promise.all([
-    queryClient.prefetchQuery(domainsQueryOptions()),
-    queryClient.prefetchQuery(tokenQueryOptions()),
+  const [userDomains, [token]] = await Promise.all([
+    db.select().from(domains).where(eq(domains.userId, session.user.id)),
+    db.select().from(apiTokens).where(eq(apiTokens.userId, session.user.id)),
   ]);
+
+  queryClient.setQueryData(["domains"], userDomains);
+  if (token) {
+    queryClient.setQueryData(["token"], token);
+  }
 
   return (
     <div className="flex min-h-screen flex-col bg-black pt-14">
