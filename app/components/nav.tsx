@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { GlobeSimple } from "./icons";
+import { GlobeSimple, GithubLogo } from "./icons";
 import { NavAuthButtons } from "./nav-auth-buttons";
 import { NavUserButtons } from "./nav-user-buttons";
 
@@ -17,7 +17,17 @@ export async function Nav() {
         </a>
 
         {session?.user ? (
-          <NavUserButtons />
+          <div className="flex items-center gap-4">
+            <a
+              href="https://github.com/llamadns"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-500 hover:text-white transition-colors"
+            >
+              <GithubLogo className="text-base" />
+            </a>
+            <NavUserButtons />
+          </div>
         ) : (
           <>
             <div className="hidden md:flex items-center gap-8 text-[13px] text-neutral-500">
@@ -29,6 +39,14 @@ export async function Nav() {
               </a>
               <a href="#docs" className="hover:text-white transition-colors">
                 Docs
+              </a>
+              <a
+                href="https://github.com/llamadns"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
+                <GithubLogo className="text-base" />
               </a>
             </div>
             <NavAuthButtons />
