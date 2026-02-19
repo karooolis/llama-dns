@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CaretDown } from "./icons";
+import { CaretDown } from "../components/icons";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 
 const items = [

@@ -4,7 +4,7 @@ import {
   DockerIcon,
   RaspberryPiIcon,
   SynologyIcon,
-} from "./icons";
+} from "../components/icons";
 import type { ComponentType, SVGProps } from "react";
 
 const domain = process.env.NEXT_PUBLIC_DOMAIN || "llamadns.org";

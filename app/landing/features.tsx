@@ -1,4 +1,4 @@
-import { CodeBlock, Clock, LockKey, GithubLogo, Star } from "./icons";
+import { CodeBlock, Clock, LockKey, GithubLogo, Star } from "../components/icons";
 
 export function Features() {
   return (

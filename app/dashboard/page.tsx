@@ -8,7 +8,7 @@ import {
 import { domainsQueryOptions } from "@/queries/domains";
 import { tokenQueryOptions } from "@/queries/token";
 import { Nav } from "../components/nav";
-import { Footer } from "../landing-2/footer";
+import { Footer } from "../components/footer";
 import { DashboardContent } from "./dashboard-content";
 
 export default async function DashboardPage() {
@@ -25,7 +25,7 @@ export default async function DashboardPage() {
   return (
     <div className="flex min-h-screen flex-col bg-black pt-14">
       <Nav />
-      <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-8 pb-24">
+      <main className="mx-auto w-full max-w-5xl flex-1 px-6 pt-16 pb-24">
         <h1 className="mb-6 text-2xl font-semibold tracking-tighter text-white">
           Dashboard
         </h1>

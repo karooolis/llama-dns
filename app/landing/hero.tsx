@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle } from "./icons";
+import { CheckCircle } from "../components/icons";
 import { motion, useReducedMotion } from "motion/react";
 import { ClaimInputV2 } from "./claim-input-v2";
 

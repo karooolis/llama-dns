@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import { SignOutButton } from "./sign-out-button";
-import { GlobeSimple } from "../landing-2/icons";
+import { GlobeSimple } from "./icons";
 
 export async function Header() {
   const session = await auth();

@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { GlobeSimple } from "../landing-2/icons";
+import { GlobeSimple } from "./icons";
 import { NavAuthButtons } from "./nav-auth-buttons";
 import { NavUserButtons } from "./nav-user-buttons";
 

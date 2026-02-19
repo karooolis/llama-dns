@@ -21,7 +21,7 @@ import {
   LinuxLogo,
   DockerIcon,
   RaspberryPiIcon,
-} from "../landing-2/icons";
+} from "../components/icons";
 
 function PreviewSection({
   title,
