@@ -76,13 +76,13 @@ export function Footer() {
             <div className="flex flex-col gap-3">
               <span className="text-neutral-200 font-medium">Legal</span>
               <a
-                href="#"
+                href="/privacy"
                 className="text-neutral-500 hover:text-white transition-colors"
               >
                 Privacy
               </a>
               <a
-                href="#"
+                href="/terms"
                 className="text-neutral-500 hover:text-white transition-colors"
               >
                 Terms
