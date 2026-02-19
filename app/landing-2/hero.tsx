@@ -5,7 +5,14 @@ const domain = process.env.NEXT_PUBLIC_DOMAIN || "llamadns.org";
 
 export function Hero() {
   return (
-    <section className="pt-24 md:pt-36 pb-16 md:pb-24 px-6 bg-black">
+    <section
+      className="pt-24 md:pt-36 pb-16 md:pb-24 px-6 bg-black relative"
+      style={{
+        backgroundImage:
+          "radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)",
+        backgroundSize: "24px 24px",
+      }}
+    >
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-center md:gap-12">
           <div className="flex-1 text-center md:text-left">
