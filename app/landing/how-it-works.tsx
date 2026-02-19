@@ -47,7 +47,7 @@ export function HowItWorks() {
               Claim Subdomains
             </h3>
             <p className="text-[13px] text-neutral-500 leading-relaxed max-w-[200px] font-light">
-              Reserve unlimited custom hostnames instantly.
+              Reserve up to 5 custom hostnames instantly.
             </p>
           </div>
 
