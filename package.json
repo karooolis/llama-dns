@@ -17,6 +17,8 @@
     "@tanstack/react-query": "^5.90.21",
     "agentation": "^2.2.1",
     "drizzle-orm": "^0.45.1",
+    "motion": "^12.34.2",
+    "motion-plus": "https://api.motion.dev/registry.tgz?package=motion-plus&version=2.6.1&token=e22fd2d12d6584464e9d4f55c860d7b7f80422b54cde1b4039968c2a686f8e02",
     "next": "16.1.6",
     "next-auth": "5.0.0-beta.30",
     "react": "19.2.3",
