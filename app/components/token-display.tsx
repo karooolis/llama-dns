@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useTokenQuery, useRegenerateTokenMutation } from "@/queries/token";
 import { useDomainsQuery } from "@/queries/domains";
 import { Icon } from "@iconify/react";
-import { Button } from "../design-system/components";
+import { Button, Terminal } from "../design-system/components";
 
 export function TokenDisplay() {
   const { data: tokenData } = useTokenQuery();
@@ -72,14 +72,8 @@ export function TokenDisplay() {
       </div>
 
       {/* Terminal-style update URL */}
-      <div className="rounded-xl border border-white/[0.08] bg-[#050505] shadow-2xl overflow-hidden">
-        {/* Terminal chrome */}
-        <div className="flex items-center justify-between pl-4 pr-2 py-2 border-b border-white/5 bg-white/[0.02]">
-          <div className="flex items-center gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]/80" />
-            <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]/80" />
-            <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]/80" />
-          </div>
+      <Terminal
+        actions={
           <Button
             variant="secondary"
             size="sm"
@@ -89,22 +83,19 @@ export function TokenDisplay() {
           >
             <Icon icon={copiedUrl ? "solar:check-circle-linear" : "solar:copy-linear"} width={14} />
           </Button>
+        }
+      >
+        <div className="flex items-start gap-2">
+          <span className="text-emerald-500/70 select-none">$</span>
+          <code className="text-neutral-300 break-all">
+            curl{" "}
+            <span className="text-amber-200/80">
+              &quot;https://{domain}/update?domains={firstDomain}&amp;token=
+              {revealed ? token : masked}&amp;verbose=true&quot;
+            </span>
+          </code>
         </div>
-
-        {/* Terminal body */}
-        <div className="p-4 font-mono text-[12px] leading-6">
-          <div className="flex items-start gap-2">
-            <span className="text-emerald-500/70 select-none">$</span>
-            <code className="text-neutral-300 break-all">
-              curl{" "}
-              <span className="text-amber-200/80">
-                &quot;https://{domain}/update?domains={firstDomain}&amp;token=
-                {revealed ? token : masked}&amp;verbose=true&quot;
-              </span>
-            </code>
-          </div>
-        </div>
-      </div>
+      </Terminal>
     </div>
   );
 }

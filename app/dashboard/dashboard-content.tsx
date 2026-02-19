@@ -1,9 +1,7 @@
 "use client";
 
 import { useDomainsQuery } from "@/queries/domains";
-import { AddDomainForm } from "../components/add-domain-form";
-import { DomainRow } from "../components/domain-row";
-import { TokenDisplay } from "../components/token-display";
+import { AddDomainForm, DomainRow, TokenDisplay } from "../components";
 import { BentoCard } from "../design-system/components";
 import { MAX_DOMAINS } from "@/lib/constants";
 

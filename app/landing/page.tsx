@@ -4,7 +4,7 @@ import { Hero } from "./hero";
 import { HowItWorks } from "./how-it-works";
 import { Integrations } from "./integrations";
 import { Faq } from "./faq";
-import { Footer } from "../components/footer";
+import { Footer } from "../components";
 
 export default async function Landing2() {
   const session = await auth();

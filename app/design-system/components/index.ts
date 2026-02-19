@@ -6,3 +6,4 @@ export { StatusBadge, MethodBadge, IntegrationBadge } from "./badge";
 export { CodeBlock } from "./code-block";
 export { AccordionItem } from "./accordion-item";
 export { SectionDivider } from "./section-divider";
+export { Terminal } from "./terminal";

@@ -1,6 +1,6 @@
-import { Nav } from "@/app/components/nav";
+import { Nav } from "../components";
 
-export default function Landing2Layout({
+export default function LandingLayout({
   children,
 }: {
   children: React.ReactNode;

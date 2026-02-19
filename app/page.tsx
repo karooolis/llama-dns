@@ -1,9 +1,8 @@
-import { Nav } from "./components/nav";
+import { Nav, Footer } from "./components";
 import { Hero } from "./landing/hero";
 import { HowItWorks } from "./landing/how-it-works";
 import { Integrations } from "./landing/integrations";
 import { Faq } from "./landing/faq";
-import { Footer } from "./components/footer";
 
 export default function Home() {
   return (

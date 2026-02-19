@@ -7,8 +7,7 @@ import {
 } from "@tanstack/react-query";
 import { domainsQueryOptions } from "@/queries/domains";
 import { tokenQueryOptions } from "@/queries/token";
-import { Nav } from "../components/nav";
-import { Footer } from "../components/footer";
+import { Nav, Footer } from "../components";
 import { DashboardContent } from "./dashboard-content";
 
 export default async function DashboardPage() {
