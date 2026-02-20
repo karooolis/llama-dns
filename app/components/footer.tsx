@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { GlobeSimple, Coffee, Star } from "./icons";
+import { GlobeSimple, Star } from "./icons";
 
 export function Footer() {
   return (
@@ -70,17 +70,6 @@ export function Footer() {
                 <Star className="text-sm text-amber-400" />
                 <span className="text-[11px] hover:text-white transition-colors font-medium text-neutral-400">
                   Star on GitHub
-                </span>
-              </a>
-              <a
-                href="https://buymeacoffee.com/karooolis"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 hover:bg-amber-500/20 hover:border-amber-500/30 transition-all duration-200 bg-amber-500/10 border-amber-500/20 border rounded-md px-3 py-1.5"
-              >
-                <Coffee className="text-amber-400 text-xs" />
-                <span className="text-[11px] hover:text-white transition-colors font-medium text-neutral-400">
-                  Buy me a coffee
                 </span>
               </a>
             </div>
