@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useAddDomainMutation } from "@/queries/domains";
-import { Button } from "../design-system/components";
+import { Button } from "./button";
 
 export function AddDomainForm() {
   const [name, setName] = useState("");

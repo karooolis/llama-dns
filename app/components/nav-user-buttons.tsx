@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
-import { Button } from "../design-system/components";
+import { Button } from "./button";
 
 export function NavUserButtons() {
   const pathname = usePathname();
