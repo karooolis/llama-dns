@@ -3,7 +3,7 @@
 import { useDomainsQuery } from "@/queries/domains";
 import { useTokenQuery } from "@/queries/token";
 import { AddDomainForm, DomainRow, TokenDisplay } from "../components";
-import { BentoCard } from "../design-system/components";
+import { BentoCard } from "../components/bento-card";
 import { MAX_DOMAINS } from "@/lib/constants";
 
 function Skeleton({ className = "" }: { className?: string }) {

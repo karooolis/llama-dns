@@ -1,9 +1,9 @@
 "use client";
 
-import { CheckCircle } from "../components/icons";
+import { CheckCircle } from "../icons";
 import { motion, useReducedMotion } from "motion/react";
-import { ClaimInputV2 } from "./claim-input-v2";
-import { Terminal } from "../design-system/components";
+import { ClaimInput } from "./claim-input";
+import { Terminal } from "../terminal";
 
 const domain = process.env.NEXT_PUBLIC_DOMAIN || "llamadns.org";
 
@@ -135,7 +135,7 @@ export function Hero() {
             </motion.p>
 
             <motion.div {...fadeUp(0.24)}>
-              <ClaimInputV2 />
+              <ClaimInput />
             </motion.div>
 
             <motion.div

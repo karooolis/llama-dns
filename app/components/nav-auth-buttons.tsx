@@ -2,7 +2,7 @@
 
 import { signIn } from "next-auth/react";
 import { Icon } from "@iconify/react";
-import { Button } from "../design-system/components";
+import { Button } from "./button";
 
 export function NavAuthButtons() {
   return (

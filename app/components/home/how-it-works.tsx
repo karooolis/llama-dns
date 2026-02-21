@@ -1,4 +1,4 @@
-import { GithubLogo, Tag, ArrowsClockwise } from "../components/icons";
+import { GithubLogo, Tag, ArrowsClockwise } from "../icons";
 
 export function HowItWorks() {
   return (
