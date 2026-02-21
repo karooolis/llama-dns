@@ -1,10 +1,9 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import { Nav, Footer } from "./components";
-import { Hero } from "./landing/hero";
-import { HowItWorks } from "./landing/how-it-works";
-import { Integrations } from "./landing/integrations";
-import { Faq } from "./landing/faq";
+import { Hero } from "./components/home/hero";
+import { HowItWorks } from "./components/home/how-it-works";
+import { Faq } from "./components/home/faq";
 
 export default async function Home() {
   const session = await auth();
