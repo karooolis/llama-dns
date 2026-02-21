@@ -32,10 +32,7 @@ export async function GET(request: NextRequest) {
   }
 
   // Validate token
-  const [apiToken] = await db
-    .select()
-    .from(apiTokens)
-    .where(eq(apiTokens.token, token));
+  const [apiToken] = await db.select().from(apiTokens).where(eq(apiTokens.token, token));
 
   if (!apiToken) {
     return text("KO - invalid token", 401);
@@ -97,10 +94,7 @@ export async function GET(request: NextRequest) {
         }
       }
 
-      const noChange =
-        !clear &&
-        ipv4 === domain.ipv4 &&
-        (ipv6 ?? null) === domain.ipv6;
+      const noChange = !clear && ipv4 === domain.ipv4 && (ipv6 ?? null) === domain.ipv6;
 
       // Update DB
       await db
@@ -123,7 +117,7 @@ export async function GET(request: NextRequest) {
       }
     } catch (err) {
       results.push(
-        verbose ? `${name} ERROR ${err instanceof Error ? err.message : "unknown"}` : "KO"
+        verbose ? `${name} ERROR ${err instanceof Error ? err.message : "unknown"}` : "KO",
       );
     }
   }

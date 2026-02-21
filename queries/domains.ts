@@ -1,9 +1,4 @@
-import {
-  queryOptions,
-  useQuery,
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { queryOptions, useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 export interface Domain {
   id: string;
@@ -94,9 +89,7 @@ export function useDeleteDomainMutation() {
       await queryClient.cancelQueries({ queryKey: ["domains"] });
       const previous = queryClient.getQueryData<Domain[]>(["domains"]);
 
-      queryClient.setQueryData<Domain[]>(["domains"], (old = []) =>
-        old.filter((d) => d.id !== id)
-      );
+      queryClient.setQueryData<Domain[]>(["domains"], (old = []) => old.filter((d) => d.id !== id));
 
       return { previous };
     },

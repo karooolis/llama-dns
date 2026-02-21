@@ -10,7 +10,7 @@ export function IconBox({ size = "sm", children, className }: IconBoxProps) {
   if (size === "lg") {
     return (
       <div
-        className={`w-20 h-20 rounded-2xl bg-[#0a0a0a] border border-white/10 flex items-center justify-center group-hover:border-white/25 group-hover:bg-[#0f0f0f] transition-colors duration-300 ${className ?? ""}`}
+        className={`flex h-20 w-20 items-center justify-center rounded-2xl border border-white/10 bg-[#0a0a0a] transition-colors duration-300 group-hover:border-white/25 group-hover:bg-[#0f0f0f] ${className ?? ""}`}
       >
         {children}
       </div>
@@ -19,7 +19,7 @@ export function IconBox({ size = "sm", children, className }: IconBoxProps) {
 
   return (
     <div
-      className={`w-10 h-10 rounded-lg bg-white/5 border border-white/8 flex items-center justify-center text-white/70 ${className ?? ""}`}
+      className={`flex h-10 w-10 items-center justify-center rounded-lg border border-white/8 bg-white/5 text-white/70 ${className ?? ""}`}
     >
       {children}
     </div>

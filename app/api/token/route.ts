@@ -10,17 +10,11 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const [existing] = await db
-    .select()
-    .from(apiTokens)
-    .where(eq(apiTokens.userId, session.user.id));
+  const [existing] = await db.select().from(apiTokens).where(eq(apiTokens.userId, session.user.id));
 
   if (!existing) {
     // Auto-create a token on first access
-    const [token] = await db
-      .insert(apiTokens)
-      .values({ userId: session.user.id })
-      .returning();
+    const [token] = await db.insert(apiTokens).values({ userId: session.user.id }).returning();
     return NextResponse.json(token);
   }
 
@@ -37,10 +31,7 @@ export async function POST() {
   await db.delete(apiTokens).where(eq(apiTokens.userId, session.user.id));
 
   // Create new token
-  const [token] = await db
-    .insert(apiTokens)
-    .values({ userId: session.user.id })
-    .returning();
+  const [token] = await db.insert(apiTokens).values({ userId: session.user.id }).returning();
 
   return NextResponse.json(token);
 }

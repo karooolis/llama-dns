@@ -7,19 +7,15 @@ import { BentoCard } from "../components/bento-card";
 import { MAX_DOMAINS } from "@/lib/constants";
 
 function Skeleton({ className = "" }: { className?: string }) {
-  return (
-    <div
-      className={`animate-pulse rounded-md bg-white/5 ${className}`}
-    />
-  );
+  return <div className={`animate-pulse rounded-md bg-white/5 ${className}`} />;
 }
 
 function DomainsSkeleton() {
   return (
     <div className="space-y-4">
       {[1, 2].map((i) => (
-        <div key={i} className="rounded-lg bg-white/2 border border-white/5 p-4">
-          <Skeleton className="h-4 w-40 mb-2" />
+        <div key={i} className="rounded-lg border border-white/5 bg-white/2 p-4">
+          <Skeleton className="mb-2 h-4 w-40" />
           <Skeleton className="h-3.5 w-56" />
         </div>
       ))}
@@ -48,9 +44,7 @@ export function DashboardContent() {
     <div className="space-y-6">
       <BentoCard size="compact" hover={false}>
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold tracking-tight text-white">
-            Domains
-          </h2>
+          <h2 className="text-lg font-semibold tracking-tight text-white">Domains</h2>
           {!domainsLoading && (
             <span className="text-sm text-neutral-500">
               {domains.length}/{MAX_DOMAINS}
@@ -67,7 +61,7 @@ export function DashboardContent() {
             ))}
           </div>
         ) : (
-          <p className="my-4 text-sm text-neutral-500 font-light">
+          <p className="my-4 text-sm font-light text-neutral-500">
             No domains yet. Add your first subdomain below.
           </p>
         )}
@@ -76,9 +70,7 @@ export function DashboardContent() {
       </BentoCard>
 
       <BentoCard size="compact" hover={false}>
-        <h2 className="mb-4 text-lg font-semibold tracking-tight text-white">
-          API Token
-        </h2>
+        <h2 className="mb-4 text-lg font-semibold tracking-tight text-white">API Token</h2>
         {tokenLoading ? <TokenSkeleton /> : <TokenDisplay />}
       </BentoCard>
     </div>

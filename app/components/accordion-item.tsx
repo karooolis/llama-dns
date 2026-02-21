@@ -23,25 +23,19 @@ export function AccordionItem({
 
   return (
     <div
-      className={`rounded-lg border bg-white/3 cursor-pointer transition-colors duration-200 ${
-        isOpen
-          ? "border-white/8 bg-white/5"
-          : "border-white/5 hover:border-white/8"
+      className={`cursor-pointer rounded-lg border bg-white/3 transition-colors duration-200 ${
+        isOpen ? "border-white/8 bg-white/5" : "border-white/5 hover:border-white/8"
       } ${className ?? ""}`}
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between w-full p-4 text-[15px] font-medium text-neutral-300 tracking-tight text-left cursor-pointer"
+        className="flex w-full cursor-pointer items-center justify-between p-4 text-left text-[15px] font-medium tracking-tight text-neutral-300"
       >
         {trigger}
         <motion.span
           animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={
-            shouldReduceMotion
-              ? { duration: 0 }
-              : { duration: 0.25, ease: easeOutQuad }
-          }
-          className="shrink-0 ml-4"
+          transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.25, ease: easeOutQuad }}
+          className="ml-4 shrink-0"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -59,21 +53,15 @@ export function AccordionItem({
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
-            initial={
-              shouldReduceMotion ? { opacity: 1 } : { height: 0, opacity: 0 }
-            }
+            initial={shouldReduceMotion ? { opacity: 1 } : { height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
-            exit={
-              shouldReduceMotion ? { opacity: 0 } : { height: 0, opacity: 0 }
-            }
+            exit={shouldReduceMotion ? { opacity: 0 } : { height: 0, opacity: 0 }}
             transition={
-              shouldReduceMotion
-                ? { duration: 0 }
-                : { duration: 0.25, ease: easeOutQuad }
+              shouldReduceMotion ? { duration: 0 } : { duration: 0.25, ease: easeOutQuad }
             }
             className="overflow-hidden"
           >
-            <div className="px-4 pb-4 text-[13px] text-neutral-500 font-light leading-relaxed">
+            <div className="px-4 pb-4 text-[13px] leading-relaxed font-light text-neutral-500">
               {children}
             </div>
           </motion.div>

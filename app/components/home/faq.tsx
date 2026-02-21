@@ -47,25 +47,19 @@ function FaqItem({ item }: { item: (typeof items)[number] }) {
 
   return (
     <div
-      className={`rounded-lg border bg-white/3 cursor-pointer transition-colors duration-200 ${
-        isOpen
-          ? "border-white/8 bg-white/5"
-          : "border-white/5 hover:border-white/8"
+      className={`cursor-pointer rounded-lg border bg-white/3 transition-colors duration-200 ${
+        isOpen ? "border-white/8 bg-white/5" : "border-white/5 hover:border-white/8"
       }`}
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between w-full p-4 text-[15px] font-medium text-neutral-300 tracking-tight text-left cursor-pointer"
+        className="flex w-full cursor-pointer items-center justify-between p-4 text-left text-[15px] font-medium tracking-tight text-neutral-300"
       >
         {item.q}
         <motion.span
           animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={
-            shouldReduceMotion
-              ? { duration: 0 }
-              : { duration: 0.25, ease: easeOutQuad }
-          }
-          className="shrink-0 ml-4"
+          transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.25, ease: easeOutQuad }}
+          className="ml-4 shrink-0"
         >
           <CaretDown width={14} height={14} className="text-neutral-600" />
         </motion.span>
@@ -74,22 +68,16 @@ function FaqItem({ item }: { item: (typeof items)[number] }) {
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
-            initial={
-              shouldReduceMotion ? { opacity: 1 } : { height: 0, opacity: 0 }
-            }
+            initial={shouldReduceMotion ? { opacity: 1 } : { height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
-            exit={
-              shouldReduceMotion ? { opacity: 0 } : { height: 0, opacity: 0 }
-            }
+            exit={shouldReduceMotion ? { opacity: 0 } : { height: 0, opacity: 0 }}
             transition={
-              shouldReduceMotion
-                ? { duration: 0 }
-                : { duration: 0.25, ease: easeOutQuad }
+              shouldReduceMotion ? { duration: 0 } : { duration: 0.25, ease: easeOutQuad }
             }
             className="overflow-hidden"
           >
             <p
-              className="px-4 pb-4 text-[13px] text-neutral-500 font-light leading-relaxed [&_a]:text-neutral-300 [&_a]:underline [&_a]:underline-offset-2 [&_a]:hover:text-white [&_a]:transition-colors"
+              className="px-4 pb-4 text-[13px] leading-relaxed font-light text-neutral-500 [&_a]:text-neutral-300 [&_a]:underline [&_a]:underline-offset-2 [&_a]:transition-colors [&_a]:hover:text-white"
               dangerouslySetInnerHTML={{ __html: item.a }}
             />
           </motion.div>
@@ -101,9 +89,9 @@ function FaqItem({ item }: { item: (typeof items)[number] }) {
 
 export function Faq() {
   return (
-    <section id="faq" className="py-16 bg-black">
-      <div className="max-w-5xl mx-auto px-6">
-        <h2 className="text-3xl font-semibold tracking-tighter text-white text-center mb-10">
+    <section id="faq" className="bg-black py-16">
+      <div className="mx-auto max-w-5xl px-6">
+        <h2 className="mb-10 text-center text-3xl font-semibold tracking-tighter text-white">
           Frequently Asked Questions
         </h2>
 

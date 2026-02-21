@@ -5,10 +5,7 @@ import { domains } from "@/lib/db/schema";
 import { and, eq } from "drizzle-orm";
 import { deleteDnsRecord } from "@/lib/cloudflare";
 
-export async function DELETE(
-  _request: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function DELETE(_request: Request, { params }: { params: Promise<{ id: string }> }) {
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -35,9 +32,7 @@ export async function DELETE(
   }
   await Promise.allSettled(deletePromises);
 
-  await db
-    .delete(domains)
-    .where(and(eq(domains.id, id), eq(domains.userId, session.user.id)));
+  await db.delete(domains).where(and(eq(domains.id, id), eq(domains.userId, session.user.id)));
 
   return NextResponse.json({ ok: true });
 }
