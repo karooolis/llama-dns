@@ -3,5 +3,5 @@ interface SectionDividerProps {
 }
 
 export function SectionDivider({ className }: SectionDividerProps) {
-  return <div className={`w-full h-px bg-white/6 ${className ?? ""}`} />;
+  return <div className={`h-px w-full bg-white/6 ${className ?? ""}`} />;
 }

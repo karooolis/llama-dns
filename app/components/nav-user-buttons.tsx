@@ -11,11 +11,7 @@ export function NavUserButtons() {
   return (
     <div className="flex items-center gap-4">
       {isDashboard ? (
-        <Button
-          variant="secondary"
-          size="sm"
-          onClick={() => signOut({ redirectTo: "/" })}
-        >
+        <Button variant="secondary" size="sm" onClick={() => signOut({ redirectTo: "/" })}>
           Sign out
         </Button>
       ) : (

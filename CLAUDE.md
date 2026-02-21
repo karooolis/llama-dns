@@ -9,6 +9,7 @@ Available components: `SectionHeading`, `IconBox`, `BentoCard`, `Button`, `Statu
 Import from `../design-system/components` (or appropriate relative path).
 
 ### Button variants
+
 - `secondary` — glass border/bg, default for most actions (Reveal, Copy, Sign out)
 - `primary` — accent-colored, for primary actions (Add domain)
 - `danger` — red text with glass border, for destructive actions (Delete, Regenerate)

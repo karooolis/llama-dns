@@ -1,10 +1,6 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import {
-  QueryClient,
-  dehydrate,
-  HydrationBoundary,
-} from "@tanstack/react-query";
+import { QueryClient, dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { db } from "@/lib/db";
 import { domains, apiTokens } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
@@ -31,15 +27,13 @@ export default async function DashboardPage() {
     <div className="flex min-h-screen flex-col bg-black pt-14">
       <Nav />
       <main className="mx-auto w-full max-w-5xl flex-1 px-6 pt-16 pb-24">
-        <h1 className="mb-6 text-2xl font-semibold tracking-tighter text-white">
-          Dashboard
-        </h1>
+        <h1 className="mb-6 text-2xl font-semibold tracking-tighter text-white">Dashboard</h1>
 
         <HydrationBoundary state={dehydrate(queryClient)}>
           <DashboardContent />
         </HydrationBoundary>
       </main>
-      <div className="w-full h-px bg-white/6" />
+      <div className="h-px w-full bg-white/6" />
       <Footer />
     </div>
   );

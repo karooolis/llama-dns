@@ -11,7 +11,7 @@ export function NavAuthButtons() {
         variant="ghost"
         size="sm"
         onClick={() => signIn("github", { redirectTo: "/dashboard" })}
-        className="hidden sm:block cursor-pointer"
+        className="hidden cursor-pointer sm:block"
       >
         Log in
       </Button>
@@ -19,7 +19,7 @@ export function NavAuthButtons() {
         variant="secondary"
         size="sm"
         onClick={() => signIn("github", { redirectTo: "/dashboard" })}
-        className="flex items-center gap-2 cursor-pointer"
+        className="flex cursor-pointer items-center gap-2"
       >
         Sign up
       </Button>
