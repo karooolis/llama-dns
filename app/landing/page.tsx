@@ -6,7 +6,7 @@ import { Integrations } from "./integrations";
 import { Faq } from "./faq";
 import { Footer } from "../components";
 
-export default async function Landing2() {
+export default async function Landing() {
   const session = await auth();
   if (session?.user) redirect("/dashboard");
 
@@ -15,9 +15,9 @@ export default async function Landing2() {
       <Hero />
       <div className="w-full h-px bg-white/10" />
       <HowItWorks />
-      <div className="w-full h-px bg-white/10" />
+      {/* <div className="w-full h-px bg-white/10" />
       <Integrations />
-      <div className="w-full h-px bg-white/10" />
+      <div className="w-full h-px bg-white/10" /> */}
       <Faq />
       <div className="w-full h-px bg-white/10" />
       <Footer />
