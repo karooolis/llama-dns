@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useTokenQuery, useRegenerateTokenMutation } from "@/queries/token";
 import { useDomainsQuery } from "@/queries/domains";
 import { Icon } from "@iconify/react";
-import { Button, Terminal } from "../design-system/components";
+import { Button } from "./button";
+import { Terminal } from "./terminal";
 import { timeAgo } from "@/lib/format-time";
 
 export function TokenDisplay() {

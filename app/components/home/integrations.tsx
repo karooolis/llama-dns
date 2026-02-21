@@ -4,7 +4,7 @@ import {
   DockerIcon,
   RaspberryPiIcon,
   SynologyIcon,
-} from "../components/icons";
+} from "../icons";
 
 export function Integrations() {
   return (
