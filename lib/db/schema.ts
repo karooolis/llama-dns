@@ -30,9 +30,7 @@ export const accounts = pgTable(
     id_token: text("id_token"),
     session_state: text("session_state"),
   },
-  (account) => [
-    primaryKey({ columns: [account.provider, account.providerAccountId] }),
-  ]
+  (account) => [primaryKey({ columns: [account.provider, account.providerAccountId] })],
 );
 
 export const sessions = pgTable("session", {
@@ -50,7 +48,7 @@ export const verificationTokens = pgTable(
     token: text("token").notNull(),
     expires: timestamp("expires", { mode: "date" }).notNull(),
   },
-  (t) => [primaryKey({ columns: [t.identifier, t.token] })]
+  (t) => [primaryKey({ columns: [t.identifier, t.token] })],
 );
 
 // ── Application tables ──────────────────────────────────────────────────────

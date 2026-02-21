@@ -13,14 +13,10 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div className={`${align === "center" ? "text-center" : ""} ${className ?? ""}`}>
-      <h2 className="text-3xl md:text-4xl font-semibold tracking-tighter text-white mb-3">
+      <h2 className="mb-3 text-3xl font-semibold tracking-tighter text-white md:text-4xl">
         {title}
       </h2>
-      {subtitle && (
-        <p className="text-neutral-500 text-sm font-light max-w-md">
-          {subtitle}
-        </p>
-      )}
+      {subtitle && <p className="max-w-md text-sm font-light text-neutral-500">{subtitle}</p>}
     </div>
   );
 }

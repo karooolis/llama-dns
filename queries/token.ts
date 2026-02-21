@@ -1,9 +1,4 @@
-import {
-  queryOptions,
-  useQuery,
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { queryOptions, useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 export interface ApiToken {
   token: string;

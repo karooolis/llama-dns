@@ -27,8 +27,7 @@ export function TokenDisplay() {
   }
 
   async function handleRegenerate() {
-    if (!confirm("Regenerate your API token? The old token will stop working."))
-      return;
+    if (!confirm("Regenerate your API token? The old token will stop working.")) return;
     await regenerate.mutateAsync();
     setRevealed(true);
   }
@@ -48,20 +47,12 @@ export function TokenDisplay() {
     <div className="space-y-4">
       {/* Token row */}
       <div className="flex items-center rounded-lg border border-white/6 bg-white/2">
-        <code className="flex-1 px-3 py-2.5 text-sm font-mono">
-          {revealed ? token : masked}
-        </code>
+        <code className="flex-1 px-3 py-2.5 font-mono text-sm">{revealed ? token : masked}</code>
         {tokenData?.createdAt && (
-          <span className="text-xs text-neutral-600 pr-1">
-            {timeAgo(tokenData.createdAt)}
-          </span>
+          <span className="pr-1 text-xs text-neutral-600">{timeAgo(tokenData.createdAt)}</span>
         )}
         <div className="flex items-center pr-1">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setRevealed(!revealed)}
-          >
+          <Button variant="ghost" size="sm" onClick={() => setRevealed(!revealed)}>
             <Icon icon={revealed ? "solar:eye-closed-linear" : "solar:eye-linear"} width={14} />
           </Button>
           <Button variant="ghost" size="sm" onClick={copyToken}>
@@ -94,7 +85,7 @@ export function TokenDisplay() {
       >
         <div className="flex items-start gap-2">
           <span className="text-emerald-500/70 select-none">$</span>
-          <code className="text-neutral-300 break-all">
+          <code className="break-all text-neutral-300">
             curl{" "}
             <span className="text-amber-200/80">
               &quot;https://{domain}/update?domains={firstDomain}&amp;token=

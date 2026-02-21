@@ -20,7 +20,7 @@ interface CfResult {
 export async function createDnsRecord(
   subdomain: string,
   type: "A" | "AAAA",
-  content: string
+  content: string,
 ): Promise<string> {
   const res = await fetch(zoneUrl(), {
     method: "POST",
@@ -35,9 +35,7 @@ export async function createDnsRecord(
   });
   const data: CfResult = await res.json();
   if (!data.success || !data.result) {
-    throw new Error(
-      `Cloudflare create failed: ${data.errors?.[0]?.message ?? res.statusText}`
-    );
+    throw new Error(`Cloudflare create failed: ${data.errors?.[0]?.message ?? res.statusText}`);
   }
   return data.result.id;
 }
@@ -46,7 +44,7 @@ export async function updateDnsRecord(
   recordId: string,
   subdomain: string,
   type: "A" | "AAAA",
-  content: string
+  content: string,
 ): Promise<void> {
   const res = await fetch(`${zoneUrl()}/${recordId}`, {
     method: "PUT",
@@ -61,9 +59,7 @@ export async function updateDnsRecord(
   });
   const data: CfResult = await res.json();
   if (!data.success) {
-    throw new Error(
-      `Cloudflare update failed: ${data.errors?.[0]?.message ?? res.statusText}`
-    );
+    throw new Error(`Cloudflare update failed: ${data.errors?.[0]?.message ?? res.statusText}`);
   }
 }
 

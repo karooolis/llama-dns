@@ -8,30 +8,28 @@ export async function Nav() {
   const session = await auth();
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-black border-b border-white/8">
-      <div className="max-w-5xl mx-auto h-14 flex items-center justify-between px-6">
-        <Link href="/" className="flex items-center gap-2.5 group select-none">
-          <GlobeSimple className="text-lg text-white/80 group-hover:text-white transition-colors" />
-          <span className="font-semibold tracking-tight text-sm text-white/90">
-            LlamaDNS
-          </span>
+    <nav className="fixed top-0 z-50 w-full border-b border-white/8 bg-black">
+      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
+        <Link href="/" className="group flex items-center gap-2.5 select-none">
+          <GlobeSimple className="text-lg text-white/80 transition-colors group-hover:text-white" />
+          <span className="text-sm font-semibold tracking-tight text-white/90">LlamaDNS</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-12 text-[13px] text-neutral-500 absolute left-1/2 -translate-x-1/2">
-          <Link href="/#how-it-works" className="hover:text-white transition-colors">
+        <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-12 text-[13px] text-neutral-500 md:flex">
+          <Link href="/#how-it-works" className="transition-colors hover:text-white">
             How it works
           </Link>
-          <Link href="/#integrations" className="hover:text-white transition-colors">
+          <Link href="/#integrations" className="transition-colors hover:text-white">
             Integrations
           </Link>
-          <Link href="/#faq" className="hover:text-white transition-colors">
+          <Link href="/#faq" className="transition-colors hover:text-white">
             FAQ
           </Link>
           <a
             href="https://github.com/llamadns"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-white transition-colors"
+            className="transition-colors hover:text-white"
           >
             <GithubLogo className="text-base" />
           </a>

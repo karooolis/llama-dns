@@ -10,22 +10,28 @@ export function DomainRow({ domain }: { domain: Domain }) {
   const isTemp = domain.id.startsWith("temp-");
 
   return (
-    <div
-      className={`bento-card relative rounded-lg pl-4 pr-2 py-3 ${isTemp ? "opacity-60" : ""}`}
-    >
+    <div className={`bento-card relative rounded-lg py-3 pr-2 pl-4 ${isTemp ? "opacity-60" : ""}`}>
       <button
         onClick={() => deleteMutation.mutate(domain.id)}
         disabled={deleteMutation.isPending || isTemp}
         title="Delete"
-        className="absolute top-3 right-3 text-white hover:text-neutral-400 transition-colors disabled:opacity-40"
+        className="absolute top-3 right-3 text-white transition-colors hover:text-neutral-400 disabled:opacity-40"
       >
         <Icon icon="solar:trash-bin-minimalistic-linear" width={14} />
       </button>
-      <p className="text-sm font-medium text-white flex items-center gap-2">
+      <p className="flex items-center gap-2 text-sm font-medium text-white">
         {domain.ipv4 || domain.ipv6 ? (
-          <Icon icon="solar:check-circle-linear" width={14} className="text-emerald-500/80 shrink-0" />
+          <Icon
+            icon="solar:check-circle-linear"
+            width={14}
+            className="shrink-0 text-emerald-500/80"
+          />
         ) : (
-          <Icon icon="solar:clock-circle-linear" width={14} className="text-amber-500/70 shrink-0" />
+          <Icon
+            icon="solar:clock-circle-linear"
+            width={14}
+            className="shrink-0 text-amber-500/70"
+          />
         )}
         {domain.name}.{domainSuffix}
       </p>
@@ -35,17 +41,13 @@ export function DomainRow({ domain }: { domain: Domain }) {
             <>
               {domain.ipv4 && (
                 <>
-                  <span className="text-neutral-600 text-xs">A</span>{" "}
-                  {domain.ipv4}
+                  <span className="text-xs text-neutral-600">A</span> {domain.ipv4}
                 </>
               )}
-              {domain.ipv4 && domain.ipv6 && (
-                <span className="text-neutral-600"> / </span>
-              )}
+              {domain.ipv4 && domain.ipv6 && <span className="text-neutral-600"> / </span>}
               {domain.ipv6 && (
                 <>
-                  <span className="text-neutral-600 text-xs">AAAA</span>{" "}
-                  {domain.ipv6}
+                  <span className="text-xs text-neutral-600">AAAA</span> {domain.ipv6}
                 </>
               )}
             </>
@@ -55,8 +57,7 @@ export function DomainRow({ domain }: { domain: Domain }) {
         </p>
         <p className="shrink-0 text-xs text-neutral-600">
           created {timeAgo(domain.createdAt)}
-          {domain.updatedAt !== domain.createdAt &&
-            ` · updated ${timeAgo(domain.updatedAt)}`}
+          {domain.updatedAt !== domain.createdAt && ` · updated ${timeAgo(domain.updatedAt)}`}
         </p>
       </div>
     </div>

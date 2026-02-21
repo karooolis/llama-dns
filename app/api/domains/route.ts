@@ -13,10 +13,7 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const userDomains = await db
-    .select()
-    .from(domains)
-    .where(eq(domains.userId, session.user.id));
+  const userDomains = await db.select().from(domains).where(eq(domains.userId, session.user.id));
 
   return NextResponse.json(userDomains);
 }
@@ -33,34 +30,28 @@ export async function POST(request: Request) {
   if (!name || !SUBDOMAIN_RE.test(name)) {
     return NextResponse.json(
       { error: "Invalid subdomain. Use lowercase letters, numbers, and hyphens." },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
   if (RESERVED_SUBDOMAINS.has(name)) {
     return NextResponse.json(
       { error: `"${name}" is reserved and cannot be claimed.` },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
-  const existing = await db
-    .select()
-    .from(domains)
-    .where(eq(domains.userId, session.user.id));
+  const existing = await db.select().from(domains).where(eq(domains.userId, session.user.id));
 
   if (existing.length >= MAX_DOMAINS) {
     return NextResponse.json(
       { error: `Maximum of ${MAX_DOMAINS} domains reached.` },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
   try {
-    const [domain] = await db
-      .insert(domains)
-      .values({ name, userId: session.user.id })
-      .returning();
+    const [domain] = await db.insert(domains).values({ name, userId: session.user.id }).returning();
 
     return NextResponse.json(domain, { status: 201 });
   } catch (err: unknown) {
@@ -69,10 +60,7 @@ export async function POST(request: Request) {
       (err.message.includes("UNIQUE constraint failed") ||
         err.message.includes("duplicate key value"))
     ) {
-      return NextResponse.json(
-        { error: `"${name}" is already taken.` },
-        { status: 409 }
-      );
+      return NextResponse.json({ error: `"${name}" is already taken.` }, { status: 409 });
     }
     throw err;
   }

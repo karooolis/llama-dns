@@ -46,16 +46,16 @@ pnpm dev
 
 ## Environment Variables
 
-| Variable | Description |
-|---|---|
-| `DATABASE_URL` | PostgreSQL connection string |
-| `AUTH_SECRET` | Random secret — generate with `openssl rand -base64 32` |
-| `AUTH_GITHUB_ID` | GitHub OAuth App Client ID |
-| `AUTH_GITHUB_SECRET` | GitHub OAuth App Client Secret |
-| `CLOUDFLARE_API_TOKEN` | Cloudflare API token with DNS edit permissions |
-| `CLOUDFLARE_ZONE_ID` | Cloudflare Zone ID for your domain |
-| `DOMAIN` | Base domain (e.g. `llamadns.org`) |
-| `NEXT_PUBLIC_DOMAIN` | Same as `DOMAIN`, exposed to the browser |
+| Variable               | Description                                             |
+| ---------------------- | ------------------------------------------------------- |
+| `DATABASE_URL`         | PostgreSQL connection string                            |
+| `AUTH_SECRET`          | Random secret — generate with `openssl rand -base64 32` |
+| `AUTH_GITHUB_ID`       | GitHub OAuth App Client ID                              |
+| `AUTH_GITHUB_SECRET`   | GitHub OAuth App Client Secret                          |
+| `CLOUDFLARE_API_TOKEN` | Cloudflare API token with DNS edit permissions          |
+| `CLOUDFLARE_ZONE_ID`   | Cloudflare Zone ID for your domain                      |
+| `DOMAIN`               | Base domain (e.g. `llamadns.org`)                       |
+| `NEXT_PUBLIC_DOMAIN`   | Same as `DOMAIN`, exposed to the browser                |
 
 ## API Reference
 
@@ -65,14 +65,14 @@ Update DNS records for one or more subdomains. Authenticate with your API token.
 
 **Parameters**
 
-| Parameter | Required | Description |
-|---|---|---|
-| `token` | Yes | API token from your dashboard |
-| `domains` | Yes | Comma-separated subdomain names (e.g. `myserver,homelab`) |
-| `ip` | No | IPv4 address (auto-detected if omitted) |
-| `ipv6` | No | IPv6 address (not auto-detected) |
-| `clear` | No | Set to `true` to delete DNS records |
-| `verbose` | No | Set to `true` for detailed output |
+| Parameter | Required | Description                                               |
+| --------- | -------- | --------------------------------------------------------- |
+| `token`   | Yes      | API token from your dashboard                             |
+| `domains` | Yes      | Comma-separated subdomain names (e.g. `myserver,homelab`) |
+| `ip`      | No       | IPv4 address (auto-detected if omitted)                   |
+| `ipv6`    | No       | IPv6 address (not auto-detected)                          |
+| `clear`   | No       | Set to `true` to delete DNS records                       |
+| `verbose` | No       | Set to `true` for detailed output                         |
 
 **Examples**
 
@@ -140,14 +140,14 @@ Returns `400` if params are missing, `401` for invalid token, `429` if rate-limi
 
 ## Scripts
 
-| Script | Description |
-|---|---|
-| `pnpm dev` | Start development server |
-| `pnpm build` | Production build |
-| `pnpm start` | Start production server |
-| `pnpm lint` | Run ESLint |
-| `pnpm db:push` | Push schema to database |
-| `pnpm db:studio` | Open Drizzle Studio |
+| Script           | Description              |
+| ---------------- | ------------------------ |
+| `pnpm dev`       | Start development server |
+| `pnpm build`     | Production build         |
+| `pnpm start`     | Start production server  |
+| `pnpm lint`      | Run ESLint               |
+| `pnpm db:push`   | Push schema to database  |
+| `pnpm db:studio` | Open Drizzle Studio      |
 
 ## Contributing
 

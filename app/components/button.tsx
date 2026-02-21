@@ -12,19 +12,17 @@ type BaseProps = {
 };
 
 type ButtonAsButton = BaseProps & ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined };
-type ButtonAsLink = BaseProps & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & { href: string };
+type ButtonAsLink = BaseProps &
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & { href: string };
 
 type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const variantClasses: Record<ButtonVariant, string> = {
   secondary:
     "border border-white/5 bg-white/10 text-white shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:bg-white/20 transition-all duration-300",
-  primary:
-    "bg-accent text-white hover:bg-accent-hover",
-  danger:
-    "border border-white/8 text-danger hover:bg-danger/10",
-  ghost:
-    "text-neutral-500 hover:text-white",
+  primary: "bg-accent text-white hover:bg-accent-hover",
+  danger: "border border-white/8 text-danger hover:bg-danger/10",
+  ghost: "text-neutral-500 hover:text-white",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
