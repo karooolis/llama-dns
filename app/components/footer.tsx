@@ -18,6 +18,17 @@ export function Footer() {
             <p className="mb-6 text-xs leading-5 font-light text-neutral-500">
               Open-source dynamic DNS for the modern developer ecosystem.
             </p>
+            <a
+              href="https://github.com/llamadns"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md border border-white/6 bg-white/3 px-3 py-1.5 transition-all duration-200 hover:border-white/10 hover:bg-white/5 md:hidden"
+            >
+              <Star className="text-sm text-amber-400" />
+              <span className="text-[11px] font-medium text-neutral-400 transition-colors hover:text-white">
+                Star on GitHub
+              </span>
+            </a>
           </div>
 
           <div className="col-span-1 flex items-start text-[13px] md:col-span-3">
@@ -54,7 +65,7 @@ export function Footer() {
                 </Link>
               </div>
             </div>
-            <div className="ml-auto flex flex-col gap-2.5">
+            <div className="ml-auto hidden flex-col gap-2.5 md:flex">
               <a
                 href="https://github.com/llamadns"
                 target="_blank"
