@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.duckdns.org)",
+      "Bash(find:*)",
+      "WebSearch",
+      "WebFetch(domain:developers.cloudflare.com)",
+      "WebFetch(domain:authjs.dev)",
+      "WebFetch(domain:orm.drizzle.team)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm approve-builds:*)",
+      "Bash(node -e:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm rebuild:*)",
+      "Bash(npx drizzle-kit push:*)",
+      "Bash(pnpm build:*)",
+      "Bash(ls:*)",
+      "Bash(pnpm db:push:*)",
+      "Bash(pnpm remove:*)",
+      "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_pf7kauXcjKE9@ep-morning-sun-aidu3qh6-pooler.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require\" pnpm db:push:*)",
+      "Bash(curl:*)",
+      "Bash(lsof:*)",
+      "Bash(xargs kill:*)",
+      "Bash(npx next build:*)",
+      "Bash(python3:*)"
+    ]
+  }
+}
