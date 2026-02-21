@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 
 const domain = process.env.NEXT_PUBLIC_DOMAIN || "llamadns.org";
 
-export function ClaimInputV2() {
+export function ClaimInput() {
   const [subdomain, setSubdomain] = useState("");
 
   function handleSubmit(e: React.FormEvent) {
