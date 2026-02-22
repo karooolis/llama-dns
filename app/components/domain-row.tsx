@@ -16,6 +16,7 @@ export function DomainRow({ domain }: { domain: Domain }) {
         disabled={deleteMutation.isPending || isTemp}
         title="Delete"
         className="absolute top-3 right-3 text-white transition-colors hover:text-neutral-400 disabled:opacity-40"
+        type="button"
       >
         <Icon icon="solar:trash-bin-minimalistic-linear" width={14} />
       </button>
