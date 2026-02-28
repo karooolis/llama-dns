@@ -100,7 +100,8 @@ export function DomainRow({ domain }: { domain: Domain }) {
         </p>
         <p className="shrink-0 text-xs text-neutral-600">
           created {timeAgo(domain.createdAt)}
-          {domain.updatedAt !== domain.createdAt && ` · updated ${timeAgo(domain.updatedAt)}`}
+          {timeAgo(domain.updatedAt) !== timeAgo(domain.createdAt) &&
+            ` · updated ${timeAgo(domain.updatedAt)}`}
         </p>
       </div>
     </div>
