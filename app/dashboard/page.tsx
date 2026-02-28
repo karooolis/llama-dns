@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
@@ -7,6 +8,11 @@ import { domains, apiTokens } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { Nav, Footer } from "../components";
 import { DashboardContent } from "./dashboard-content";
+
+export const metadata: Metadata = {
+  title: "Dashboard - LlamaDNS",
+  robots: { index: false, follow: false },
+};
 
 export default async function DashboardPage() {
   const session = await auth();

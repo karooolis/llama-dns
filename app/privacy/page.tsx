@@ -3,6 +3,7 @@ import { Nav, Footer } from "../components";
 
 export const metadata: Metadata = {
   title: "Privacy Policy - LlamaDNS",
+  description: "Privacy policy for the LlamaDNS free dynamic DNS service.",
 };
 
 export default function PrivacyPage() {

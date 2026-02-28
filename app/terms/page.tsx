@@ -3,6 +3,7 @@ import { Nav, Footer } from "../components";
 
 export const metadata: Metadata = {
   title: "Terms of Use - LlamaDNS",
+  description: "Terms of use for the LlamaDNS free dynamic DNS service.",
 };
 
 export default function TermsPage() {
