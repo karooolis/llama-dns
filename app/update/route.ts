@@ -12,6 +12,10 @@ function text(body: string, status = 200) {
   });
 }
 
+function isIPv6(ip: string): boolean {
+  return ip.includes(":");
+}
+
 function getClientIp(request: NextRequest): string | null {
   return (
     request.headers.get("cf-connecting-ip") ??
@@ -44,8 +48,13 @@ export async function GET(request: NextRequest) {
     return text("KO - rate limit exceeded", 429);
   }
 
-  const ipv4 = clear ? null : (params.get("ip") ?? getClientIp(request));
-  const ipv6 = clear ? null : (params.get("ipv6") ?? null);
+  const explicitIpv4 = clear ? null : params.get("ip");
+  const explicitIpv6 = clear ? null : params.get("ipv6");
+  const detectedIp = clear ? null : getClientIp(request);
+
+  // Auto-detected IP may be v4 or v6 — route it to the correct field
+  let ipv4 = explicitIpv4 ?? (detectedIp && !isIPv6(detectedIp) ? detectedIp : null);
+  let ipv6 = explicitIpv6 ?? (detectedIp && isIPv6(detectedIp) ? detectedIp : null);
 
   if (!clear && !ipv4 && !ipv6) {
     return text("KO - could not determine IP address", 400);

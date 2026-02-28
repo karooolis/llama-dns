@@ -50,12 +50,12 @@ vi.mock("@/lib/db", () => ({
   },
 }));
 
-function makeRequest(params: Record<string, string>) {
+function makeRequest(params: Record<string, string>, headers?: Record<string, string>) {
   const url = new URL("http://localhost/update");
   for (const [k, v] of Object.entries(params)) {
     url.searchParams.set(k, v);
   }
-  return new NextRequest(url);
+  return new NextRequest(url, { headers });
 }
 
 describe("GET /update", () => {
@@ -289,6 +289,59 @@ describe("GET /update", () => {
     );
     expect(res.status).toBe(200);
     expect(await res.text()).toBe("myserver NOCHANGE 1.2.3.4");
+  });
+
+  it("routes auto-detected IPv6 to AAAA record", async () => {
+    mockTokenWhere.mockResolvedValueOnce([{ token: "tok-1", userId: "user-1" }]);
+    mockDomainWhere.mockResolvedValueOnce([
+      {
+        id: "d-1",
+        name: "myserver",
+        userId: "user-1",
+        ipv4: null,
+        ipv6: null,
+        cloudflareRecordIdA: null,
+        cloudflareRecordIdAAAA: null,
+      },
+    ]);
+    mockCreateDns.mockResolvedValueOnce("cf-aaaa-new");
+
+    const res = await GET(
+      makeRequest(
+        { token: "tok-1", domains: "myserver" },
+        { "x-forwarded-for": "2001:db8::1" },
+      ),
+    );
+    expect(res.status).toBe(200);
+    expect(await res.text()).toBe("OK");
+    expect(mockCreateDns).toHaveBeenCalledWith("myserver", "AAAA", "2001:db8::1");
+    expect(mockCreateDns).not.toHaveBeenCalledWith("myserver", "A", expect.anything());
+  });
+
+  it("routes auto-detected IPv4 to A record", async () => {
+    mockTokenWhere.mockResolvedValueOnce([{ token: "tok-1", userId: "user-1" }]);
+    mockDomainWhere.mockResolvedValueOnce([
+      {
+        id: "d-1",
+        name: "myserver",
+        userId: "user-1",
+        ipv4: null,
+        ipv6: null,
+        cloudflareRecordIdA: null,
+        cloudflareRecordIdAAAA: null,
+      },
+    ]);
+    mockCreateDns.mockResolvedValueOnce("cf-a-new");
+
+    const res = await GET(
+      makeRequest(
+        { token: "tok-1", domains: "myserver" },
+        { "x-forwarded-for": "203.0.113.42" },
+      ),
+    );
+    expect(res.status).toBe(200);
+    expect(await res.text()).toBe("OK");
+    expect(mockCreateDns).toHaveBeenCalledWith("myserver", "A", "203.0.113.42");
   });
 
   it("returns verbose NOTFOUND for unknown domain", async () => {
