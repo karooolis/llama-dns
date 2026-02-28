@@ -36,7 +36,7 @@ export function DomainRow({ domain }: { domain: Domain }) {
           <Icon icon="solar:trash-bin-minimalistic-linear" width={14} />
         </button>
         {confirmOpen && (
-          <div className="absolute right-0 top-full z-10 mt-1.5 w-44 rounded-lg border border-white/10 bg-[#141414] p-3 shadow-xl">
+          <div className="absolute bottom-full left-1/2 z-10 mb-2 w-44 -translate-x-1/2 rounded-lg border border-white/10 bg-[#141414] p-3 shadow-xl">
             <p className="mb-2.5 text-xs text-neutral-300">Are you sure?</p>
             <div className="flex gap-2">
               <button
@@ -56,6 +56,11 @@ export function DomainRow({ domain }: { domain: Domain }) {
               >
                 Delete
               </button>
+            </div>
+            {/* Arrow */}
+            <div className="absolute left-1/2 top-full -translate-x-1/2">
+              <div className="h-0 w-0 border-x-[6px] border-t-[6px] border-x-transparent border-t-white/10" />
+              <div className="-mt-[7px] h-0 w-0 border-x-[6px] border-t-[6px] border-x-transparent border-t-[#141414]" />
             </div>
           </div>
         )}
