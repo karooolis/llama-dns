@@ -54,7 +54,7 @@ export function ClaimInput() {
         </span>
         <button
           type="submit"
-          disabled={isRedirecting}
+          disabled={!subdomain.trim() || isRedirecting}
           className="ml-1 h-9 shrink-0 cursor-pointer rounded-lg border border-white/10 bg-white/8 px-5 text-xs font-semibold tracking-tight whitespace-nowrap text-neutral-300 transition-colors hover:border-white/15 hover:bg-white/12 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isRedirecting ? "Claiming..." : "Claim"}
