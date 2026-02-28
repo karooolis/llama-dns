@@ -96,6 +96,16 @@ describe("useAutoClaim", () => {
     expect(mockReplace).toHaveBeenCalledWith("/dashboard");
   });
 
+  it("does not fire when claim param is empty string", async () => {
+    await importAndRun("", true);
+    expect(mockMutateAsync).not.toHaveBeenCalled();
+  });
+
+  it("passes exact claim name to mutateAsync", async () => {
+    await importAndRun("my-cool-server", true);
+    expect(mockMutateAsync).toHaveBeenCalledWith("my-cool-server");
+  });
+
   it("only fires once (ref guard)", async () => {
     vi.resetModules();
     mockSearchParams.get.mockReturnValue("my-project");

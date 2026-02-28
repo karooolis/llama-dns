@@ -344,6 +344,245 @@ describe("GET /update", () => {
     expect(mockCreateDns).toHaveBeenCalledWith("myserver", "A", "203.0.113.42");
   });
 
+  it("returns 400 when no IP can be determined", async () => {
+    mockTokenWhere.mockResolvedValueOnce([{ token: "tok-1", userId: "user-1" }]);
+
+    const res = await GET(
+      makeRequest({ token: "tok-1", domains: "myserver" }),
+    );
+    expect(res.status).toBe(400);
+    expect(await res.text()).toMatch(/could not determine IP/);
+  });
+
+  it("prefers cf-connecting-ip over x-forwarded-for", async () => {
+    mockTokenWhere.mockResolvedValueOnce([{ token: "tok-1", userId: "user-1" }]);
+    mockDomainWhere.mockResolvedValueOnce([
+      {
+        id: "d-1",
+        name: "myserver",
+        userId: "user-1",
+        ipv4: null,
+        ipv6: null,
+        cloudflareRecordIdA: null,
+        cloudflareRecordIdAAAA: null,
+      },
+    ]);
+    mockCreateDns.mockResolvedValueOnce("cf-new");
+
+    const res = await GET(
+      makeRequest(
+        { token: "tok-1", domains: "myserver" },
+        { "cf-connecting-ip": "10.0.0.1", "x-forwarded-for": "10.0.0.2" },
+      ),
+    );
+    expect(res.status).toBe(200);
+    expect(mockCreateDns).toHaveBeenCalledWith("myserver", "A", "10.0.0.1");
+  });
+
+  it("explicit ip param overrides auto-detected IP", async () => {
+    mockTokenWhere.mockResolvedValueOnce([{ token: "tok-1", userId: "user-1" }]);
+    mockDomainWhere.mockResolvedValueOnce([
+      {
+        id: "d-1",
+        name: "myserver",
+        userId: "user-1",
+        ipv4: null,
+        ipv6: null,
+        cloudflareRecordIdA: null,
+        cloudflareRecordIdAAAA: null,
+      },
+    ]);
+    mockCreateDns.mockResolvedValueOnce("cf-new");
+
+    const res = await GET(
+      makeRequest(
+        { token: "tok-1", domains: "myserver", ip: "5.5.5.5" },
+        { "x-forwarded-for": "10.0.0.2" },
+      ),
+    );
+    expect(res.status).toBe(200);
+    expect(mockCreateDns).toHaveBeenCalledWith("myserver", "A", "5.5.5.5");
+  });
+
+  it("updates existing AAAA record when IPv6 changes", async () => {
+    mockTokenWhere.mockResolvedValueOnce([{ token: "tok-1", userId: "user-1" }]);
+    mockDomainWhere.mockResolvedValueOnce([
+      {
+        id: "d-1",
+        name: "myserver",
+        userId: "user-1",
+        ipv4: "1.2.3.4",
+        ipv6: "::1",
+        cloudflareRecordIdA: "cf-a",
+        cloudflareRecordIdAAAA: "cf-aaaa",
+      },
+    ]);
+    mockUpdateDns.mockResolvedValueOnce(undefined);
+
+    const res = await GET(
+      makeRequest({ token: "tok-1", domains: "myserver", ip: "1.2.3.4", ipv6: "::2" }),
+    );
+    expect(res.status).toBe(200);
+    expect(mockUpdateDns).toHaveBeenCalledWith("cf-aaaa", "myserver", "AAAA", "::2");
+    expect(mockUpdateDns).not.toHaveBeenCalledWith("cf-a", expect.anything(), expect.anything(), expect.anything());
+  });
+
+  it("returns verbose CLEARED output", async () => {
+    mockTokenWhere.mockResolvedValueOnce([{ token: "tok-1", userId: "user-1" }]);
+    mockDomainWhere.mockResolvedValueOnce([
+      {
+        id: "d-1",
+        name: "myserver",
+        userId: "user-1",
+        ipv4: "1.2.3.4",
+        ipv6: null,
+        cloudflareRecordIdA: "cf-a",
+        cloudflareRecordIdAAAA: null,
+      },
+    ]);
+    mockDeleteDns.mockResolvedValue(undefined);
+
+    const res = await GET(
+      makeRequest({ token: "tok-1", domains: "myserver", clear: "true", verbose: "true" }),
+    );
+    expect(res.status).toBe(200);
+    expect(await res.text()).toBe("myserver CLEARED");
+  });
+
+  it("returns verbose ERROR on Cloudflare failure", async () => {
+    mockTokenWhere.mockResolvedValueOnce([{ token: "tok-1", userId: "user-1" }]);
+    mockDomainWhere.mockResolvedValueOnce([
+      {
+        id: "d-1",
+        name: "myserver",
+        userId: "user-1",
+        ipv4: null,
+        ipv6: null,
+        cloudflareRecordIdA: null,
+        cloudflareRecordIdAAAA: null,
+      },
+    ]);
+    mockCreateDns.mockRejectedValueOnce(new Error("Cloudflare create failed"));
+
+    const res = await GET(
+      makeRequest({ token: "tok-1", domains: "myserver", ip: "1.2.3.4", verbose: "true" }),
+    );
+    expect(res.status).toBe(200);
+    expect(await res.text()).toBe("myserver ERROR Cloudflare create failed");
+  });
+
+  it("returns KO (not verbose) on Cloudflare failure", async () => {
+    mockTokenWhere.mockResolvedValueOnce([{ token: "tok-1", userId: "user-1" }]);
+    mockDomainWhere.mockResolvedValueOnce([
+      {
+        id: "d-1",
+        name: "myserver",
+        userId: "user-1",
+        ipv4: null,
+        ipv6: null,
+        cloudflareRecordIdA: null,
+        cloudflareRecordIdAAAA: null,
+      },
+    ]);
+    mockCreateDns.mockRejectedValueOnce(new Error("Cloudflare create failed"));
+
+    const res = await GET(
+      makeRequest({ token: "tok-1", domains: "myserver", ip: "1.2.3.4" }),
+    );
+    expect(res.status).toBe(200);
+    expect(await res.text()).toBe("KO");
+  });
+
+  it("stores correct values in DB on update", async () => {
+    mockTokenWhere.mockResolvedValueOnce([{ token: "tok-1", userId: "user-1" }]);
+    mockDomainWhere.mockResolvedValueOnce([
+      {
+        id: "d-1",
+        name: "myserver",
+        userId: "user-1",
+        ipv4: null,
+        ipv6: null,
+        cloudflareRecordIdA: null,
+        cloudflareRecordIdAAAA: null,
+      },
+    ]);
+    mockCreateDns.mockResolvedValueOnce("cf-new-a");
+
+    await GET(makeRequest({ token: "tok-1", domains: "myserver", ip: "9.9.9.9" }));
+
+    expect(mockUpdateSet).toHaveBeenCalledWith(
+      expect.objectContaining({
+        ipv4: "9.9.9.9",
+        cloudflareRecordIdA: "cf-new-a",
+      }),
+    );
+  });
+
+  it("stores null IPs in DB on clear", async () => {
+    mockTokenWhere.mockResolvedValueOnce([{ token: "tok-1", userId: "user-1" }]);
+    mockDomainWhere.mockResolvedValueOnce([
+      {
+        id: "d-1",
+        name: "myserver",
+        userId: "user-1",
+        ipv4: "1.2.3.4",
+        ipv6: "::1",
+        cloudflareRecordIdA: "cf-a",
+        cloudflareRecordIdAAAA: "cf-aaaa",
+      },
+    ]);
+    mockDeleteDns.mockResolvedValue(undefined);
+
+    await GET(makeRequest({ token: "tok-1", domains: "myserver", clear: "true" }));
+
+    expect(mockUpdateSet).toHaveBeenCalledWith(
+      expect.objectContaining({
+        ipv4: null,
+        ipv6: null,
+        cloudflareRecordIdA: null,
+        cloudflareRecordIdAAAA: null,
+      }),
+    );
+  });
+
+  it("handles verbose multi-domain with mixed results", async () => {
+    mockTokenWhere.mockResolvedValueOnce([{ token: "tok-1", userId: "user-1" }]);
+    mockDomainWhere.mockResolvedValueOnce([
+      {
+        id: "d-1",
+        name: "server1",
+        userId: "user-1",
+        ipv4: null,
+        ipv6: null,
+        cloudflareRecordIdA: null,
+        cloudflareRecordIdAAAA: null,
+      },
+    ]);
+    mockDomainWhere.mockResolvedValueOnce([]);
+    mockCreateDns.mockResolvedValueOnce("cf-1");
+
+    const res = await GET(
+      makeRequest({
+        token: "tok-1",
+        domains: "server1,unknown",
+        ip: "1.2.3.4",
+        verbose: "true",
+      }),
+    );
+    expect(res.status).toBe(200);
+    expect(await res.text()).toBe("server1 UPDATED 1.2.3.4\nunknown NOTFOUND");
+  });
+
+  it("trims and lowercases domain names", async () => {
+    mockTokenWhere.mockResolvedValueOnce([{ token: "tok-1", userId: "user-1" }]);
+    mockDomainWhere.mockResolvedValueOnce([]);
+
+    const res = await GET(
+      makeRequest({ token: "tok-1", domains: " MyServer ", ip: "1.2.3.4", verbose: "true" }),
+    );
+    expect(await res.text()).toBe("myserver NOTFOUND");
+  });
+
   it("returns verbose NOTFOUND for unknown domain", async () => {
     mockTokenWhere.mockResolvedValueOnce([{ token: "tok-1", userId: "user-1" }]);
     mockDomainWhere.mockResolvedValueOnce([]);
