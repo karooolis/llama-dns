@@ -6,6 +6,7 @@ import { ClaimInput } from "./claim-input";
 import { Terminal } from "../terminal";
 
 const domain = process.env.NEXT_PUBLIC_DOMAIN || "llamadns.org";
+const apiDomain = `www.${domain}`;
 
 const easeOutQuad = [0.25, 0.46, 0.45, 0.94] as const;
 
@@ -148,7 +149,7 @@ export function Hero() {
                     <span className="text-emerald-500/70">$</span>
                     <span className="text-neutral-300">curl</span>{" "}
                     <span className="text-amber-200/80">
-                      &quot;{domain}/update?domains=lab&amp;token=sk_...&quot;
+                      &quot;{apiDomain}/update?domains=lab&amp;token=sk_...&quot;
                     </span>
                   </div>
                   <div className="pl-5 text-xs text-neutral-500">

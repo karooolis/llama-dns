@@ -14,13 +14,13 @@
 Sign in at [llamadns.org](https://llamadns.org), claim a subdomain, grab your API token, then:
 
 ```bash
-curl "https://llamadns.org/update?token=YOUR_TOKEN&domains=myserver"
+curl "https://www.llamadns.org/update?token=YOUR_TOKEN&domains=myserver"
 ```
 
 Your subdomain now points to your current IP. Automate with cron to keep it up to date:
 
 ```bash
-*/5 * * * * curl -s "https://llamadns.org/update?token=YOUR_TOKEN&domains=myserver"
+*/5 * * * * curl -s "https://www.llamadns.org/update?token=YOUR_TOKEN&domains=myserver"
 ```
 
 ## Self-Hosting
@@ -78,13 +78,13 @@ Update DNS records for one or more subdomains. Authenticate with your API token.
 
 ```bash
 # Auto-detect IP
-curl "https://llamadns.org/update?token=YOUR_TOKEN&domains=myserver"
+curl "https://www.llamadns.org/update?token=YOUR_TOKEN&domains=myserver"
 
 # Explicit IPv4 + IPv6
-curl "https://llamadns.org/update?token=YOUR_TOKEN&domains=myserver&ip=203.0.113.42&ipv6=2001:db8::1"
+curl "https://www.llamadns.org/update?token=YOUR_TOKEN&domains=myserver&ip=203.0.113.42&ipv6=2001:db8::1"
 
 # Multiple subdomains
-curl "https://llamadns.org/update?token=YOUR_TOKEN&domains=myserver,homelab"
+curl "https://www.llamadns.org/update?token=YOUR_TOKEN&domains=myserver,homelab"
 ```
 
 **Response**

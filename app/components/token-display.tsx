@@ -33,8 +33,9 @@ export function TokenDisplay() {
   }
 
   const domain = process.env.NEXT_PUBLIC_DOMAIN || "llamadns.org";
+  const apiDomain = `www.${domain}`;
   const firstDomain = domains[0]?.name ?? "SUBDOMAIN";
-  const updateUrl = `https://${domain}/update?domains=${firstDomain}&token=${token}&verbose=true`;
+  const updateUrl = `https://${apiDomain}/update?domains=${firstDomain}&token=${token}&verbose=true`;
 
   async function copyUrl() {
     if (!token) return;
@@ -88,7 +89,7 @@ export function TokenDisplay() {
           <code className="break-all text-neutral-300">
             curl{" "}
             <span className="text-amber-200/80">
-              &quot;https://{domain}/update?domains={firstDomain}&amp;token=
+              &quot;https://{apiDomain}/update?domains={firstDomain}&amp;token=
               {revealed ? token : masked}&amp;verbose=true&quot;
             </span>
           </code>
