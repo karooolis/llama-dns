@@ -1,16 +1,34 @@
 "use client";
 
 import { useState } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { validateAndBuildClaimRedirect } from "@/lib/claim-redirect";
 
 const domain = process.env.NEXT_PUBLIC_DOMAIN || "llamadns.org";
 
 export function ClaimInput() {
   const [subdomain, setSubdomain] = useState("");
+  const [error, setError] = useState("");
+  const { data: session } = useSession();
+  const router = useRouter();
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    signIn("github", { redirectTo: "/dashboard" });
+    setError("");
+
+    const result = validateAndBuildClaimRedirect(subdomain);
+
+    if (!result.valid) {
+      setError(result.error);
+      return;
+    }
+
+    if (session) {
+      router.push(result.redirectPath);
+    } else {
+      signIn("github", { redirectTo: result.redirectPath });
+    }
   }
 
   return (
@@ -20,7 +38,10 @@ export function ClaimInput() {
           type="text"
           placeholder="your-project"
           value={subdomain}
-          onChange={(e) => setSubdomain(e.target.value)}
+          onChange={(e) => {
+            setSubdomain(e.target.value);
+            setError("");
+          }}
           className="h-10 w-full border-none bg-transparent pl-4 font-mono text-sm tracking-tight text-neutral-200 placeholder-neutral-600 focus:outline-none"
           spellCheck={false}
           autoComplete="off"
@@ -35,6 +56,7 @@ export function ClaimInput() {
           Claim
         </button>
       </div>
+      {error && <p className="mt-2 text-sm text-red-400">{error}</p>}
     </form>
   );
 }

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import { QueryClient, dehydrate, HydrationBoundary } from "@tanstack/react-query";
@@ -30,7 +31,9 @@ export default async function DashboardPage() {
         <h1 className="mb-6 text-2xl font-semibold tracking-tighter text-white">Dashboard</h1>
 
         <HydrationBoundary state={dehydrate(queryClient)}>
-          <DashboardContent />
+          <Suspense>
+            <DashboardContent />
+          </Suspense>
         </HydrationBoundary>
       </main>
       <div className="h-px w-full bg-white/6" />

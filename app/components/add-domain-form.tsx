@@ -4,8 +4,8 @@ import { useState } from "react";
 import { useAddDomainMutation } from "@/queries/domains";
 import { Button } from "./button";
 
-export function AddDomainForm() {
-  const [name, setName] = useState("");
+export function AddDomainForm({ initialName }: { initialName?: string } = {}) {
+  const [name, setName] = useState(initialName ?? "");
   const [error, setError] = useState("");
   const mutation = useAddDomainMutation();
 

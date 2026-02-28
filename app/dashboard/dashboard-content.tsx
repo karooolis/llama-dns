@@ -5,6 +5,7 @@ import { useTokenQuery } from "@/queries/token";
 import { AddDomainForm, DomainRow, TokenDisplay } from "../components";
 import { BentoCard } from "../components/bento-card";
 import { MAX_DOMAINS } from "@/lib/constants";
+import { useAutoClaim } from "./use-auto-claim";
 
 function Skeleton({ className = "" }: { className?: string }) {
   return <div className={`animate-pulse rounded-md bg-white/5 ${className}`} />;
@@ -39,6 +40,7 @@ function TokenSkeleton() {
 export function DashboardContent() {
   const { data: domains = [], isLoading: domainsLoading } = useDomainsQuery();
   const { isLoading: tokenLoading } = useTokenQuery();
+  const { claimError, failedName } = useAutoClaim(!domainsLoading);
 
   return (
     <div className="space-y-6">
@@ -51,6 +53,12 @@ export function DashboardContent() {
             </span>
           )}
         </div>
+
+        {claimError && (
+          <div className="mb-4 rounded-lg border border-red-500/20 bg-red-500/5 px-4 py-3 text-sm text-red-400">
+            {claimError}
+          </div>
+        )}
 
         {domainsLoading ? (
           <DomainsSkeleton />
@@ -66,7 +74,9 @@ export function DashboardContent() {
           </p>
         )}
 
-        {!domainsLoading && domains.length < MAX_DOMAINS && <AddDomainForm />}
+        {!domainsLoading && domains.length < MAX_DOMAINS && (
+          <AddDomainForm initialName={failedName ?? undefined} />
+        )}
       </BentoCard>
 
       <BentoCard size="compact" hover={false}>

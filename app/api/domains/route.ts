@@ -4,8 +4,7 @@ import { db } from "@/lib/db";
 import { domains } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { MAX_DOMAINS, RESERVED_SUBDOMAINS } from "@/lib/constants";
-
-const SUBDOMAIN_RE = /^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/;
+import { SUBDOMAIN_RE } from "@/lib/validation";
 
 export async function GET() {
   const session = await auth();
