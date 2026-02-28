@@ -58,10 +58,7 @@ export function DomainRow({ domain }: { domain: Domain }) {
               </button>
             </div>
             {/* Arrow */}
-            <div className="absolute left-1/2 top-full -translate-x-1/2">
-              <div className="h-0 w-0 border-x-[6px] border-t-[6px] border-x-transparent border-t-white/10" />
-              <div className="-mt-[7px] h-0 w-0 border-x-[6px] border-t-[6px] border-x-transparent border-t-[#141414]" />
-            </div>
+            <div className="absolute left-1/2 -bottom-[5px] -translate-x-1/2 h-[9px] w-[9px] rotate-45 border-r border-b border-white/10 bg-[#141414]" />
           </div>
         )}
       </div>
