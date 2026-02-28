@@ -54,15 +54,16 @@ export function TokenDisplay() {
           <span className="pr-1 text-xs text-neutral-600">{timeAgo(tokenData.createdAt)}</span>
         )}
         <div className="flex items-center pr-1">
-          <Button variant="ghost" size="sm" onClick={() => setRevealed(!revealed)}>
+          <Button variant="ghost" size="sm" className="text-white hover:text-neutral-400" onClick={() => setRevealed(!revealed)}>
             <Icon icon={revealed ? "solar:eye-closed-linear" : "solar:eye-linear"} width={14} />
           </Button>
-          <Button variant="ghost" size="sm" onClick={copyToken}>
+          <Button variant="ghost" size="sm" className="text-white hover:text-neutral-400" onClick={copyToken}>
             <Icon icon={copied ? "solar:check-circle-linear" : "solar:copy-linear"} width={14} />
           </Button>
           <Button
-            variant="danger"
+            variant="ghost"
             size="sm"
+            className="text-white hover:text-neutral-400"
             onClick={handleRegenerate}
             disabled={regenerate.isPending}
           >
