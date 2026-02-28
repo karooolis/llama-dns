@@ -48,3 +48,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# other
+PROGRESS.txt
+TASKS.json
+CLAUDE.md
