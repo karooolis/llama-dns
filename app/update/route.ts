@@ -53,8 +53,8 @@ export async function GET(request: NextRequest) {
   const detectedIp = clear ? null : getClientIp(request);
 
   // Auto-detected IP may be v4 or v6 — route it to the correct field
-  let ipv4 = explicitIpv4 ?? (detectedIp && !isIPv6(detectedIp) ? detectedIp : null);
-  let ipv6 = explicitIpv6 ?? (detectedIp && isIPv6(detectedIp) ? detectedIp : null);
+  const ipv4 = explicitIpv4 ?? (detectedIp && !isIPv6(detectedIp) ? detectedIp : null);
+  const ipv6 = explicitIpv6 ?? (detectedIp && isIPv6(detectedIp) ? detectedIp : null);
 
   if (!clear && !ipv4 && !ipv6) {
     return text("KO - could not determine IP address", 400);
