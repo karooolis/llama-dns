@@ -7,6 +7,7 @@ import { Icon } from "@iconify/react";
 import { Button } from "./button";
 import { Terminal } from "./terminal";
 import { timeAgo } from "@/lib/format-time";
+import { API_DOMAIN } from "@/lib/constants";
 
 export function TokenDisplay() {
   const { data: tokenData } = useTokenQuery();
@@ -32,10 +33,8 @@ export function TokenDisplay() {
     setRevealed(true);
   }
 
-  const domain = process.env.NEXT_PUBLIC_DOMAIN || "llamadns.org";
-  const apiDomain = `www.${domain}`;
   const domainNames = domains.length > 0 ? domains.map((d) => d.name).join(",") : "SUBDOMAIN";
-  const updateUrl = `https://${apiDomain}/update?domains=${domainNames}&token=${token}&verbose=true`;
+  const updateUrl = `https://${API_DOMAIN}/update?domains=${domainNames}&token=${token}&verbose=true`;
   const curlCommand = `curl "${updateUrl}"`;
 
   async function copyUrl() {
@@ -54,16 +53,15 @@ export function TokenDisplay() {
           <span className="pr-1 text-xs text-neutral-600">{timeAgo(tokenData.createdAt)}</span>
         )}
         <div className="flex items-center pr-1">
-          <Button variant="ghost" size="sm" className="text-white hover:text-neutral-400" onClick={() => setRevealed(!revealed)}>
+          <Button variant="ghost-light" size="sm" onClick={() => setRevealed(!revealed)}>
             <Icon icon={revealed ? "solar:eye-closed-linear" : "solar:eye-linear"} width={14} />
           </Button>
-          <Button variant="ghost" size="sm" className="text-white hover:text-neutral-400" onClick={copyToken}>
+          <Button variant="ghost-light" size="sm" onClick={copyToken}>
             <Icon icon={copied ? "solar:check-circle-linear" : "solar:copy-linear"} width={14} />
           </Button>
           <Button
-            variant="ghost"
+            variant="ghost-light"
             size="sm"
-            className="text-white hover:text-neutral-400"
             onClick={handleRegenerate}
             disabled={regenerate.isPending}
           >
@@ -91,7 +89,7 @@ export function TokenDisplay() {
           <code className="break-all text-neutral-300">
             curl{" "}
             <span className="text-amber-200/80">
-              &quot;https://{apiDomain}/update?domains={domainNames}&amp;token=
+              &quot;https://{API_DOMAIN}/update?domains={domainNames}&amp;token=
               {revealed ? token : masked}&amp;verbose=true&quot;
             </span>
           </code>

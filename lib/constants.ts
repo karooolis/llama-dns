@@ -1,4 +1,6 @@
 export const MAX_DOMAINS = 5;
+export const PUBLIC_DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || "llamadns.org";
+export const API_DOMAIN = `www.${PUBLIC_DOMAIN}`;
 
 export const RESERVED_SUBDOMAINS = new Set([
   "www",

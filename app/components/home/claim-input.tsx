@@ -4,8 +4,7 @@ import { useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { validateAndBuildClaimRedirect } from "@/lib/claim-redirect";
-
-const domain = process.env.NEXT_PUBLIC_DOMAIN || "llamadns.org";
+import { PUBLIC_DOMAIN } from "@/lib/constants";
 
 export function ClaimInput() {
   const [subdomain, setSubdomain] = useState("");
@@ -50,7 +49,7 @@ export function ClaimInput() {
           autoComplete="off"
         />
         <span className="hidden pr-2 font-mono text-sm tracking-tight text-neutral-600 select-none sm:block">
-          .{domain}
+          .{PUBLIC_DOMAIN}
         </span>
         <button
           type="submit"

@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes, AnchorHTMLAttributes, ReactNode } from "react";
 import Link from "next/link";
 
-type ButtonVariant = "secondary" | "primary" | "danger" | "ghost";
+type ButtonVariant = "secondary" | "primary" | "danger" | "ghost" | "ghost-light";
 type ButtonSize = "default" | "sm";
 
 type BaseProps = {
@@ -23,6 +23,7 @@ const variantClasses: Record<ButtonVariant, string> = {
   primary: "bg-accent text-white hover:bg-accent-hover",
   danger: "border border-white/8 text-danger hover:bg-danger/10",
   ghost: "text-neutral-500 hover:text-white",
+  "ghost-light": "text-white hover:text-neutral-400",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {

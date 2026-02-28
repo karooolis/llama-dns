@@ -4,9 +4,7 @@ import { CheckCircle } from "../icons";
 import { motion, useReducedMotion } from "motion/react";
 import { ClaimInput } from "./claim-input";
 import { Terminal } from "../terminal";
-
-const domain = process.env.NEXT_PUBLIC_DOMAIN || "llamadns.org";
-const apiDomain = `www.${domain}`;
+import { PUBLIC_DOMAIN, API_DOMAIN } from "@/lib/constants";
 
 const easeOutQuad = [0.25, 0.46, 0.45, 0.94] as const;
 
@@ -149,7 +147,7 @@ export function Hero() {
                     <span className="text-emerald-500/70">$</span>
                     <span className="text-neutral-300">curl</span>{" "}
                     <span className="text-amber-200/80">
-                      &quot;{apiDomain}/update?domains=lab&amp;token=sk_...&quot;
+                      &quot;{API_DOMAIN}/update?domains=lab&amp;token=sk_...&quot;
                     </span>
                   </div>
                   <div className="pl-5 text-xs text-neutral-500">
@@ -168,7 +166,7 @@ export function Hero() {
                   <div className="mb-1 flex items-center gap-2 text-neutral-500">
                     <span className="text-emerald-500/70">$</span>
                     <span className="text-neutral-300">dig</span>{" "}
-                    <span className="text-sky-300/70">lab.{domain}</span>{" "}
+                    <span className="text-sky-300/70">lab.{PUBLIC_DOMAIN}</span>{" "}
                     <span className="text-neutral-500">+short</span>
                   </div>
                   <div className="pl-5 text-xs text-neutral-400">203.0.113.42</div>

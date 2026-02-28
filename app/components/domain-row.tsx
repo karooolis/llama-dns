@@ -4,10 +4,10 @@ import { useState, useRef, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import { useDeleteDomainMutation, type Domain } from "@/queries/domains";
 import { timeAgo } from "@/lib/format-time";
+import { PUBLIC_DOMAIN } from "@/lib/constants";
 
 export function DomainRow({ domain }: { domain: Domain }) {
   const deleteMutation = useDeleteDomainMutation();
-  const domainSuffix = process.env.NEXT_PUBLIC_DOMAIN || "llamadns.org";
   const isTemp = domain.id.startsWith("temp-");
   const [confirmOpen, setConfirmOpen] = useState(false);
   const popoverRef = useRef<HTMLDivElement>(null);
@@ -36,7 +36,7 @@ export function DomainRow({ domain }: { domain: Domain }) {
           <Icon icon="solar:trash-bin-minimalistic-linear" width={14} />
         </button>
         {confirmOpen && (
-          <div className="absolute bottom-full left-1/2 z-10 mb-2 w-44 -translate-x-1/2 rounded-lg border border-white/10 bg-[#141414] p-3 shadow-xl">
+          <div className="absolute bottom-full left-1/2 z-10 mb-2 w-44 -translate-x-1/2 rounded-lg border border-white/10 bg-card p-3 shadow-xl">
             <p className="mb-2.5 text-xs text-neutral-300">Are you sure?</p>
             <div className="flex gap-2">
               <button
@@ -58,7 +58,7 @@ export function DomainRow({ domain }: { domain: Domain }) {
               </button>
             </div>
             {/* Arrow */}
-            <div className="absolute left-1/2 -bottom-[5px] -translate-x-1/2 h-[9px] w-[9px] rotate-45 border-r border-b border-white/10 bg-[#141414]" />
+            <div className="absolute left-1/2 -bottom-[5px] -translate-x-1/2 h-[9px] w-[9px] rotate-45 border-r border-b border-white/10 bg-card" />
           </div>
         )}
       </div>
@@ -76,7 +76,7 @@ export function DomainRow({ domain }: { domain: Domain }) {
             className="shrink-0 text-amber-500/70"
           />
         )}
-        {domain.name}.{domainSuffix}
+        {domain.name}.{PUBLIC_DOMAIN}
       </p>
       <div className="mt-1.5 flex items-baseline justify-between gap-3">
         <p className="text-sm text-neutral-500">

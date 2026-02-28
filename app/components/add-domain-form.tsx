@@ -3,13 +3,12 @@
 import { useState } from "react";
 import { useAddDomainMutation } from "@/queries/domains";
 import { Button } from "./button";
+import { PUBLIC_DOMAIN } from "@/lib/constants";
 
 export function AddDomainForm({ initialName }: { initialName?: string } = {}) {
   const [name, setName] = useState(initialName ?? "");
   const [error, setError] = useState("");
   const mutation = useAddDomainMutation();
-
-  const domain = process.env.NEXT_PUBLIC_DOMAIN || "llamadns.org";
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -44,7 +43,7 @@ export function AddDomainForm({ initialName }: { initialName?: string } = {}) {
           autoComplete="off"
         />
         <span className="hidden pr-2 font-mono text-sm tracking-tight text-neutral-600 select-none sm:block">
-          .{domain}
+          .{PUBLIC_DOMAIN}
         </span>
         <Button
           variant="secondary"
@@ -59,7 +58,7 @@ export function AddDomainForm({ initialName }: { initialName?: string } = {}) {
       {error && <p className="text-sm text-danger">{error}</p>}
       {name.trim() && !error && (
         <p className="text-sm font-light text-neutral-500">
-          Preview: {name.trim().toLowerCase()}.{domain}
+          Preview: {name.trim().toLowerCase()}.{PUBLIC_DOMAIN}
         </p>
       )}
     </form>
