@@ -10,6 +10,7 @@ const domain = process.env.NEXT_PUBLIC_DOMAIN || "llamadns.org";
 export function ClaimInput() {
   const [subdomain, setSubdomain] = useState("");
   const [error, setError] = useState("");
+  const [isRedirecting, setIsRedirecting] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -23,6 +24,8 @@ export function ClaimInput() {
       setError(result.error);
       return;
     }
+
+    setIsRedirecting(true);
 
     if (session) {
       router.push(result.redirectPath);
@@ -51,9 +54,10 @@ export function ClaimInput() {
         </span>
         <button
           type="submit"
-          className="ml-1 h-9 shrink-0 cursor-pointer rounded-lg border border-white/10 bg-white/8 px-5 text-xs font-semibold tracking-tight whitespace-nowrap text-neutral-300 transition-colors hover:border-white/15 hover:bg-white/12"
+          disabled={isRedirecting}
+          className="ml-1 h-9 shrink-0 cursor-pointer rounded-lg border border-white/10 bg-white/8 px-5 text-xs font-semibold tracking-tight whitespace-nowrap text-neutral-300 transition-colors hover:border-white/15 hover:bg-white/12 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          Claim
+          {isRedirecting ? "Claiming..." : "Claim"}
         </button>
       </div>
       {error && <p className="mt-2 text-sm text-red-400">{error}</p>}
